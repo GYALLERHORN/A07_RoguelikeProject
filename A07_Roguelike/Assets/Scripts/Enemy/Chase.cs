@@ -1,11 +1,11 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Chase : EnemyBehaviour
 {
     private int _priority = 1;
-    [SerializeField][Range(0f, 100f)] private float followRange;
-    [SerializeField][Range(0f, 100f)] private float speed;
+
 
     protected override void Awake()
     {
@@ -21,13 +21,18 @@ public class Chase : EnemyBehaviour
 
     private void OnChase()
     {
-        controller.rb2D.velocity = speed * controller.Direction;
+        controller.rb2D.velocity = controller.speed * controller.Direction;
     }
 
     private bool CheckChase()
     {
-        if (controller.Distance < followRange ) return true;
+        float distance = controller.Distance;
 
+        if (distance < controller.followRange)
+        {
+          return true;
+            
+        }
         return false;
     }
 }

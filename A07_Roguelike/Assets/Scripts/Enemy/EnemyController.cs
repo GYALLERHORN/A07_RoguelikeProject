@@ -7,11 +7,16 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private List<EnemyBehaviour> enemyBehaviours = new List<EnemyBehaviour>();
 
+    [SerializeField][Range(0f, 100f)] public float followRange;
+    [SerializeField][Range(0f, 100f)] public float speed;
+
     public Rigidbody2D rb2D;
 
     public SpriteRenderer spriteRenderer;
 
-    private EnemyBehaviour _nextBehaviour;
+    [SerializeField]private List<EnemyBehaviour> _nextBehaviours = new List<EnemyBehaviour>();
+
+
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
 
     public float Distance { get { return  Vector3.Distance(transform.position, Target.transform.position); } }
@@ -29,33 +34,46 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        foreach(EnemyBehaviour EnemyBehaviour in enemyBehaviours)
-        {
-            if (EnemyBehaviour.CheckBehaviour())
-            {
-                if (EnemyBehaviour.Priority == 0)
-                {
-                    EnemyBehaviour.OnBehaviour();
-                    continue;
-                }
+        _nextBehaviours.Clear();
+        rb2D.velocity = Vector3.zero;
 
-                if(_nextBehaviour == null)
+        foreach (EnemyBehaviour enemyBehaviour in enemyBehaviours)
+        {
+            if (!enemyBehaviour.CheckBehaviour())
+            {
+                continue;
+            }
+
+            if (enemyBehaviour.Priority == 0)
+            {
+                enemyBehaviour.OnBehaviour();
+                continue;
+            }
+
+            if(_nextBehaviours.Count == 0)
+            {
+                _nextBehaviours.Add(enemyBehaviour);
+            }
+            else
+            {
+                if(enemyBehaviour.Priority > _nextBehaviours[0].Priority)
                 {
-                    _nextBehaviour = EnemyBehaviour;
+                    _nextBehaviours.Clear();
+                    _nextBehaviours.Add(enemyBehaviour);
                 }
-                else
+                else if(enemyBehaviour.Priority == _nextBehaviours[0].Priority)
                 {
-                    _nextBehaviour = EnemyBehaviour.Priority > _nextBehaviour.Priority ? EnemyBehaviour : _nextBehaviour;
+                    _nextBehaviours.Add(enemyBehaviour);
                 }
             }
+            
         }
 
-        if (_nextBehaviour != null)
+        if (_nextBehaviours.Count != 0)
         {
-            _nextBehaviour.OnBehaviour();
+            _nextBehaviours[Random.Range(0, _nextBehaviours.Count)].OnBehaviour();
         }
-
-
-        // 만약 여러개의 우선순위가 겹친다면 그중에서 랜덤으로 선택??
+        
+        
     }
 }

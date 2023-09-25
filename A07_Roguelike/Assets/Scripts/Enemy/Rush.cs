@@ -8,4 +8,11 @@ public class Rush : EnemyBehaviour
 
     // 잠깐 멈춰서 돌진 방향을 표시하고 돌진
 
+    // 플레이어까지의 방향을구해서 
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
 }
