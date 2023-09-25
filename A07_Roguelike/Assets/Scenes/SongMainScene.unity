@@ -461,6 +461,8 @@ GameObject:
   - component: {fileID: 1317940869}
   - component: {fileID: 1317940868}
   - component: {fileID: 1317940873}
+  - component: {fileID: 1317940874}
+  - component: {fileID: 1317940875}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -581,3 +583,35 @@ MonoBehaviour:
   armRenderer: {fileID: 725268469}
   armPivot: {fileID: 826666133}
   characterRenderer: {fileID: 888772248}
+--- !u!114 &1317940874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317940867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: accd64b1628edbb47a9e55d22e7524a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpawnPosition: {fileID: 458890832}
+  testPrefab: {fileID: 222661338659918288, guid: decbc774d93279b44aaa2bddddc7ca06, type: 3}
+--- !u!114 &1317940875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317940867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a729f4c0ac90580439b1c7d7d0e09106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats:
+    statsChangeType: 0
+    maxHealth: 10
+    speed: 5
+    attackSO: {fileID: 11400000, guid: 038783d31a6c63b40b121f4e2b4f7295, type: 2}
+  statsModifiers: []
