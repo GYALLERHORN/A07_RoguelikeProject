@@ -74,7 +74,7 @@ public class ObjectPool : MonoBehaviour
         return obj;
     }
 
-    public int UpsizePool(ePoolType type, int size)
+    public int UpsizePool(ePoolType type, int resize)
     {
         var poolQueue = poolDictionary[type];
 
@@ -85,10 +85,10 @@ public class ObjectPool : MonoBehaviour
             return targetPool.size;
         else
         {
-            targetPool.size += size;
+            targetPool.size += resize;
             pools[poolIndex] = targetPool;
 
-            for (int i = 0; i < size; ++i)
+            for (int i = 0; i < resize; ++i)
             {
                 GameObject obj = Instantiate(targetPool.prefab);
                 obj.SetActive(false);
