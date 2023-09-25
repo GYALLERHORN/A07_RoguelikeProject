@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+[Serializable]
+public class DataManager
 {
-    // Start is called before the first frame update
-    void Start()
+    private static DataManager instance;
+    public static DataManager Get()
     {
-        
+        if (instance == null)
+            instance = new DataManager();
+        return instance;
     }
+    [Header("Sound Setting")]
+    public float MasterVolume;
+    public float BGMVolume;
+    public float EffectVolume;
+    public float UIVolume;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

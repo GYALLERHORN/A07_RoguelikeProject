@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance;
+    public DataManager Data;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            Data = DataManager.Get();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartDunegeon(int level)
     {
-        
+
     }
+
+    public void StartSpawnMonster(eDungeonType  type)
+    {
+
+    }
+}
+
+public enum eDungeonType
+{
+    First,
+    Second,
 }
