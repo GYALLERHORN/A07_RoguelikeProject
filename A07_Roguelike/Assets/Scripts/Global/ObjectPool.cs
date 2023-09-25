@@ -81,22 +81,22 @@ public class ObjectPool : MonoBehaviour
         int poolIndex = pools.FindIndex(x => x.type == type);
         Pool targetPool = pools[poolIndex];
 
-        if (targetPool.size >= _maxSize)
-            return targetPool.size;
-        else
+        if (targetPool.size < _maxSize)
         {
-            targetPool.size += resize;
+            int temp = Mathf.Min(targetPool.size + resize, _maxSize);
+            int limit = temp - targetPool.size;
+
+            targetPool.size = temp;
             pools[poolIndex] = targetPool;
 
-            for (int i = 0; i < resize; ++i)
+            for (int i = 0; i < limit; ++i)
             {
                 GameObject obj = Instantiate(targetPool.prefab);
                 obj.SetActive(false);
                 poolQueue.Enqueue(obj);
             }
-
-            return targetPool.size;
         }
+        return targetPool.size;
     }
 
     public int DownsizePool(ePoolType type, int size)
