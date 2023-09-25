@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour
     /// 정해진 오디오 그룹과 별개로 볼륨과 효과를 주고 싶은 경우에 사용.
     /// </summary>
     /// <param name="data">예시) new SoundManager.SoundData() {Clip = 클립, Position = this.transform 혹은 = Vector3.zero, MinPitch = 0.8f, MaxPitch = 1.2f, Volume = 0.3f };</param>
-    public void PlayClip(SoundData data)
+    public static void PlayClip(SoundData data)
     {
         GameObject obj = Instance._pools.SpawnFromPool(ePoolType.SoundSource);
         obj.SetActive(true);
