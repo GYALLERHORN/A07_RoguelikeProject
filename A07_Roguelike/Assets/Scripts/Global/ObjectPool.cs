@@ -5,10 +5,26 @@ using UnityEngine;
 public enum ePoolType
 {
     SoundSource,
+
+    Inventory = 5,
     Status,
-    Inventory,
     Store,
     TextImage,
+    InventoryItem,
+    OX,
+    Gold,
+
+}
+
+public enum eUIType
+{
+    Inventory = 5,
+    Status,
+    Store,
+    TextImage,
+    InventoryItem,
+    OX,
+    Gold,
 }
 
 public class ObjectPool : MonoBehaviour
