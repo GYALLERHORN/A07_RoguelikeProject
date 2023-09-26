@@ -51,7 +51,7 @@ TextureImporter:
       213: -5392102379725219446
     second: Steampunk_UI_gameplay_icons_4_15
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -68,11 +68,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -111,6 +112,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -122,6 +125,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -134,6 +138,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -146,6 +151,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +164,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -510,25 +530,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Steampunk_UI_gameplay_icons_4_2: -5295681649394328682
-      Steampunk_UI_gameplay_icons_4_14: 4279732321544639050
-      Steampunk_UI_gameplay_icons_4_7: 1147307055303609246
-      Steampunk_UI_gameplay_icons_4_11: 6808505462300251067
+      Steampunk_UI_gameplay_icons_4_0: 7558459862319271696
       Steampunk_UI_gameplay_icons_4_1: -7554533414902461244
       Steampunk_UI_gameplay_icons_4_10: 4437990597512366143
-      Steampunk_UI_gameplay_icons_4_9: -5180774413897679566
-      Steampunk_UI_gameplay_icons_4_6: -4468311507337160251
-      Steampunk_UI_gameplay_icons_4_8: 2325918892018278595
-      Steampunk_UI_gameplay_icons_4_13: 507508848918055227
-      Steampunk_UI_gameplay_icons_4_4: 5751913276161307030
+      Steampunk_UI_gameplay_icons_4_11: 6808505462300251067
       Steampunk_UI_gameplay_icons_4_12: -1824648503781395610
-      Steampunk_UI_gameplay_icons_4_3: -3734713736672000502
-      Steampunk_UI_gameplay_icons_4_5: -8186578358583888691
-      Steampunk_UI_gameplay_icons_4_0: 7558459862319271696
+      Steampunk_UI_gameplay_icons_4_13: 507508848918055227
+      Steampunk_UI_gameplay_icons_4_14: 4279732321544639050
       Steampunk_UI_gameplay_icons_4_15: -5392102379725219446
-  spritePackingTag: 
+      Steampunk_UI_gameplay_icons_4_2: -5295681649394328682
+      Steampunk_UI_gameplay_icons_4_3: -3734713736672000502
+      Steampunk_UI_gameplay_icons_4_4: 5751913276161307030
+      Steampunk_UI_gameplay_icons_4_5: -8186578358583888691
+      Steampunk_UI_gameplay_icons_4_6: -4468311507337160251
+      Steampunk_UI_gameplay_icons_4_7: 1147307055303609246
+      Steampunk_UI_gameplay_icons_4_8: 2325918892018278595
+      Steampunk_UI_gameplay_icons_4_9: -5180774413897679566
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -77,17 +77,19 @@ public class ObjectPool : MonoBehaviour
         GameObject obj = poolDictionary[tag].Dequeue();
         poolDictionary[tag].Enqueue(obj);
 
-        int count = pools.Find(x => x.type == tag).size;
+        int size = pools.Find(x => x.type == tag).size;
+        int count = size;
+
         while (obj.activeInHierarchy)
         {
             if (count < 0)
             {
-                count = UpsizePool(tag, _resizeSize);
-                if (count == pools.Find(x => x.type == tag).size)
+                if (size == _maxSize)
                 {
                     obj = null;
                     break;
                 }
+                count = UpsizePool(tag, _resizeSize);
             }
             else
             {
@@ -117,7 +119,11 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < limit; ++i)
             {
-                GameObject obj = Instantiate(targetPool.prefab);
+                GameObject obj;
+                if (_root == null)
+                    obj = Instantiate(targetPool.prefab);
+                else
+                    obj = Instantiate(targetPool.prefab, _root);
                 obj.SetActive(false);
                 poolQueue.Enqueue(obj);
             }
@@ -142,5 +148,10 @@ public class ObjectPool : MonoBehaviour
         }
 
         return targetPool.size;
+    }
+
+    public void TestPopup()
+    {
+
     }
 }

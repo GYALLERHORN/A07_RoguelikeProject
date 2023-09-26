@@ -111,7 +111,7 @@ TextureImporter:
       213: -2425868001231399092
     second: Steampunk_UI_gameplay_icons_1_31
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -128,11 +128,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -171,6 +172,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -182,6 +185,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -194,6 +198,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -206,6 +211,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -218,6 +224,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -990,45 +1010,44 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Steampunk_UI_gameplay_icons_1_38: -156055979059274281
-      Steampunk_UI_gameplay_icons_1_32: 3999759215558517292
-      Steampunk_UI_gameplay_icons_1_4: 4591140052969847277
-      Steampunk_UI_gameplay_icons_1_30: 7778243049578669228
-      Steampunk_UI_gameplay_icons_1_39: 6095769340417521577
-      Steampunk_UI_gameplay_icons_1_21: 4734680060043342737
-      Steampunk_UI_gameplay_icons_1_26: 6961945920669863386
-      Steampunk_UI_gameplay_icons_1_36: 2959165472428844943
-      Steampunk_UI_gameplay_icons_1_42: 2011090882785546652
-      Steampunk_UI_gameplay_icons_1_37: -8491186037443411640
-      Steampunk_UI_gameplay_icons_1_25: 2012491272128682801
-      Steampunk_UI_gameplay_icons_1_5: -5301393465576493775
-      Steampunk_UI_gameplay_icons_1_7: -8182309823674261780
-      Steampunk_UI_gameplay_icons_1_17: -4857259970038710389
-      Steampunk_UI_gameplay_icons_1_22: 7769593804842390018
+      Steampunk_UI_gameplay_icons_1_10: -8495120860316711033
       Steampunk_UI_gameplay_icons_1_11: -3629286864358160468
-      Steampunk_UI_gameplay_icons_1_8: 7678994820052449188
-      Steampunk_UI_gameplay_icons_1_20: -9093417008062783642
-      Steampunk_UI_gameplay_icons_1_35: 2326319382162329187
-      Steampunk_UI_gameplay_icons_1_43: -3340539059480346552
+      Steampunk_UI_gameplay_icons_1_12: -7274821612609347500
       Steampunk_UI_gameplay_icons_1_14: 3698671717037595493
-      Steampunk_UI_gameplay_icons_1_34: 5680312919153065101
-      Steampunk_UI_gameplay_icons_1_44: -7897023157229227031
+      Steampunk_UI_gameplay_icons_1_16: -2647855021530941984
+      Steampunk_UI_gameplay_icons_1_17: -4857259970038710389
+      Steampunk_UI_gameplay_icons_1_18: -1974440856927721618
+      Steampunk_UI_gameplay_icons_1_20: -9093417008062783642
+      Steampunk_UI_gameplay_icons_1_21: 4734680060043342737
+      Steampunk_UI_gameplay_icons_1_22: 7769593804842390018
+      Steampunk_UI_gameplay_icons_1_23: 1494025544468614477
+      Steampunk_UI_gameplay_icons_1_24: 7229366891782549415
+      Steampunk_UI_gameplay_icons_1_25: 2012491272128682801
+      Steampunk_UI_gameplay_icons_1_26: 6961945920669863386
       Steampunk_UI_gameplay_icons_1_27: 3137285949921205569
       Steampunk_UI_gameplay_icons_1_29: -3517875738777368083
-      Steampunk_UI_gameplay_icons_1_12: -7274821612609347500
-      Steampunk_UI_gameplay_icons_1_24: 7229366891782549415
-      Steampunk_UI_gameplay_icons_1_40: 7450595817999015856
-      Steampunk_UI_gameplay_icons_1_33: -9139439518364728202
-      Steampunk_UI_gameplay_icons_1_18: -1974440856927721618
-      Steampunk_UI_gameplay_icons_1_10: -8495120860316711033
-      Steampunk_UI_gameplay_icons_1_16: -2647855021530941984
-      Steampunk_UI_gameplay_icons_1_6: -790166292093661964
-      Steampunk_UI_gameplay_icons_1_23: 1494025544468614477
-      Steampunk_UI_gameplay_icons_1_41: -8895145600599323234
+      Steampunk_UI_gameplay_icons_1_30: 7778243049578669228
       Steampunk_UI_gameplay_icons_1_31: -2425868001231399092
-  spritePackingTag: 
+      Steampunk_UI_gameplay_icons_1_32: 3999759215558517292
+      Steampunk_UI_gameplay_icons_1_33: -9139439518364728202
+      Steampunk_UI_gameplay_icons_1_34: 5680312919153065101
+      Steampunk_UI_gameplay_icons_1_35: 2326319382162329187
+      Steampunk_UI_gameplay_icons_1_36: 2959165472428844943
+      Steampunk_UI_gameplay_icons_1_37: -8491186037443411640
+      Steampunk_UI_gameplay_icons_1_38: -156055979059274281
+      Steampunk_UI_gameplay_icons_1_39: 6095769340417521577
+      Steampunk_UI_gameplay_icons_1_4: 4591140052969847277
+      Steampunk_UI_gameplay_icons_1_40: 7450595817999015856
+      Steampunk_UI_gameplay_icons_1_41: -8895145600599323234
+      Steampunk_UI_gameplay_icons_1_42: 2011090882785546652
+      Steampunk_UI_gameplay_icons_1_43: -3340539059480346552
+      Steampunk_UI_gameplay_icons_1_44: -7897023157229227031
+      Steampunk_UI_gameplay_icons_1_5: -5301393465576493775
+      Steampunk_UI_gameplay_icons_1_6: -790166292093661964
+      Steampunk_UI_gameplay_icons_1_7: -8182309823674261780
+      Steampunk_UI_gameplay_icons_1_8: 7678994820052449188
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

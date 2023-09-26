@@ -14,6 +14,6 @@ public class UIBase : MonoBehaviour
     public virtual void CloseUI()
     {
         UIManager.Instance.RemoveUIInList(this);
-        gameObject.transform.parent.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
