@@ -45,6 +45,7 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] private int _resizeSize;
     [SerializeField] private int _maxSize;
+    [SerializeField] private Transform _root;
     public List<Pool> pools;
     public Dictionary<ePoolType, Queue<GameObject>> poolDictionary;
 
@@ -57,7 +58,10 @@ public class ObjectPool : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj;
-                obj = Instantiate(pool.prefab);
+                if (_root == null)
+                    obj = Instantiate(pool.prefab);
+                else
+                    obj = Instantiate(pool.prefab, _root);
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }
