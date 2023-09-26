@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public DataManager Data;
+    [HideInInspector] public DataManager Data;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            Data = DataManager.Get();
         }
+        Data = DataManager.Get();
     }
 
     public void StartDunegeon(int level)
