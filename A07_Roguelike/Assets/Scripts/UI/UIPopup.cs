@@ -32,7 +32,10 @@ public class UIPopup : UIBase
             _title.gameObject.SetActive(false);
         }
         else
+        {
+            _title.gameObject.SetActive(true);
             _title.text = title;
+        }
         _data.text = data;
         IsTemp = temp;
         _time = 0.0f;
