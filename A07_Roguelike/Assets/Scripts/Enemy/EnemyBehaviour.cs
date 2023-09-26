@@ -11,13 +11,16 @@ public enum EnemyBehaviourType
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
+    protected EnemyBehaviourType type;
     public int Priority { get; protected set; }
 
     protected EnemyController controller;
+    protected Animator animator;
 
     protected virtual void Awake()
     {
         controller = GetComponent<EnemyController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public abstract void OnBehaviour();

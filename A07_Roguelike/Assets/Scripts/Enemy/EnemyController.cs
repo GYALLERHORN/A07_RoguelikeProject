@@ -11,11 +11,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField][Range(0f, 100f)] public float speed;
 
     public Rigidbody2D rb2D;
-
     public SpriteRenderer spriteRenderer;
-
+    
     [SerializeField]private List<EnemyBehaviour> _nextBehaviours = new List<EnemyBehaviour>();
-
 
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
 
@@ -24,7 +22,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         foreach (EnemyBehaviour enemyBehaviour in GetComponents<EnemyBehaviour>())
         {
             enemyBehaviours.Add(enemyBehaviour);
@@ -32,7 +30,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _nextBehaviours.Clear();
         rb2D.velocity = Vector3.zero;
@@ -50,25 +48,28 @@ public class EnemyController : MonoBehaviour
                 continue;
             }
 
-            if(_nextBehaviours.Count == 0)
+            if (_nextBehaviours.Count == 0)
             {
                 _nextBehaviours.Add(enemyBehaviour);
             }
             else
             {
-                if(enemyBehaviour.Priority > _nextBehaviours[0].Priority)
+                if (enemyBehaviour.Priority > _nextBehaviours[0].Priority)
                 {
                     _nextBehaviours.Clear();
                     _nextBehaviours.Add(enemyBehaviour);
                 }
-                else if(enemyBehaviour.Priority == _nextBehaviours[0].Priority)
+                else if (enemyBehaviour.Priority == _nextBehaviours[0].Priority)
                 {
                     _nextBehaviours.Add(enemyBehaviour);
                 }
             }
-            
-        }
 
+        }
+    }
+
+    private void FixedUpdate()
+    {
         if (_nextBehaviours.Count != 0)
         {
             _nextBehaviours[Random.Range(0, _nextBehaviours.Count)].OnBehaviour();
