@@ -1,38 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 public class Bomb : EnemyBehaviour
 {
-    [SerializeField][Range(1f, 100f)] public float range;
-
+    private static readonly int isDeath = Animator.StringToHash("isDeath");
     protected override void Awake()
     {
         base.Awake();
     }
 
-    protected void Start()
-    {
-        type = EnemyBehaviourType.Attack;
-        Priority = (int)type;
-    }
-
     protected override void Update()
     {
-  
+        base.Update();
+        if (remainTime < 0 && !IsReady && CheckBehaviour())
+        {
+            controller.enemyBehaviours.Enqueue(this);
+            IsReady = true;
+        }
     }
     public override void OnBehaviour()
     {
-        Destroy(gameObject);
+        controller.isDead = true;
+        animator.SetBool(isDeath, true);
+        transform.localScale = Vector3.one * 1.5f;
+        Destroy(gameObject, .35f);
+         
     }
 
     public override bool CheckBehaviour()
     {
         if (remainTime > 0) return false;
 
-        if (controller.Distance >= range) return false;
+        if (controller.Distance > range) return false;
    
         return true;
     }

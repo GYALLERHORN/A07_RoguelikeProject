@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class KeepDistance : EnemyBehaviour
@@ -17,9 +14,7 @@ public class KeepDistance : EnemyBehaviour
 
     protected void Start()
     {
-        type = EnemyBehaviourType.Move;
-        Priority = (int)type;
-        tempSpeed = controller.speed;
+        tempSpeed = controller.GetStats().speed;
     }
     protected override void Update()
     {
@@ -32,12 +27,12 @@ public class KeepDistance : EnemyBehaviour
     }
     public override void OnBehaviour()
     {
-        controller.speed = runAwaySpeed;
+        controller.GetStats().speed = runAwaySpeed;
         controller.CallMoveEvent(-controller.Direction);
 
         if (controller.Distance > targetDistance)
         {
-            controller.speed = tempSpeed;
+            controller.GetStats().speed = tempSpeed;
             controller.enemyBehaviours.Dequeue();
             IsReady = false;
         }

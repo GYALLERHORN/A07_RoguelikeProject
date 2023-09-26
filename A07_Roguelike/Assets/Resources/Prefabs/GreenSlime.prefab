@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 378046693077477190}
   - component: {fileID: 864688378163785438}
   - component: {fileID: 5416080290764273596}
-  - component: {fileID: 6207302106929993347}
+  - component: {fileID: 8794126007482928105}
   m_Layer: 0
   m_Name: GreenSlime
   m_TagString: Untagged
@@ -51,9 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  followRange: 19
-  attackRange: 0
-  speed: 1
+  isDead: 0
   rb2D: {fileID: 5364448332409220421}
   spriteRenderer: {fileID: 6001812474755850372}
 --- !u!50 &5364448332409220421
@@ -98,8 +96,8 @@ MonoBehaviour:
   baseStats:
     statsChangeType: 2
     maxHealth: 28
-    speed: 1.1
-    attackSO: {fileID: 11400000, guid: 038783d31a6c63b40b121f4e2b4f7295, type: 2}
+    speed: 2
+    attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
 --- !u!114 &864688378163785438
 MonoBehaviour:
@@ -125,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3667c049a63f3e4a94ea36c07f3ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6207302106929993347
+--- !u!114 &8794126007482928105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,14 +132,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 481833729959234490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4755f168805883b4f8b040f56211a896, type: 3}
+  m_Script: {fileID: 11500000, guid: 22e4c72e07bac854c926e73f9a91d6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolTime: 0
+  range: 1
+  coolTime: 77
   remainTime: 0
-  range: 10.5
-  projectileSpawnPosition: {fileID: 3618294035746229901}
-  IsReady: 0
 --- !u!1 &3280934663429815585
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

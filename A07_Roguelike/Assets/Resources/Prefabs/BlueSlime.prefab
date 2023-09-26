@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -116,9 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339678253590169887}
   - component: {fileID: 7387052016426188866}
-  - component: {fileID: 7267467773807966014}
   - component: {fileID: 8261615456772271066}
-  - component: {fileID: 5672794438438658957}
   - component: {fileID: 1929065775302350965}
   m_Layer: 0
   m_Name: BlueSlime
@@ -141,7 +139,7 @@ Transform:
   m_Children:
   - {fileID: 5611738821093925431}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7387052016426188866
 Rigidbody2D:
@@ -170,18 +168,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7267467773807966014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6728473096023743534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8246f6d298611e845bb491d0c890c4ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8261615456772271066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,18 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
---- !u!114 &5672794438438658957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6728473096023743534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c890f0c97636379469d67e35f98fe8f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  coolTime: 0
+  remainTime: 0
 --- !u!114 &1929065775302350965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,8 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   followRange: 0
+  attackRange: 0
   speed: 0
   rb2D: {fileID: 7387052016426188866}
   spriteRenderer: {fileID: 1858704008817540676}
-  enemyBehaviours: []
-  _nextBehaviours: []

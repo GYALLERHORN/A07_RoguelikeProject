@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 4367289792872251007, guid: d4e8a5c5eececab46942986a743fd7d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -158,9 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  followRange: 28.5
-  attackRange: 0
-  speed: 2
+  isDead: 0
   rb2D: {fileID: 3033245395072318699}
   spriteRenderer: {fileID: 3919283118561014458}
 --- !u!50 &3033245395072318699
@@ -202,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4755f168805883b4f8b040f56211a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 8
+  range: 10
   coolTime: 3
   remainTime: 0
   projectileSpawnPosition: {fileID: 8081677677227876809}
@@ -222,7 +220,7 @@ MonoBehaviour:
     statsChangeType: 2
     maxHealth: 21
     speed: 0.7
-    attackSO: {fileID: 11400000, guid: 038783d31a6c63b40b121f4e2b4f7295, type: 2}
+    attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
 --- !u!114 &1806821086450199599
 MonoBehaviour:
@@ -260,8 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283221d9ade8149478b8b7b887d2d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 5
   coolTime: 1
   remainTime: 0
   targetDistance: 8
-  runAwaySpeed: 9
+  runAwaySpeed: 6

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeAttack : EnemyBehaviour
@@ -14,8 +12,6 @@ public class RangeAttack : EnemyBehaviour
 
     protected void Start()
     {
-        type = EnemyBehaviourType.Attack;
-        Priority = (int)type;
         _projectileManager = ProjectileManager.instance;
     }
 
@@ -45,7 +41,7 @@ public class RangeAttack : EnemyBehaviour
         }
         
         remainTime = coolTime;
-        RangedAttackData rangedAttackData = controller.GetAttakSO() as RangedAttackData;
+        RangedAttackData rangedAttackData = controller.GetStats().attackSO as RangedAttackData;
         float projectilesAngleSpace = rangedAttackData.multipleProjectilesAngle;
         int numberOfProjectilesPerShot = rangedAttackData.numberofProjectilesPerShot;
 

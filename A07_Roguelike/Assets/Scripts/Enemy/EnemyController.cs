@@ -4,13 +4,8 @@ using UnityEngine;
 
    public class EnemyController : TopDownCharacterController
 {
-
-    // 
     [SerializeField] public GameObject Target; // юс╫ц
-
-    [SerializeField][Range(0f, 100f)] public float followRange;
-    [SerializeField][Range(0f, 100f)] public float attackRange;
-    [SerializeField][Range(0f, 100f)] public float speed;
+    public bool isDead = false;
 
     public Rigidbody2D rb2D;
     public SpriteRenderer spriteRenderer;
@@ -20,9 +15,14 @@ using UnityEngine;
     [SerializeField]public Queue<EnemyBehaviour> enemyBehaviours { get; private set; }
 
 
-    public AttackSO GetAttakSO()
+    public CharacterStats GetStats()
     {
-        return Stats.CurrentStates.attackSO;
+        return Stats.CurrentStates;
+    }
+
+    public EnemySO GetEnemySO()
+    {
+        return (EnemySO)GetStats().attackSO;
     }
      
     protected override void Awake()
@@ -33,30 +33,30 @@ using UnityEngine;
         enemyBehaviours = new Queue<EnemyBehaviour>(); 
 
     }
+
     protected void FixedUpdate()
     {
         Vector2 direction = Vector2.zero;
-        if (enemyBehaviours.Count == 0)
-        {
-            
-
-            if (Distance < followRange)
-            {
-                direction = Direction;
-            }
-
-            CallMoveEvent(direction);
-            Rotate(direction);
-
-        }
-        else
+        if (isDead)
         {
             CallMoveEvent(direction);
             Rotate(direction);
-            enemyBehaviours.Peek().OnBehaviour();
+            return;
         }
         
+        float distance = Distance;
+        if (distance < GetEnemySO().followRange && GetEnemySO().attackRange < distance)
+        {
+            direction = Direction;
+        }
 
+        CallMoveEvent(direction);
+        Rotate(direction);
+        
+        if(enemyBehaviours.Count > 0)
+        {
+            enemyBehaviours.Peek().OnBehaviour();
+        }
     }
 
     private void Rotate(Vector2 direction)

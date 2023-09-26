@@ -6,7 +6,6 @@ public class EnemyAnimationController : EnemyAnimation
 {
     private static readonly int isRun = Animator.StringToHash("isRun");
     private static readonly int isHurt = Animator.StringToHash("isHurt");
-    private static readonly int isDeath = Animator.StringToHash("isDeath");
 
     protected override void Awake()
     {
