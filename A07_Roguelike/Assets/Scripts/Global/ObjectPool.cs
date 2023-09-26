@@ -9,6 +9,12 @@ public enum ePoolType
     Inventory,
     Store,
     TextImage,
+    Projectile = 20,
+}
+
+public enum eAttackType
+{
+    Projectile = 20,
 }
 
 public class ObjectPool : MonoBehaviour
