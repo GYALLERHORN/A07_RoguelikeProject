@@ -15,16 +15,14 @@ public class Attack : EnemyBehaviour
     protected void Start()
     {
         Priority = _priority;
-        CheckBehaviour += CheckAtack;
-        OnBehaviour += OnAttack;
     }
 
-    private void OnAttack()
+    public override void OnBehaviour()
     {
         Destroy(gameObject);
     }
 
-    private bool CheckAtack()
+    public override bool CheckBehaviour()
     {
         if (controller.Distance < range)
         {
@@ -33,5 +31,4 @@ public class Attack : EnemyBehaviour
 
         return false;
     }
-
 }

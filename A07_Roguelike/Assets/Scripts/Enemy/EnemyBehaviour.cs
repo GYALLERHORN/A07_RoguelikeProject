@@ -9,10 +9,8 @@ public enum EnemyBehaviourType
     Skill,
 }
 
-public class EnemyBehaviour : MonoBehaviour
+public abstract class EnemyBehaviour : MonoBehaviour
 {
-    public Func<bool> CheckBehaviour;
-    public Action OnBehaviour;
     public int Priority { get; protected set; }
 
     protected EnemyController controller;
@@ -22,5 +20,6 @@ public class EnemyBehaviour : MonoBehaviour
         controller = GetComponent<EnemyController>();
     }
 
-  
+    public abstract void OnBehaviour();
+    public abstract bool CheckBehaviour();
 }

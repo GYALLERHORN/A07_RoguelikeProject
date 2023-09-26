@@ -14,16 +14,14 @@ public class RangeAttack : EnemyBehaviour
     protected void Start()
     {
         Priority = _priority;
-        CheckBehaviour += CheckAtack;
-        OnBehaviour += OnAttack;
     }
 
-    private void OnAttack()
+    public override void OnBehaviour()
     {
         // 투사체 발사
     }
 
-    private bool CheckAtack()
+    public override bool CheckBehaviour()
     {
         if (controller.Distance <= range)
         {
