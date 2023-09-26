@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
-public class UIStatus : MonoBehaviour
+public class UIStatus : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+    private CharacterStatsHandler _character;
+    private Action _callback;
+    private bool IsTemp;
+    private float _time;
+    private float _duration;
+
+    private void LateUpdate()
     {
-        
+        if (IsTemp)
+        {
+            _time += Time.deltaTime;
+            if (_duration < _time)
+                CloseUI();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(CharacterStatsHandler stats, Action callback = null, bool temp = false, float duration = 0.0f)
     {
-        
+        _character = stats;
+        _callback = callback;
+        IsTemp = temp;
+        _time = 0.0f;
+        _duration = duration;
+    }
+
+    public override void CloseUI()
+    {
+        _callback?.Invoke();
+        base.CloseUI();
     }
 }

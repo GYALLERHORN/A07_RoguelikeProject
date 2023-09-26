@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public T ShowUI<T>(eUIType type, Transform root = null) where T : UIBase
+    public T ShowUI<T>(eUIType type) where T : UIBase
     {
         var obj = _pools.SpawnFromPool((ePoolType)((int)type));
         if (obj != null)
