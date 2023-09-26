@@ -47,29 +47,11 @@ public class UIManager : MonoBehaviour
         var obj = _pools.SpawnFromPool((ePoolType)((int)type));
         if (obj != null)
         {
-            if (type == eUIType.Store || type == eUIType.Inventory || type == eUIType.Gold)
-            {
-                var uiClass = obj.GetComponentInChildren<UIBase>();
-                UIOpened.Insert(0, uiClass);
+            var uiClass = obj.GetComponent<UIBase>();
+            UIOpened.Insert(0, uiClass);
 
-                obj.SetActive(true);
-                return uiClass as T;
-            }
-            else if (type == eUIType.InventoryItem || type == eUIType.OX)
-            {
-                var uiClass = obj.GetComponent<UIBase>();
-
-                obj.SetActive(true);
-                return uiClass as T;
-            }
-            else
-            {
-                var uiClass = obj.transform.GetChild(0).gameObject.AddComponent<T>();
-                UIOpened.Insert(0, uiClass);
-
-                obj.SetActive(true);
-                return uiClass;
-            }
+            obj.SetActive(true);
+            return uiClass as T;
         }
         else
             return null;
