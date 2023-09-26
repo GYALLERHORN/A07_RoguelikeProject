@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class RandomDungeonGeneratorEditor : MonoBehaviour
+[CustomEditor(typeof(AbstractDungeonGenerator), true)]
+public class RandomDungeonGeneratorEditor : Editor
 {
-    // Start is called before the first frame update
-    void Start()
+    AbstractDungeonGenerator generator;
+
+    private void Awake()
     {
-        
+        generator = (AbstractDungeonGenerator)target;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnInspectorGUI()
     {
-        
+        base.OnInspectorGUI();
+
+        if (GUILayout.Button("Create Dungeon"))
+        {
+            generator.GenerateDungeon();
+        }
     }
 }
