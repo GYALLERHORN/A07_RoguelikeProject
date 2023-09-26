@@ -22,7 +22,13 @@ public class ProjectileManager : MonoBehaviour
 
     public void ShootBullet(Vector2 startPostiion, Vector2 direction, RangedAttackData attackData)
     {
-        GameObject obj = objectPool.SpawnFromPool(attackData.bulletNameTag);
+
+        GameObject obj = objectPool.SpawnFromPool((ePoolType) attackData.bulletNameTag);
+
+        if (obj == null)
+        {
+            return;
+        }
 
         obj.transform.position = startPostiion;
         RangedAttackController attackController = obj.GetComponent<RangedAttackController>();
