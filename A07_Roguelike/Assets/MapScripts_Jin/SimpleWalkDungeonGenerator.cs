@@ -5,10 +5,10 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SimpleWalkDungeonGenerator : MonoBehaviour
+public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
 {
-    [SerializeField]
-    protected Vector2Int startPosition = Vector2Int.zero; // 시작 위치 0,0
+    //[SerializeField]
+    //protected Vector2Int startPosition = Vector2Int.zero; 시작 위치 0,0
 
     [SerializeField]
     private int iterations = 10; // iteration : 반복
@@ -20,10 +20,10 @@ public class SimpleWalkDungeonGenerator : MonoBehaviour
     public bool startRandomlyEachIteration = true;
     // iternation에 따라 맵 만들기를 반복할 때, 맵(타일) 작성 시작 위치를 0,0이 아닌 다른 곳에서 시작할 것인가?
 
-    [SerializeField]
-    private TilemapVisualizer tilemapVisualizer;
+    //[SerializeField]
+    //private TilemapVisualizer tilemapVisualizer;
 
-    public void RunProceduralGeneraiton() // Generate버튼 클릭 시 이벤트
+    protected override void RunProceduralGeneration() // Generate버튼 클릭 시 이벤트
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk(); // 타일맵 좌표 집합을 생성하는 명령
         tilemapVisualizer.Clear(); // 기존에 생성됐던 타일맵 삭제 명령
