@@ -14,6 +14,7 @@ public enum ePoolType
     OX,
     Gold,
 
+    Projectile = 20,
 }
 
 public enum eUIType
@@ -25,6 +26,11 @@ public enum eUIType
     InventoryItem,
     OX,
     Gold,
+}
+
+public enum eAttackType
+{
+    Projectile = 20,
 }
 
 public class ObjectPool : MonoBehaviour
