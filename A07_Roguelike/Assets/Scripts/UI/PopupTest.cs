@@ -7,33 +7,44 @@ using UnityEngine.UI;
 
 public class PopupTest : MonoBehaviour
 {
-    [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text data;
+    [SerializeField] private TMP_InputField title;
+    [SerializeField] private TMP_InputField data;
     [SerializeField] private Toggle isTemp;
-    [SerializeField] private TMP_Text duration;
+    [SerializeField] private TMP_InputField duration;
     [SerializeField] private Button button;
-    private string _title;
-    private string _data;
+    private string _title = null;
+    private string _data = null;
     private bool _isTemp = false;
     private float _duration = .0f;
 
+    private void Awake()
+    {
+        duration.gameObject.SetActive(false);
+    }
+
     public void SetTitle(string title)
     {
-        _title = title;
+        if (title == "")
+            _title = null;
+        else
+            _title = title;
     }
 
     public void SetData(string data)
     {
-        _data = data;
+        if (data == "")
+            _data = null;
+        else
+            _data = data;
     }
 
     public void SetIsTemp(bool isTemp)
     {
+        Debug.Log($"Set Temp => {isTemp}");
         _isTemp = isTemp;
         if (_isTemp)
         {
             _duration = 0;
-            duration.text = "";
             duration.gameObject.SetActive(true);
         }
         else
@@ -54,7 +65,7 @@ public class PopupTest : MonoBehaviour
 
     public void MakePopup()
     {
-        if (_title == null || _data == null)
+        if (_data == null)
             return;
 
         //button.interactable = false;

@@ -29,7 +29,7 @@ public class UIPopup : UIBase
         _callback = callback;
         if (title == null)
         {
-            _title.gameObject.SetActive(false);
+            _title.transform.parent.gameObject.SetActive(false);
         }
         else
         {
