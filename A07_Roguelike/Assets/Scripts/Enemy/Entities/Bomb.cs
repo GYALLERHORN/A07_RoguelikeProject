@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class Attack : EnemyBehaviour
-{  
+public class Bomb : EnemyBehaviour
+{
     [SerializeField][Range(1f, 100f)] public float range;
 
     protected override void Awake()
@@ -17,6 +19,10 @@ public class Attack : EnemyBehaviour
         Priority = (int)type;
     }
 
+    protected override void Update()
+    {
+  
+    }
     public override void OnBehaviour()
     {
         Destroy(gameObject);
@@ -24,11 +30,10 @@ public class Attack : EnemyBehaviour
 
     public override bool CheckBehaviour()
     {
-        if (controller.Distance < range)
-        {
-            return true;
-        }
+        if (remainTime > 0) return false;
 
-        return false;
+        if (controller.Distance >= range) return false;
+   
+        return true;
     }
 }

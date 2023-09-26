@@ -1,80 +1,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+
+   public class EnemyController : TopDownCharacterController
 {
+
+    // 
     [SerializeField] public GameObject Target; // юс╫ц
 
-    [SerializeField] private List<EnemyBehaviour> enemyBehaviours = new List<EnemyBehaviour>();
-
     [SerializeField][Range(0f, 100f)] public float followRange;
+    [SerializeField][Range(0f, 100f)] public float attackRange;
     [SerializeField][Range(0f, 100f)] public float speed;
 
     public Rigidbody2D rb2D;
     public SpriteRenderer spriteRenderer;
-    
-    [SerializeField]private List<EnemyBehaviour> _nextBehaviours = new List<EnemyBehaviour>();
 
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
-
     public float Distance { get { return  Vector3.Distance(transform.position, Target.transform.position); } }
-        
-    private void Awake()
+    [SerializeField]public Queue<EnemyBehaviour> enemyBehaviours { get; private set; }
+
+
+    public AttackSO GetAttakSO()
     {
+        return Stats.CurrentStates.attackSO;
+    }
+     
+    protected override void Awake()
+    {
+        base.Awake();
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        foreach (EnemyBehaviour enemyBehaviour in GetComponents<EnemyBehaviour>())
-        {
-            enemyBehaviours.Add(enemyBehaviour);
-        }
+        enemyBehaviours = new Queue<EnemyBehaviour>(); 
 
     }
-
-    private void Update()
+    protected void FixedUpdate()
     {
-        _nextBehaviours.Clear();
-        rb2D.velocity = Vector3.zero;
-
-        foreach (EnemyBehaviour enemyBehaviour in enemyBehaviours)
+        Vector2 direction = Vector2.zero;
+        if (enemyBehaviours.Count == 0)
         {
-            if (!enemyBehaviour.CheckBehaviour())
+            
+
+            if (Distance < followRange)
             {
-                continue;
+                direction = Direction;
             }
 
-            if (enemyBehaviour.Priority == 0)
-            {
-                enemyBehaviour.OnBehaviour();
-                continue;
-            }
-
-            if (_nextBehaviours.Count == 0)
-            {
-                _nextBehaviours.Add(enemyBehaviour);
-            }
-            else
-            {
-                if (enemyBehaviour.Priority > _nextBehaviours[0].Priority)
-                {
-                    _nextBehaviours.Clear();
-                    _nextBehaviours.Add(enemyBehaviour);
-                }
-                else if (enemyBehaviour.Priority == _nextBehaviours[0].Priority)
-                {
-                    _nextBehaviours.Add(enemyBehaviour);
-                }
-            }
+            CallMoveEvent(direction);
+            Rotate(direction);
 
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_nextBehaviours.Count != 0)
+        else
         {
-            _nextBehaviours[Random.Range(0, _nextBehaviours.Count)].OnBehaviour();
+            CallMoveEvent(direction);
+            Rotate(direction);
+            enemyBehaviours.Peek().OnBehaviour();
         }
         
-        
+
     }
+
+    private void Rotate(Vector2 direction)
+    {
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        spriteRenderer.flipX = Mathf.Abs(rotZ) > 90;
+    }
+
 }
