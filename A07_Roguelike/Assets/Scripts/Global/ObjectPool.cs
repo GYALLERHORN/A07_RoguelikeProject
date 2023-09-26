@@ -149,9 +149,4 @@ public class ObjectPool : MonoBehaviour
 
         return targetPool.size;
     }
-
-    public void TestPopup()
-    {
-
-    }
 }
