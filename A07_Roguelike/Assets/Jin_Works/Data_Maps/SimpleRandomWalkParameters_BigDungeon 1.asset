@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SimpleRandomWalkParameters_BigDungeon 1
   m_EditorClassIdentifier: 
   iterations: 100
-  walkLength: 10
+  walkLength: 100
   startRandomlyEachIteration: 1

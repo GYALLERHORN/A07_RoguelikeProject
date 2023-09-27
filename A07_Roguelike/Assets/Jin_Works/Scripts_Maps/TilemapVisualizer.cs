@@ -16,7 +16,7 @@ public class TilemapVisualizer : MonoBehaviour
         PaintTiles(floorPositions, floorTilemap, floorTile);
     }
 
-    public void PaintSingleBasicWall(Vector2Int position)
+    public void PaintSingleBasicWall(Vector2Int position) // 벽 타일 생성 메서드
     {
         PaintSingleTile(wallTilemap, wallTile, position);
     }

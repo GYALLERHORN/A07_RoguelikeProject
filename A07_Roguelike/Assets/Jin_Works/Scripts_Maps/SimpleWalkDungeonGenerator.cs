@@ -10,13 +10,14 @@ public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
     [SerializeField]
     protected SimpleRandomWalkSO randomWalkParameters;
 
-    protected override void RunProceduralGeneration() // Generate버튼 클릭 시 이벤트
+    protected override void RunProceduralGeneration() // Generate버튼 클릭 시 이벤트. 사실 상 복도 생성이 완료된 시점에서 사용하지 않는다.
     {
         HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition); // 타일맵 좌표 집합을 생성하는 명령
         tilemapVisualizer.Clear(); // 기존에 생성됐던 타일맵 삭제 명령
         tilemapVisualizer.PaintFloorTile(floorPositions); // floorPositions의 좌표 집합에 따라 타일맵 생성 명령
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
     }
+
 
     protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) // CorridorFirstDungeonGEneration클래스에서 재사용하기 위해 매개변수를 넣었다?
     {                                                  // randomWalkParameters필드가 private이니까 하위 클래스에서 이 필드를 사용하려면 또 필드선언을 해야 한다. 그래서 굳이 매개변수로 넣음

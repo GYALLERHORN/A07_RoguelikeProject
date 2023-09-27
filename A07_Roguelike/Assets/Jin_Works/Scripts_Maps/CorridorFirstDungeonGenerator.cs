@@ -12,8 +12,7 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
     [Range(0.1f, 1f)]
     private float roomPercent; // 생성할 방의 비율
     [SerializeField]
-    public SimpleRandomWalkSO roomGenerationParameters;
-
+    public SimpleRandomWalkSO roomGenerationParameters; // SimpleRandomWalkSO의 방 생성 변수들
 
     protected override void RunProceduralGeneration()
     {
@@ -21,16 +20,16 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
         CorridorFirstGeneration();
     }
 
-    private void CorridorFirstGeneration()
+    private void CorridorFirstGeneration() // 복도 좌표 생성 최초메서드
     {
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> potentialRoomrPositions = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>(); // 생성된 모든 좌표의 집합
+        HashSet<Vector2Int> potentialRoomrPositions = new HashSet<Vector2Int>(); // 좌표 중 방이 생성될 가능성이 있는 좌표의 집합
 
         CreateCorridors(floorPositions, potentialRoomrPositions);
 
         HashSet<Vector2Int> roomPositions = createRooms(potentialRoomrPositions);
 
-        floorPositions.UnionWith(roomPositions);
+        floorPositions.UnionWith(roomPositions); // 위 메서드로 생성된 방 좌표도 복도 좌표와 함께 바닥 타일을 생성할 좌표다.
 
         tilemapVisualizer.PaintFloorTile(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
@@ -46,7 +45,7 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
         // GUID : 전역 고유 식별자. Guid.NewGuid() : 고유한 키 생성. Take(정수값) : 배열 중 처음 인덱스부터 정수값 갯수까지만 할당한다.
         foreach (var roomPosition in roomsToCreate)
         {
-            var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition); 
+            var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition); // 각 방 좌표마다 방 생성 변수에 따라 방 좌표 집합 생성
             roomPositions.UnionWith(roomFloor);
         }
         return roomPositions;
@@ -54,8 +53,8 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
 
     private void CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomrPositions)
     {
-        var currentPosition = startPosition;
-        potentialRoomrPositions.Add(currentPosition);
+        var currentPosition = startPosition; // 0,0부터 시작
+        potentialRoomrPositions.Add(currentPosition); // 물론, 시작좌표에도 방이 만들어질 수 있다.
 
         for (int i = 0; i < corridorCount; i++)
         {
@@ -64,7 +63,6 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
 
             currentPosition = corridor[corridor.Count - 1]; // 다음 corridor 좌표 생성의 시작점은 현재까지 만들어진 corrider의 마지막 좌표
             potentialRoomrPositions.Add(currentPosition);
-
         }
     }
 }
