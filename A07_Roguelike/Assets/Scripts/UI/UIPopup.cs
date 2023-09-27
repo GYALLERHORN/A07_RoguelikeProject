@@ -59,11 +59,11 @@ public class UIPopup : UIBase
 
     private void SelfCloseUI()
     {
-        UIManager.CloseUI<UIPopup>();
+        UIManager.CloseUI(eUIType.Popup);
     }
 
     private void SelfHideUI()
     {
-        UIManager.HideUI<UIPopup>();
+        UIManager.HideUI(eUIType.Popup);
     }
 }
