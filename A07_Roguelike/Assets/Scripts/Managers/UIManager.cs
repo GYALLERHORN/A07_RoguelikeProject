@@ -1,54 +1,57 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 
-
-
-public class UIManager : MonoBehaviour
+public class UIManager
 {
-    [HideInInspector] public static UIManager Instance;
+    public static UIManager Instance;
 
-    private List<UIBase> UIOpened = new List<UIBase>();
-    private ObjectPool _pools;
-    private List<Type> UINotClose = new List<Type>();
+    private Dictionary<Type, GameObject> _prefabs = new Dictionary<Type, GameObject>();
+    private List<UIBase> OpenedUI = new List<UIBase>();
+    private List<Type> DoNotCloseUI = new List<Type>();
 
-    private void Awake()
+    public UIManager()
     {
-        Instance = this;
-        _pools = GetComponent<ObjectPool>();
-
-        //UINotClose.Add();
+        LoadUIPrefabs();
     }
 
     public void CloseTopUI(bool isPressed)
     {
         if (isPressed)
         {
-            if (UIOpened.Count > 0)
+            if (OpenedUI.Count > 0)
             {
-                while (UINotClose.Contains(UIOpened[0].GetType()))
+                while (DoNotCloseUI.Contains(OpenedUI[0].GetType()))
                 {
-                    if (UIOpened.Count == 2)
+                    if (OpenedUI.Count == 2)
                         return;
-                    var window = UIOpened[0];
-                    UIOpened.RemoveAt(0);
-                    UIOpened.Add(window);
+                    var window = OpenedUI[0];
+                    OpenedUI.RemoveAt(0);
+                    OpenedUI.Add(window);
                 }
-                UIOpened[0].CloseUI();
+                OpenedUI[0].CloseUI();
             }
         }
     }
 
-    public T ShowUI<T>(eUIType type) where T : UIBase
+    public T ShowUI<T>(RectTransform root = null) where T : UIBase
     {
-        var obj = _pools.SpawnFromPool((ePoolType)((int)type));
-        if (obj != null)
+        if (_prefabs.Count <= 0)
         {
+            LoadUIPrefabs();
+            return null;
+        }
+
+        var prefab = _prefabs[typeof(T)];
+        if (prefab != null)
+        {
+            GameObject obj;
+            if (root == null)
+                obj = GameObject.Instantiate(prefab);
+            else
+                obj = GameObject.Instantiate(prefab, root);
             var uiClass = obj.GetComponent<UIBase>();
-            UIOpened.Insert(0, uiClass);
+            OpenedUI.Insert(0, uiClass);
 
             obj.SetActive(true);
             return uiClass as T;
@@ -59,16 +62,16 @@ public class UIManager : MonoBehaviour
 
     public void CloseUI<T>() where T : UIBase
     {
-        var window = GetUI<T>();
+        var window = GetOpenedUI<T>();
         if (window != null)
         {
             window.CloseUI();
         }
     }
 
-    private T GetUI<T>() where T : UIBase
+    private T GetOpenedUI<T>() where T : UIBase
     {
-        foreach (var ui in UIOpened)
+        foreach (var ui in OpenedUI)
         {
             if (ui is T)
                 return ui as T;
@@ -76,9 +79,9 @@ public class UIManager : MonoBehaviour
         return null;
     }
 
-    public void AllCloseUI()
+    public void CloaseAllOpenedUI()
     {
-        foreach (var ui in UIOpened)
+        foreach (var ui in OpenedUI)
         {
             ui.CloseUI();
         }
@@ -86,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     public bool IsOpened<T>() where T : UIBase
     {
-        foreach (var ui in UIOpened)
+        foreach (var ui in OpenedUI)
         {
             if (ui is T)
                 return true;
@@ -94,8 +97,14 @@ public class UIManager : MonoBehaviour
         return false;
     }
 
-    public void RemoveUIInList(UIBase uiBase)
+    public void LoadUIPrefabs()
     {
-        UIOpened.Remove(uiBase);
+        var objs = Resources.LoadAll<GameObject>("Prefabs/UI/");
+        foreach (var obj in objs)
+        {
+            var type = obj.GetComponent<UIBase>().GetType();
+            _prefabs.Add(type, obj);
+            Debug.Log($"{type}(Prefabs/UI/{obj.name}) is loaded.");
+        }
     }
 }
