@@ -7,10 +7,10 @@ public enum ePoolType
     SoundSource,
 
     Inventory = 5,
+    InventoryItem,
     Status,
     Store,
     Popup,
-    InventoryItem,
     OX,
     Gold,
 
