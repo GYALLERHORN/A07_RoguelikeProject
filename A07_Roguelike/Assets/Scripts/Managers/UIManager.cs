@@ -78,8 +78,21 @@ public class UIManager
         else
             return null;
     }
-
-    public static void CloseUI<T>() where T : UIBase
+    public static void CloseUI(eUIType type)
+    {
+        switch (type)
+        {
+            case eUIType.Popup:
+                CloseUI<UIPopup>();
+                break;
+            case eUIType.Status:
+                CloseUI<UIStatus>();
+                break;
+            default:
+                break;
+        }
+    }
+    private static void CloseUI<T>() where T : UIBase
     {
         var window = InstanceCheck.GetOpenedUI<T>();
         if (window != null)
@@ -90,8 +103,21 @@ public class UIManager
             return;
         }
     }
-
-    public static void HideUI<T>() where T : UIBase
+    public static void HideUI(eUIType type)
+    {
+        switch (type)
+        {
+            case eUIType.Popup:
+                HideUI<UIPopup>();
+                break;
+            case eUIType.Status:
+                HideUI<UIStatus>();
+                break;
+            default:
+                break;
+        }
+    }
+    private static void HideUI<T>() where T : UIBase
     {
         var window = InstanceCheck.GetOpenedUI<T>();
         if (window != null)
