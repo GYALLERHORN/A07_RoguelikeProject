@@ -22,11 +22,12 @@ public static class ProceduralGenerationAlgorithms
 
         return path; // path => floorPositions
     }
+}
 
-    public static class Direction2D
-    {
+public static class Direction2D
+{
 
-        public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int>() // cardinal : 기본적인, 가장 중요한
+    public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int>() // cardinal : 기본적인, 가장 중요한
         {
             new Vector2Int(0,1), // UP
             new Vector2Int(0,-1), // DOWN
@@ -34,9 +35,8 @@ public static class ProceduralGenerationAlgorithms
             new Vector2Int(-1,0), // LEFT
         };
 
-        public static Vector2Int GetRandomCardinalDirection()
-        {
-            return cardinalDirectionsList[Random.Range(0, cardinalDirectionsList.Count)]; // cardinalDirectionList리스트의 랜덤 인덱스에 따른 값
-        }
+    public static Vector2Int GetRandomCardinalDirection()
+    {
+        return cardinalDirectionsList[Random.Range(0, cardinalDirectionsList.Count)]; // cardinalDirectionList리스트의 랜덤 인덱스에 따른 값
     }
 }
