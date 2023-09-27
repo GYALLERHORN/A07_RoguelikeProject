@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 9106693186017302080}
   - component: {fileID: 2292937077335240530}
   - component: {fileID: 2639330838131817471}
-  - component: {fileID: -2239740697905316291}
+  - component: {fileID: 6656416643902735890}
   m_Layer: 0
   m_Name: BlueSlime
   m_TagString: Untagged
@@ -347,12 +347,12 @@ MonoBehaviour:
   rb2D: {fileID: 0}
   spriteRenderer: {fileID: 0}
   rushRange: {fileID: 6194873141352607902}
-  range: 0
-  coolTime: 4
-  chargingTime: 1.5
+  range: 10
+  coolTime: 7
+  chargingTime: 2.5
   remainchargingTime: 0
-  speed: 30
---- !u!114 &-2239740697905316291
+  speed: 25
+--- !u!114 &6656416643902735890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -366,3 +366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  followRange: 20
+  attackRange: 10
+  speed: 1

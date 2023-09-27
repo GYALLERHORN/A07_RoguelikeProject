@@ -46,8 +46,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
     }
 
     protected virtual void Update()
-    {
-        rb2D.velocity = Vector3.zero;   
+    {   
     }
 
     public abstract void OnBehaviour();

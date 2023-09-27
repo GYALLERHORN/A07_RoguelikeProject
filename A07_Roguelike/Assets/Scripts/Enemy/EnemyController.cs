@@ -33,8 +33,7 @@ using UnityEngine;
 
     protected void FixedUpdate()
     {
-        
-        if(enemyBehaviours.Count > 0)
+        if (enemyBehaviours.Count > 0)
         {
             enemyBehaviours.Peek().OnBehaviour();
         }

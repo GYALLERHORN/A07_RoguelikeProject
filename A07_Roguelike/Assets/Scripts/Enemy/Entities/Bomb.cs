@@ -22,14 +22,18 @@ public class Bomb : EnemyBehaviour
     }
     public override void OnBehaviour()
     {
-        if (!CheckBehaviour()) return;
+        if (CheckBehaviour())
+        {
+            rb2D.velocity = Vector3.zero;
+            controller.isDead = true;
+            animationController.Death();
+            transform.localScale = Vector3.one * 1.5f;
+            Destroy(gameObject, .35f);
+        }
+        controller.enemyBehaviours.Dequeue();
+        controller.enemyBehaviours.Enqueue(this);
 
-        rb2D.velocity = Vector3.zero;
-        controller.isDead = true;
-        animationController.Death();
-        transform.localScale = Vector3.one * 1.5f;
-        Destroy(gameObject, .35f);
-         
+
     }
 
     public override bool CheckBehaviour()

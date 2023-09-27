@@ -43,7 +43,8 @@ public class KeepDistance : EnemyBehaviour
             return;
         }
         
-        Vector2 direction = -controller.Direction * enemySO.speed;
+        // Todo 방향을 꼭 플레이어 반대가 아니라 좀 다양하게
+        Vector2 direction = Quaternion.Euler(0,0,Random.Range(-10f,10f)) * -controller.Direction * enemySO.speed;
         rb2D.velocity = direction;
         animationController.Move(direction);
 

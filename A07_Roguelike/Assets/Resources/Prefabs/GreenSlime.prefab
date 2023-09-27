@@ -138,6 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  followRange: 20
+  attackRange: 1
+  speed: 4
 --- !u!1 &3280934663429815585
 GameObject:
   m_ObjectHideFlags: 0
