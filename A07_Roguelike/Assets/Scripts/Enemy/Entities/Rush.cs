@@ -1,79 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Resources;
+using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 public class Rush : EnemyBehaviour
 {
-    // On되면
-
-    // 일정시간동안 플레이어의 위치를 추적 (이떄 방향이 표시된다.)
-
-    // 일정시간 이후 해당 방향으로 돌진.
-
-
-
-    [SerializeField] private GameObject rushRange;
-    
-
-    [SerializeField][Range(0f, 100f)] float range;
-
-    [SerializeField][Range(0f, 100f)] float coolTime;
-    float remainTime;
-
-    [SerializeField][Range(0f, 100f)] float chargingTime;
-    [SerializeField][Range(0f, 100f)] float remainchargingTime;
-    [SerializeField][Range(0f, 100f)] float speed;
-
-    Vector2 targetPos = Vector2.zero;
-    Vector2 direction = Vector2.zero;
-    Vector2 startPos = Vector2.zero;
-
-    private float targetMoveDistance;
-    private bool isReady = false;
-    private bool isRush = false;
-
-
-
-    protected override void Start()
+    enum RushState
     {
-        base.Start();
+        Rest,
+        Charge,
+        Complete,
+        Rush,
+    }
+    protected void Start()
+    {
         controller.enemyBehaviours.Enqueue(this);
-        remainTime = Random.Range(0f, coolTime);
-    }
-    protected override void Update()
-    {
-        base.Update();
-        remainTime -= Time.deltaTime;
-        remainchargingTime -= Time.deltaTime;
-    }
+        remainTime = Random.Range(1f, coolTime);
+        state = State.CoolTime;
 
-    // 처음에는 Range가 들어가야되는데 나중에는 Range가 안들어가도됨
+        Ready += OnReady;
+        Rest += OnRest;
+        CoolTime += OnCoolTime;
+    }
     public override void OnBehaviour()
     {
-        if (CheckBehaviour())
+        state = State.Using;
+
+        switch (rushState)
         {
-            if (!isReady) Init();
-
-            if (remainchargingTime > 0)
-            {
-
+            case RushState.Rest:
+                Init();
+                break;
+            case RushState.Charge:
                 OnCharging();
-            }
-            else
-            {
+                break;
+            case RushState.Complete:
+                ReadyRush();
+                break;
+            case RushState.Rush:
                 OnRush();
-            }
+                break;
+
         }
 
-        controller.enemyBehaviours.Dequeue();
-        controller.enemyBehaviours.Enqueue(this);
-
     }
-
+    private void OnReady()
+    {
+        state = controller.Distance < range ? State.Ready : State.Rest;
+    }
+    private void OnRest()
+    {
+        OnReady();
+    }
+    private void OnCoolTime()
+    {
+        remainTime -= Time.deltaTime;
+        if (remainTime < 0f)
+        {
+            state = State.Rest;
+        }
+    }
     private void Init()
     {
-        isReady = true;
+        rushState = RushState.Charge;
         remainchargingTime = chargingTime;
         startPos = transform.position;
         rushRange.SetActive(true);
@@ -85,39 +72,48 @@ public class Rush : EnemyBehaviour
         direction = (targetPos - (Vector2)transform.position).normalized;
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        spriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
+        controller.SpriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
         rushRange.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+        if (remainchargingTime < 0)
+        {
+            rushState = RushState.Complete;
+        }
+    }
+    private void ReadyRush()
+    {
+        targetMoveDistance = Vector2.Distance(startPos, targetPos);
+        rushRange.SetActive(false);
+        rushState = RushState.Rush;
     }
     private void OnRush()
     {
-        if (!isRush)
-        {
-            isRush = true;
-            targetMoveDistance = Vector2.Distance(startPos, targetPos);
-            rushRange.SetActive(false);
-        }
-
-        rb2D.velocity = direction * speed;
+        controller.Rb2D.velocity = direction * speed;
         animationController.Move(direction);
 
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > targetMoveDistance)
         {
-            rb2D.velocity = Vector2.zero;
+            controller.Rb2D.velocity = Vector2.zero;
             remainTime = coolTime;
             targetPos = Vector2.zero;
-            isReady = false;
-            isRush = false;
+            state = State.CoolTime;
+            rushState = RushState.Rest;
+            controller.ReInsert();
         }
 
     }
 
-    public override bool CheckBehaviour()
-    {
-        // 쿨타임이라면 후순위로 밀어준다.
-        if (remainTime > 0f || (controller.Distance > range && !isReady)) return false;
-        
-        return true;
-
-    }
+    [SerializeField] private GameObject rushRange;
+    [SerializeField][Range(0f, 100f)] float range;
+    [SerializeField][Range(0f, 100f)] float coolTime;
+    [SerializeField][Range(0f, 100f)] float chargingTime;
+    [SerializeField][Range(0f, 100f)] float remainchargingTime;
+    [SerializeField][Range(0f, 100f)] float speed;
+    Vector2 targetPos = Vector2.zero;
+    Vector2 direction = Vector2.zero;
+    Vector2 startPos = Vector2.zero;
+    private float remainTime;
+    private float targetMoveDistance;
+    RushState rushState = RushState.Rest;
 }

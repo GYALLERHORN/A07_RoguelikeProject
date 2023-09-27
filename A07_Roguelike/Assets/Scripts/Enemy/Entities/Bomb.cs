@@ -1,46 +1,28 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
-using UnityEngine.UIElements;
-
 public class Bomb : EnemyBehaviour
 {
-    [SerializeField] [Range(0f,20f)] private float range;
-    protected override void Awake()
+    protected void Start()
     {
-        base.Awake();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
         controller.enemyBehaviours.Enqueue(this);
+        Ready += OnReady;
+        Rest += OnRest;
     }
-
-    protected override void Update()
+    private void OnReady()
     {
-        base.Update();
+        state = controller.Distance <= range ? State.Ready : State.Rest;
+    }
+    private void OnRest()
+    {
+        OnReady();
     }
     public override void OnBehaviour()
-    {
-        if (CheckBehaviour())
-        {
-            rb2D.velocity = Vector3.zero;
-            controller.isDead = true;
-            animationController.Death();
-            transform.localScale = Vector3.one * 1.5f;
-            Destroy(gameObject, .35f);
-        }
-        controller.enemyBehaviours.Dequeue();
-        controller.enemyBehaviours.Enqueue(this);
-
-
+    { 
+        controller.Rb2D.velocity = Vector3.zero;
+        animationController.Death();
+        transform.localScale = Vector3.one * 2f;
+        Destroy(gameObject, .35f);
+        controller.ReInsert();
     }
 
-    public override bool CheckBehaviour()
-    {
-
-        if (controller.Distance > range) return false;
-   
-        return true;
-    }
+    [SerializeField][Range(0f, 20f)] private float range;
 }

@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87190496687481323, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 339678253590169887, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -179,6 +183,10 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1050980213}
+    - target: {fileID: 6194873141352607902, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6728473096023743534, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_Name
       value: BlueSlime (2)
@@ -638,6 +646,10 @@ PrefabInstance:
       value: GreenSlime
       objectReference: {fileID: 0}
     - target: {fileID: 481833729959234490, guid: 7c1f3f6a207404a49b8e095757b5a2bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280934663429815585, guid: 7c1f3f6a207404a49b8e095757b5a2bb, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1393,6 +1405,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87190496687481323, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 339678253590169887, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1441,6 +1457,10 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1050980213}
+    - target: {fileID: 6194873141352607902, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6728473096023743534, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_Name
       value: BlueSlime (4)

@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 864688378163785438}
   - component: {fileID: 8794126007482928105}
   - component: {fileID: 1749462541171999907}
-  m_Layer: 0
+  - component: {fileID: -3798616037282897405}
+  - component: {fileID: 2389418756486474779}
+  m_Layer: 9
   m_Name: GreenSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   isDead: 0
+  isHurt: 0
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!50 &5364448332409220421
 Rigidbody2D:
   serializedVersion: 4
@@ -78,7 +83,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &378046693077477190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +146,54 @@ MonoBehaviour:
   followRange: 20
   attackRange: 1
   speed: 4
+--- !u!114 &-3798616037282897405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481833729959234490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bb1af69e7dd5b48bc0706e68bba1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+--- !u!70 &2389418756486474779
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481833729959234490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01977285, y: -0.16312744}
+  m_Size: {x: 1.1129578, y: 0.687846}
+  m_Direction: 1
 --- !u!1 &3280934663429815585
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +205,7 @@ GameObject:
   - component: {fileID: 3087526563317076856}
   - component: {fileID: 6001812474755850372}
   - component: {fileID: 6132282056448650649}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MainsSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

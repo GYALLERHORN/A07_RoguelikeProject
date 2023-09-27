@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using UnityEngine;
 
 public enum EnemyBehaviourType
@@ -20,35 +21,52 @@ public enum EnemyBehaviourType
 // Controller에서는 FixedUpdate()마다 Queue의 Peek()을 실행 시킨다.
 
 // Move는 항상
+public enum State
+{
+    Ready,
+    // Ready는 항상 0번이여아됨
+    Rest,
+    Using,
+    CoolTime,
 
-[Serializable]
+}
+
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    protected EnemySO enemySO;
     protected EnemyAnimationController animationController;
     protected EnemyController controller;
-    protected bool IsReady = false;
-    public Rigidbody2D rb2D;
-    public SpriteRenderer spriteRenderer;
+
+    public State state;
 
     protected virtual void Awake()
     {
         animationController = GetComponent<EnemyAnimationController>();
         controller = GetComponent<EnemyController>();
-        rb2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    protected virtual void Start()
-    {
-
-        enemySO = (EnemySO)controller.statsHandler.CurrentStates.attackSO;
     }
 
     protected virtual void Update()
-    {   
+    {
+        switch (state)
+        {
+            case State.Ready:
+                Ready?.Invoke();
+                break;
+            case State.Rest:
+                Rest?.Invoke();
+                break;
+            case State.Using:
+                Using?.Invoke();
+                break;
+            case State.CoolTime:
+                CoolTime?.Invoke();
+                break;
+            default:
+                break;
+        }
     }
-
+    protected Action Ready;
+    protected Action Rest;
+    protected Action Using;
+    protected Action CoolTime;
     public abstract void OnBehaviour();
-    public abstract bool CheckBehaviour();
 }

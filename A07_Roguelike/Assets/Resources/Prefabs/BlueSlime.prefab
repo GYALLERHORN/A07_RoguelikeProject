@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5611738821093925431}
   - component: {fileID: 1858704008817540676}
   - component: {fileID: 6890423420128819305}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9129967379097735038}
   - component: {fileID: 3477469920158290011}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RushRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8657960463831815827}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RushRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,9 @@ GameObject:
   - component: {fileID: 2292937077335240530}
   - component: {fileID: 2639330838131817471}
   - component: {fileID: 6656416643902735890}
-  m_Layer: 0
+  - component: {fileID: -1081857616329386601}
+  - component: {fileID: 8265331186231738582}
+  m_Layer: 9
   m_Name: BlueSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +289,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1929065775302350965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   isDead: 0
+  isHurt: 0
 --- !u!114 &9106693186017302080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,3 +372,51 @@ MonoBehaviour:
   followRange: 20
   attackRange: 10
   speed: 1
+--- !u!114 &-1081857616329386601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728473096023743534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bb1af69e7dd5b48bc0706e68bba1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+--- !u!70 &8265331186231738582
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728473096023743534}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01977285, y: -0.16312744}
+  m_Size: {x: 1.1129578, y: 0.687846}
+  m_Direction: 1

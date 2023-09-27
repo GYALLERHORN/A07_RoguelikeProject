@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimationController : EnemyAnimation
@@ -8,9 +6,22 @@ public class EnemyAnimationController : EnemyAnimation
     private static readonly int isHurt = Animator.StringToHash("isHurt");
     private static readonly int isDeath = Animator.StringToHash("isDeath");
 
+    private HealthSystem _healthSystem;
+
     protected override void Awake()
     {
         base.Awake();
+        _healthSystem = GetComponent<HealthSystem>();
+    }
+
+    protected virtual void Start()
+    {
+        if (_healthSystem != null) 
+        {
+            _healthSystem.OnDamage += Hurt;
+            _healthSystem.OnInvincibilityEnd += InvincibilityEnd;
+        }
+
     }
 
     public void Move(Vector2 obj)

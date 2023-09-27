@@ -1,43 +1,53 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 
    public class EnemyController : MonoBehaviour
 {
     [SerializeField] public GameObject Target; // юс╫ц
-    public bool isDead = false;
-
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
     public float Distance { get { return  Vector3.Distance(transform.position, Target.transform.position); } }
-    [SerializeField]public Queue<EnemyBehaviour> enemyBehaviours { get; private set; }
+    public Rigidbody2D Rb2D { get; private set; }
+    public SpriteRenderer SpriteRenderer { get; private set; } 
+    public CharacterStatsHandler StatsHandler { get; private set; }
+    public Queue<EnemyBehaviour> enemyBehaviours { get; private set; }
 
-    public CharacterStatsHandler statsHandler { get; private set; }
-     
     protected virtual void Awake()
     {
         enemyBehaviours = new Queue<EnemyBehaviour>();
-        statsHandler = GetComponent<CharacterStatsHandler>();
+        StatsHandler = GetComponent<CharacterStatsHandler>();
+        Rb2D = GetComponent<Rigidbody2D>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
     }
-
-    protected virtual void Start()
-    {
-        
-    }
-
-    protected virtual void Update()
-    {
-
-    }
-
     protected void FixedUpdate()
     {
         if (enemyBehaviours.Count > 0)
         {
-            enemyBehaviours.Peek().OnBehaviour();
+            StopEnemy();
+
+            EnemyBehaviour peekBehaviour = enemyBehaviours.Peek();
+
+            if (peekBehaviour.state == State.Ready || peekBehaviour.state == State.Using)
+            {
+                enemyBehaviours.Peek().OnBehaviour();
+            }
+            else
+            {
+                ReInsert();
+            }
+            
         }
     }
 
+    private void StopEnemy()
+    {
+        Rb2D.velocity = Vector3.zero;
+    }
+    public void ReInsert()
+    {
+        EnemyBehaviour peekBehaviour = enemyBehaviours.Dequeue();
+        enemyBehaviours.Enqueue(peekBehaviour);
+    }
 
 }

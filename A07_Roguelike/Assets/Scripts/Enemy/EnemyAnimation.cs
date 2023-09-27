@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
     protected Animator animator;
-    protected TopDownCharacterController controller;
+    protected EnemyController controller;
 
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        controller = GetComponent<TopDownCharacterController>();
+        controller = GetComponent<EnemyController>();
     }
 }
