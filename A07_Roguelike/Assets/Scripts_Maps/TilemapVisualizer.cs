@@ -38,5 +38,6 @@ public class TilemapVisualizer : MonoBehaviour
     public void Clear()
     {
         floorTilemap.ClearAllTiles(); // floorTilemap에 색칠된 모든 타일 삭제
+        wallTilemap.ClearAllTiles(); 
     }
 }
