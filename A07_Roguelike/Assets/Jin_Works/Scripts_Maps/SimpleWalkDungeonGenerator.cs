@@ -8,19 +8,19 @@ using Random = UnityEngine.Random;
 public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
 {
     [SerializeField]
-    private SimpleRandomWalkSO randomWalkParameters;
+    protected SimpleRandomWalkSO randomWalkParameters;
 
     protected override void RunProceduralGeneration() // Generate버튼 클릭 시 이벤트
     {
-        HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters); // 타일맵 좌표 집합을 생성하는 명령
+        HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition); // 타일맵 좌표 집합을 생성하는 명령
         tilemapVisualizer.Clear(); // 기존에 생성됐던 타일맵 삭제 명령
         tilemapVisualizer.PaintFloorTile(floorPositions); // floorPositions의 좌표 집합에 따라 타일맵 생성 명령
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters) // CorridorFirstDungeonGEneration클래스에서 재사용하기 위해 매개변수를 넣었다?
+    protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO parameters, Vector2Int position) // CorridorFirstDungeonGEneration클래스에서 재사용하기 위해 매개변수를 넣었다?
     {                                                  // randomWalkParameters필드가 private이니까 하위 클래스에서 이 필드를 사용하려면 또 필드선언을 해야 한다. 그래서 굳이 매개변수로 넣음
-        var currentPosition = startPosition;
+        var currentPosition = position;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>(); // n회차 반복으로 만들어진 모든 타일맵 좌표의 집합
 
         for (int i = 0; i < parameters.iterations; i++)
