@@ -16,12 +16,15 @@ public class UIPopup : UIBase
 
     private void LateUpdate()
     {
+        _time += Time.deltaTime;
         if (IsTemp)
         {
-            _time += Time.deltaTime;
             if (_duration < _time)
-                CloseUI();
+                SelfHideUI();
+            else if (_duration * 3 < _time)
+                SelfCloseUI();
         }
+
     }
 
     public void Initialize(string data, string title = null, Action callback = null, bool temp = false, float duration = 0.0f)
@@ -33,7 +36,7 @@ public class UIPopup : UIBase
         }
         else
         {
-            _title.gameObject.SetActive(true);
+            _title.transform.parent.gameObject.SetActive(true);
             _title.text = title;
         }
         _data.text = data;
@@ -46,5 +49,21 @@ public class UIPopup : UIBase
     {
         _callback?.Invoke();
         base.CloseUI();
+    }
+
+    public override void HideUI()
+    {
+        _callback?.Invoke();
+        base.HideUI();
+    }
+
+    private void SelfCloseUI()
+    {
+        UIManager.CloseUI<UIPopup>();
+    }
+
+    private void SelfHideUI()
+    {
+        UIManager.HideUI<UIPopup>();
     }
 }

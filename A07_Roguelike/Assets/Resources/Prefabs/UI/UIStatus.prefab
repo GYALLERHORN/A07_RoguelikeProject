@@ -458,7 +458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 8172933596131793489}
   _text: {fileID: 340848556852968810}
-  _icon: {fileID: 0}
+  _icon: {fileID: 7154183194369784038}
 --- !u!1 &6595772457274749629
 GameObject:
   m_ObjectHideFlags: 0

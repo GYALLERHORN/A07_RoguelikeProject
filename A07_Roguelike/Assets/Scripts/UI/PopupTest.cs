@@ -69,10 +69,10 @@ public class PopupTest : MonoBehaviour
             return;
 
         //button.interactable = false;
-        var ui = UIManager.Instance.ShowUI<UIPopup>(eUIType.Popup);
+        var ui = UIManager.ShowUI(eUIType.Popup) as UIPopup;
         if (ui == null)
             return;
-
+        
         ui.Initialize(_data, _title, () => {
             //button.interactable = true;
             Debug.Log("Á¾·áµÊ.");

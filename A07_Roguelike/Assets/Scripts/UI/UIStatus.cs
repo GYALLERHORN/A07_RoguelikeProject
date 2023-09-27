@@ -27,7 +27,7 @@ public class UIStatus : UIBase
         }
     }
 
-    public void Initialize(Sprite icon, CharacterStatsHandler stats, Action callback = null, bool temp = false, float duration = 0.0f)
+    public void Initialize(Sprite icon, CharacterStatsHandler stats, Vector3 position, Action callback = null, bool temp = false, float duration = 0.0f)
     {
         _character = stats;
         _callback = callback;
@@ -36,6 +36,7 @@ public class UIStatus : UIBase
         _duration = duration;
         _icon.sprite = icon;
         _text.text = MakeStatInfo();
+        transform.localPosition = position;
     }
 
     public override void Refresh()
@@ -61,12 +62,12 @@ public class UIStatus : UIBase
             {
                 RangedAttackData data = _character.CurrentStates.attackSO as RangedAttackData;
                 sb.AppendLine($"투사체 : {data.bulletNameTag}");
-                sb.AppendLine($"지속시간 : {data.duration}");
-                sb.AppendLine($"샷 당 발사체 개수 : {data.numberofProjectilesPerShot}");
+                sb.AppendLine($"지속시간 : {data.duration}초");
+                sb.AppendLine($"샷 당 발사체 개수 : {data.numberofProjectilesPerShot}개");
                 float angle = data.spread + 0.5f * data.numberofProjectilesPerShot * data.multipleProjectilesAngle;
-                sb.AppendLine($"각도 : -{angle}°~ +{angle}°");
+                sb.AppendLine($"각도 : -{angle}°  ~  +{angle}°");
             }
-            sb.AppendLine($"공격크기 : x{_character.CurrentStates.attackSO.size}");
+            sb.AppendLine($"공격크기 : x{_character.CurrentStates.attackSO.size.ToString("F2")}");
             sb.AppendLine($"공격지연 : {_character.CurrentStates.attackSO.delay}초");
             sb.AppendLine($"공격력 : {_character.CurrentStates.attackSO.power}");
             sb.AppendLine($"공격속도 : {_character.CurrentStates.attackSO.speed}");

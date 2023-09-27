@@ -1,57 +1,76 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager
 {
-    public static UIManager Instance;
+    private static UIManager _instance;
+    private static UIManager InstanceCheck
+    {
+        get {
+            if (_instance == null)
+                _instance = new UIManager();
+            return _instance;
+        }
+    }
 
-    private Dictionary<Type, GameObject> _prefabs = new Dictionary<Type, GameObject>();
-    private List<UIBase> OpenedUI = new List<UIBase>();
-    private List<Type> DoNotCloseUI = new List<Type>();
+    private Dictionary<Type, GameObject> _prefabs;
+    private List<UIBase> OpenedUI;
+    private List<UIBase> HidedUI;
 
     public UIManager()
     {
+        _prefabs = new Dictionary<Type, GameObject>();
+        OpenedUI = new List<UIBase>();
+        HidedUI = new List<UIBase>();
         LoadUIPrefabs();
     }
 
-    public void CloseTopUI(bool isPressed)
+    public static void CloseTopUI()
     {
-        if (isPressed)
+        if (InstanceCheck.OpenedUI.Count > 0)
         {
-            if (OpenedUI.Count > 0)
-            {
-                while (DoNotCloseUI.Contains(OpenedUI[0].GetType()))
-                {
-                    if (OpenedUI.Count == 2)
-                        return;
-                    var window = OpenedUI[0];
-                    OpenedUI.RemoveAt(0);
-                    OpenedUI.Add(window);
-                }
-                OpenedUI[0].CloseUI();
-            }
+            InstanceCheck.OpenedUI[0].CloseUI();
         }
     }
-
-    public T ShowUI<T>(RectTransform root = null) where T : UIBase
+    public static UIBase ShowUI(eUIType type, RectTransform root = null)
     {
-        if (_prefabs.Count <= 0)
+        switch (type)
         {
-            LoadUIPrefabs();
-            return null;
+            case eUIType.Popup:
+                return ShowUI<UIPopup>(root);
+            case eUIType.Status:
+                return ShowUI<UIStatus>(root);
+            default:
+                return null;
+        }
+    }
+    private static T ShowUI<T>(RectTransform root = null) where T : UIBase
+    {
+        var open = InstanceCheck.GetOpenedUI<T>();
+        if (open != null)
+        {
+            if (InstanceCheck.GetHidedUI<T>())
+            {
+                open.gameObject.SetActive(true);
+                return open;
+            }
+            else
+                return null;
         }
 
-        var prefab = _prefabs[typeof(T)];
+        var prefab = InstanceCheck._prefabs[typeof(T)];
         if (prefab != null)
         {
             GameObject obj;
             if (root == null)
-                obj = GameObject.Instantiate(prefab);
+                obj = GameObject.Instantiate(prefab, GameManager.Instance.UICanvas.transform);
             else
                 obj = GameObject.Instantiate(prefab, root);
             var uiClass = obj.GetComponent<UIBase>();
-            OpenedUI.Insert(0, uiClass);
+
+            InstanceCheck.OpenedUI.Insert(0, uiClass);
 
             obj.SetActive(true);
             return uiClass as T;
@@ -60,18 +79,31 @@ public class UIManager
             return null;
     }
 
-    public void CloseUI<T>() where T : UIBase
+    public static void CloseUI<T>() where T : UIBase
     {
-        var window = GetOpenedUI<T>();
+        var window = InstanceCheck.GetOpenedUI<T>();
         if (window != null)
         {
             window.CloseUI();
+            InstanceCheck.OpenedUI.Remove(window);
+            InstanceCheck.HidedUI.Remove(window);
+            return;
+        }
+    }
+
+    public static void HideUI<T>() where T : UIBase
+    {
+        var window = InstanceCheck.GetOpenedUI<T>();
+        if (window != null)
+        {
+            window.HideUI();
+            InstanceCheck.HidedUI.Add(window);
         }
     }
 
     private T GetOpenedUI<T>() where T : UIBase
     {
-        foreach (var ui in OpenedUI)
+        foreach (var ui in InstanceCheck.OpenedUI)
         {
             if (ui is T)
                 return ui as T;
@@ -79,17 +111,38 @@ public class UIManager
         return null;
     }
 
-    public void CloaseAllOpenedUI()
+    private T GetHidedUI<T>() where T : UIBase
     {
-        foreach (var ui in OpenedUI)
+        foreach (var ui in InstanceCheck.HidedUI)
+        {
+            if (ui is T)
+                return ui as T;
+        }
+        return null;
+    }
+
+    public static void CloseAllOpenedUI()
+    {
+        foreach (var ui in InstanceCheck.OpenedUI)
         {
             ui.CloseUI();
         }
+        InstanceCheck.OpenedUI.Clear();
+        InstanceCheck.HidedUI.Clear();
     }
 
-    public bool IsOpened<T>() where T : UIBase
+    public static void CloseAllHidedUI()
     {
-        foreach (var ui in OpenedUI)
+        foreach (var ui in InstanceCheck.HidedUI)
+        {
+            ui.CloseUI();
+        }
+        InstanceCheck.HidedUI.Clear();
+    }
+
+    public static bool IsOpened<T>() where T : UIBase
+    {
+        foreach (var ui in InstanceCheck.OpenedUI)
         {
             if (ui is T)
                 return true;
@@ -97,7 +150,17 @@ public class UIManager
         return false;
     }
 
-    public void LoadUIPrefabs()
+    public static bool IsHided<T>() where T : UIBase
+    {
+        foreach (var ui in InstanceCheck.HidedUI)
+        {
+            if (ui is T)
+                return true;
+        }
+        return false;
+    }
+
+    private void LoadUIPrefabs()
     {
         var objs = Resources.LoadAll<GameObject>("Prefabs/UI/");
         foreach (var obj in objs)
