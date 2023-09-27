@@ -80,7 +80,7 @@ public class Rush : EnemyBehaviour
             isRush = true;
             float randX = Random.Range(-0.5f, 0.5f);
             float randy = Random.Range(-0.5f, 0.5f);
-            targetPos = (Vector2)controller.Target.transform.position + new Vector2 (randX, randy);
+            targetPos = ((Vector2)controller.Target.transform.position + new Vector2 (randX, randy)) * 1.2f;
             rushRange.SetActive(false);
             // 속도랑 목표좌표를 세팅
         }
