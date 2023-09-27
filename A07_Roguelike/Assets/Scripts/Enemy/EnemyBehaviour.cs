@@ -13,38 +13,41 @@ public enum EnemyBehaviourType
 
 // EnemyController를 통해서 Enemy를 컨트롤한다
 
-// EnemyBehaviour들은 하나의 어떤 기능을 나타내는 클래스 ex) 특정한 행동, 스킬 -> 이동은 제외
+// EnemyBehaviour들은 Enemy의 행동을 정의
 
-// 컨트롤러에서는 평소에는 그냥 이동을 하다가
+// Start() 에서 모든 Behaviour들은 Controller의 Queue에 들어가게된다.
 
-// EnemyBehaviour들은 조건을 만족하면 Queue에 추가하고
+// Controller에서는 FixedUpdate()마다 Queue의 Peek()을 실행 시킨다.
 
-// Contorller에서는 Queue에 뭔가 들어오면 실행시킨다. 
+// Move는 항상
 
 [Serializable]
 public abstract class EnemyBehaviour : MonoBehaviour
 {
+    protected EnemySO enemySO;
+    protected EnemyAnimationController animationController;
     protected EnemyController controller;
-    protected Animator animator;
-    protected bool IsReady;
-
-    [SerializeField][Range(1f, 100f)] public float range;
-    [SerializeField][Range(1f, 100f)] public float coolTime;
-    [SerializeField] public float remainTime = 0;
+    protected bool IsReady = false;
+    public Rigidbody2D rb2D;
+    public SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
     {
+        animationController = GetComponent<EnemyAnimationController>();
         controller = GetComponent<EnemyController>();
-        animator = GetComponentInChildren<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    protected virtual void Start()
+    {
+
+        enemySO = (EnemySO)controller.statsHandler.CurrentStates.attackSO;
     }
 
     protected virtual void Update()
     {
-        if (remainTime >= 0)
-        {
-            remainTime -= Time.deltaTime;
-        }
-        
+        rb2D.velocity = Vector3.zero;   
     }
 
     public abstract void OnBehaviour();

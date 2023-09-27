@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5364448332409220421}
   - component: {fileID: 378046693077477190}
   - component: {fileID: 864688378163785438}
-  - component: {fileID: 5416080290764273596}
   - component: {fileID: 8794126007482928105}
+  - component: {fileID: 1749462541171999907}
   m_Layer: 0
   m_Name: GreenSlime
   m_TagString: Untagged
@@ -52,8 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   isDead: 0
-  rb2D: {fileID: 5364448332409220421}
-  spriteRenderer: {fileID: 6001812474755850372}
 --- !u!50 &5364448332409220421
 Rigidbody2D:
   serializedVersion: 4
@@ -94,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats:
-    statsChangeType: 2
+    statsChangeType: 0
     maxHealth: 28
     speed: 2
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
@@ -111,18 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb48a0467f34bc45a987039d5385ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5416080290764273596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481833729959234490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3667c049a63f3e4a94ea36c07f3ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8794126007482928105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,9 +121,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e4c72e07bac854c926e73f9a91d6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   range: 1
-  coolTime: 77
-  remainTime: 0
+--- !u!114 &1749462541171999907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481833729959234490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1 &3280934663429815585
 GameObject:
   m_ObjectHideFlags: 0

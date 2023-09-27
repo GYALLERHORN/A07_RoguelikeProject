@@ -1,27 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem.Processors;
+using UnityEngine.UIElements;
 
 public class Bomb : EnemyBehaviour
 {
-    private static readonly int isDeath = Animator.StringToHash("isDeath");
+    [SerializeField] [Range(0f,20f)] private float range;
     protected override void Awake()
     {
         base.Awake();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        controller.enemyBehaviours.Enqueue(this);
+    }
+
     protected override void Update()
     {
         base.Update();
-        if (remainTime < 0 && !IsReady && CheckBehaviour())
-        {
-            controller.enemyBehaviours.Enqueue(this);
-            IsReady = true;
-        }
     }
     public override void OnBehaviour()
     {
+        if (!CheckBehaviour()) return;
+
+        rb2D.velocity = Vector3.zero;
         controller.isDead = true;
-        animator.SetBool(isDeath, true);
+        animationController.Death();
         transform.localScale = Vector3.one * 1.5f;
         Destroy(gameObject, .35f);
          
@@ -29,7 +34,6 @@ public class Bomb : EnemyBehaviour
 
     public override bool CheckBehaviour()
     {
-        if (remainTime > 0) return false;
 
         if (controller.Distance > range) return false;
    

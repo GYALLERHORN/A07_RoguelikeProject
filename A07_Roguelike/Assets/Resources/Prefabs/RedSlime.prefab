@@ -120,8 +120,8 @@ GameObject:
   - component: {fileID: 1922347856407512046}
   - component: {fileID: 6172398655412375634}
   - component: {fileID: 1806821086450199599}
-  - component: {fileID: 2230042270994954936}
   - component: {fileID: 755434145190397361}
+  - component: {fileID: 4075817060259759356}
   m_Layer: 0
   m_Name: RedSlime
   m_TagString: Untagged
@@ -159,8 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   isDead: 0
-  rb2D: {fileID: 3033245395072318699}
-  spriteRenderer: {fileID: 3919283118561014458}
 --- !u!50 &3033245395072318699
 Rigidbody2D:
   serializedVersion: 4
@@ -200,10 +198,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4755f168805883b4f8b040f56211a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
-  coolTime: 3
-  remainTime: 0
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   projectileSpawnPosition: {fileID: 8081677677227876809}
+  remainTime: 1
+  coolTime: 0
+  range: 10
 --- !u!114 &6172398655412375634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,18 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb48a0467f34bc45a987039d5385ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2230042270994954936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754051216437932435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3667c049a63f3e4a94ea36c07f3ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &755434145190397361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +246,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283221d9ade8149478b8b7b887d2d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  coolTime: 1
-  remainTime: 0
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   targetDistance: 8
   runAwaySpeed: 6
+  remainTime: 0
+  coolTime: 0
+  range: 5
+--- !u!114 &4075817060259759356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754051216437932435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
