@@ -22,6 +22,19 @@ public static class ProceduralGenerationAlgorithms
 
         return path; // path => floorPositions
     }
+
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength) // 실행되면 corridorLength만큼 좌표 집합 한줄이 상하좌우택1 쭉 깔린다.
+    {
+        List<Vector2Int> corridor = new List<Vector2Int>();
+        var direction = Direction2D.GetRandomCardinalDirection();
+        var currentPosition = startPosition;
+        for (int i = 0; i < corridorLength; i++)
+        {
+            currentPosition += direction;
+            corridor.Add(currentPosition);
+        }
+        return corridor;
+    }
 }
 
 public static class Direction2D
