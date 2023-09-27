@@ -32,7 +32,6 @@ public class RangeAttack : EnemyBehaviour
 
         // ÄðÅ¸ÀÓÀÏ¶§´Â ÈÄ¼øÀ§·Î ¹Ð¾îÁà¾ßµÊ
 
-        // 1.
         if (controller.Distance > range) return false;
 
         if (remainTime >= 0) return false;
@@ -44,42 +43,23 @@ public class RangeAttack : EnemyBehaviour
         if (CheckBehaviour()) 
         {
             rb2D.velocity = Vector3.zero;
-
             remainTime = coolTime;
-
-            RangedAttackData rangedAttackData = enemySO as RangedAttackData;
-            float projectilesAngleSpace = rangedAttackData.multipleProjectilesAngle;
-            int numberOfProjectilesPerShot = rangedAttackData.numberofProjectilesPerShot;
-
-            float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace + 0.5f * rangedAttackData.multipleProjectilesAngle;
-
-            for (int i = 0; i < numberOfProjectilesPerShot; i++)
-            {
-                float angle = minAngle + projectilesAngleSpace * i;
-                float randomSpread = Random.Range(-rangedAttackData.spread, rangedAttackData.spread);
-                angle += randomSpread;
-                CreateProjectile(rangedAttackData, angle);
-            }
+            CreateProjectile(enemySO);
+            
         }
         
-        
-
         controller.enemyBehaviours.Dequeue();
         controller.enemyBehaviours.Enqueue(this);
     }
-    private void CreateProjectile(RangedAttackData rangedAttackData, float angle)
+    private void CreateProjectile(RangedAttackData rangedAttackData)
     {
         
         _projectileManager.ShootBullet(
                 projectileSpawnPosition.position,
-                RotateVector2(controller.Direction, angle),
+                controller.Direction,
                 rangedAttackData
                 );
     }
 
-    private static Vector2 RotateVector2(Vector2 v, float degree)
-    {
-        return Quaternion.Euler(0, 0, degree) * v;
-    }
  
 }

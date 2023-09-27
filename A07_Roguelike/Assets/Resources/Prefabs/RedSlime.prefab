@@ -202,7 +202,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   projectileSpawnPosition: {fileID: 8081677677227876809}
   remainTime: 1
-  coolTime: 0
+  coolTime: 3
   range: 10
 --- !u!114 &6172398655412375634
 MonoBehaviour:
@@ -219,7 +219,7 @@ MonoBehaviour:
   baseStats:
     statsChangeType: 2
     maxHealth: 21
-    speed: 0.7
+    speed: 2
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
 --- !u!114 &1806821086450199599
@@ -251,8 +251,8 @@ MonoBehaviour:
   targetDistance: 8
   runAwaySpeed: 6
   remainTime: 0
-  coolTime: 0
-  range: 5
+  coolTime: 5
+  range: 4
 --- !u!114 &4075817060259759356
 MonoBehaviour:
   m_ObjectHideFlags: 0
