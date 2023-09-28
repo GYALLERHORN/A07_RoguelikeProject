@@ -5,28 +5,9 @@ using UnityEngine;
 public enum ePoolType
 {
     SoundSource,
-
-    Inventory = 5,
-    Status,
-    Store,
-    Popup,
-    InventoryItem,
-    OX,
-    Gold,
-
     Projectile = 20,
 }
 
-public enum eUIType
-{
-    Inventory = 5,
-    Status,
-    Store,
-    Popup,
-    InventoryItem,
-    OX,
-    Gold,
-}
 
 public enum eAttackType
 {
@@ -148,10 +129,5 @@ public class ObjectPool : MonoBehaviour
         }
 
         return targetPool.size;
-    }
-
-    public void TestPopup()
-    {
-
     }
 }
