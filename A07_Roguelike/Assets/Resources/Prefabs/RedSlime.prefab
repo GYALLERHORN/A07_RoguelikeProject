@@ -160,8 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  isDead: 0
-  isHurt: 0
+  Stats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 0}
 --- !u!50 &3033245395072318699
 Rigidbody2D:
   serializedVersion: 4
@@ -201,12 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4755f168805883b4f8b040f56211a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  state: 0
+  statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   projectileSpawnPosition: {fileID: 8081677677227876809}
   remainTime: 1
-  coolTime: 2
-  range: 7
+  coolTime: 3
+  range: 10
 --- !u!114 &6172398655412375634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,13 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283221d9ade8149478b8b7b887d2d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  targetDistance: 10
+  state: 0
+  targetDistance: 9
   runAwaySpeed: 5
   remainTime: 0
   coolTime: 10
-  range: 4
+  range: 3
 --- !u!114 &4075817060259759356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,8 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  state: 0
   followRange: 20
   attackRange: 7
   speed: 3

@@ -31,11 +31,13 @@ public class Move : EnemyBehaviour
     {
         float distance = controller.Distance;
         state =attackRange < distance && distance < followRange  ? State.Ready : State.Rest;
+        
     }
     private void OnRest()
     {
         OnReady();
     }   
+
     public override void OnBehaviour()
     {
         Vector2 direction = controller.Direction;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class HealthController : MonoBehaviour
 {
     [SerializeField] private float healthChangeDelay = .5f;
 

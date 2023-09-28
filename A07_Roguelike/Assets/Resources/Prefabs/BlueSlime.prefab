@@ -131,8 +131,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700567225697044556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.13, y: -0.15, z: 0}
-  m_LocalScale: {x: 36.02875, y: 0.53437495, z: 1}
+  m_LocalPosition: {x: 5, y: -0, z: 0}
+  m_LocalScale: {x: 10, y: 0.53437495, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8657960463831815827}
@@ -303,8 +303,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  isDead: 0
-  isHurt: 0
+  Stats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 0}
 --- !u!114 &9106693186017302080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,12 +350,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4c5ad48180c254a991f25a79a7eab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  state: 0
   rushRange: {fileID: 6194873141352607902}
   range: 10
   coolTime: 7
   chargingTime: 2.5
+  waitTime: 1
+  rushDistance: 13
   remainchargingTime: 0
   speed: 25
 --- !u!114 &6656416643902735890
@@ -367,11 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  state: 0
   followRange: 20
-  attackRange: 10
-  speed: 1
+  attackRange: 1
+  speed: 2
 --- !u!114 &-1081857616329386601
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class RangedAttackController : MonoBehaviour
         }
         else if(_attackData.target.value == (_attackData.target.value | (1 << collision.gameObject.layer)))
         {
-            HealthSystem healthSystem = collision.GetComponent<HealthSystem>();
+            HealthController healthSystem = collision.GetComponent<HealthController>();
             if(healthSystem != null) 
             {
                 healthSystem.ChangeHealth(-_attackData.power);

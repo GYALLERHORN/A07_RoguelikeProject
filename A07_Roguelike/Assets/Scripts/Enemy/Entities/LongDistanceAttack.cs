@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangeAttack : EnemyBehaviour
+public class LongDistanceAttack : EnemyBehaviour
 {
     protected void Start()
     {
@@ -19,6 +19,7 @@ public class RangeAttack : EnemyBehaviour
     {
         OnReady();
     }
+
     private void OnCoolTime()
     {
         remainTime -= Time.deltaTime;
@@ -29,10 +30,9 @@ public class RangeAttack : EnemyBehaviour
     }
     public override void OnBehaviour()
     {
-        controller.Rb2D.velocity = Vector3.zero;
         remainTime = coolTime;
         state = State.CoolTime;
-        CreateProjectile((EnemySO)controller.StatsHandler.CurrentStates.attackSO);
+        CreateProjectile(statsSO);
         controller.ReInsert();         
     }     
     private void CreateProjectile(RangedAttackData rangedAttackData)
@@ -44,7 +44,7 @@ public class RangeAttack : EnemyBehaviour
                 rangedAttackData
                 );
     }
-
+    [SerializeField] private RangedAttackData statsSO;
     [SerializeField] private Transform projectileSpawnPosition;
     [SerializeField][Range(1f, 100f)] private float remainTime;
     [SerializeField][Range(1f, 100f)] private float coolTime;

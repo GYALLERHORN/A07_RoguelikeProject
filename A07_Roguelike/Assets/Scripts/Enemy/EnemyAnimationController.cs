@@ -6,12 +6,12 @@ public class EnemyAnimationController : EnemyAnimation
     private static readonly int isHurt = Animator.StringToHash("isHurt");
     private static readonly int isDeath = Animator.StringToHash("isDeath");
 
-    private HealthSystem _healthSystem;
+    private HealthController _healthSystem;
 
     protected override void Awake()
     {
         base.Awake();
-        _healthSystem = GetComponent<HealthSystem>();
+        _healthSystem = GetComponent<HealthController>();
     }
 
     protected virtual void Start()
@@ -23,7 +23,6 @@ public class EnemyAnimationController : EnemyAnimation
         }
 
     }
-
     public void Move(Vector2 obj)
     {
         animator.SetBool(isRun, obj.magnitude > .5f);
