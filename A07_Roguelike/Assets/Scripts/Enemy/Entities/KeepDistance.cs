@@ -12,7 +12,6 @@ public class KeepDistance : EnemyBehaviour
     {
         base.Start();
         Rest += OnRest;
-        Using += OnUsing;
         CoolTime += OnCoolTime;
     }
     public override void OnBehaviour()
@@ -21,25 +20,23 @@ public class KeepDistance : EnemyBehaviour
         controller.Rb2D.velocity = direction;
         animationController.Move(direction);
         state = State.Using;
-                  
-    }
-    private void OnRest()
-    {
-        if ((controller.state == EnemyState.Move) && controller.Distance < range)
-        {
-            controller.state = enemyState;
-            state = State.Ready;
-        }
-    }
-    private void OnUsing()
-    {
+
         if (controller.Distance > targetDistance)
         {
             remainTime = coolTime;
             controller.state = EnemyState.Move;
             state = State.CoolTime;
             controller.ReInsert(enemyState);
-            
+
+        }
+
+    }
+    private void OnRest()
+    {
+        if ((controller.state == EnemyState.Move) && CheckCondition())
+        {
+            controller.state = enemyState;
+            state = State.Ready;
         }
     }
     private void OnCoolTime()
@@ -49,6 +46,11 @@ public class KeepDistance : EnemyBehaviour
         {
             state = State.Rest;
         }
+    }
+
+    private bool CheckCondition()
+    {
+        return controller.Distance < range;
     }
 
     [SerializeField][Range(0f, 100f)] protected float targetDistance;

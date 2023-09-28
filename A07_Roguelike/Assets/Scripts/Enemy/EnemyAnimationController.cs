@@ -4,7 +4,7 @@ public class EnemyAnimationController : EnemyAnimation
 {
     private static readonly int isRun = Animator.StringToHash("isRun");
     private static readonly int isHurt = Animator.StringToHash("isHurt");
-    private static readonly int isDeath = Animator.StringToHash("isDeath");
+    private static readonly int isDeath = Animator.StringToHash("isDead");
 
     private HealthController _healthSystem;
 
@@ -32,23 +32,17 @@ public class EnemyAnimationController : EnemyAnimation
 
     public void Death()
     {
-        animator.SetBool(isDeath, true);
+        animator.SetTrigger(isDeath);
     }
-
-    public void Attacking(AttackSO obj)
-    {
-
-    }
-
 
     public void Hurt()
     {
-        animator.SetBool(isHurt, true);
+        animator.SetTrigger(isHurt);
     }
 
     public void InvincibilityEnd()
     {
-        animator.SetBool(isHurt, false);
+     
     }
 
 

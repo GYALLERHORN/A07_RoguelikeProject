@@ -1,10 +1,12 @@
 using UnityEngine;
 public class Bomb : EnemyBehaviour
 {
+    private HealthController _healthSystem;
     protected override void Awake()
     {
         base.Awake();
         enemyState = EnemyState.Skill;
+        _healthSystem = GetComponent<HealthController>();
 
     }
     protected override void Start()
@@ -22,12 +24,11 @@ public class Bomb : EnemyBehaviour
         }
     }
     public override void OnBehaviour()
-    { 
-        controller.Rb2D.velocity = Vector3.zero;
-        animationController.Death();
-        transform.localScale = Vector3.one * 2f;
-        Destroy(gameObject, .35f);
+    {
+        transform.localScale *= size;
+        _healthSystem.ChangeHealth(-int.MaxValue);
     }
 
     [SerializeField][Range(0f, 20f)] private float range;
+    [SerializeField][Range(0f, 20f)] private float size;
 }

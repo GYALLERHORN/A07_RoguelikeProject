@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dead : EnemyBehaviour
 {
-
+    
     private HealthController _healthSystem;
     protected override void Awake()
     {
@@ -23,7 +23,7 @@ public class Dead : EnemyBehaviour
     {
         controller.Rb2D.velocity = Vector3.zero;
         animationController.Death();
-        Destroy(gameObject, .35f);
-
+        Destroy(gameObject, 0.35f);
+        controller.state = EnemyState.Dead;
     }
 }

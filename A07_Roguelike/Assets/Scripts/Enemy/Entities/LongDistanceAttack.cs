@@ -18,7 +18,7 @@ public class LongDistanceAttack : EnemyBehaviour
     }
     private void OnRest()
     {
-        if(controller.state == EnemyState.Move || controller.state == EnemyState.Move && controller.Distance < range)
+        if(controller.state == EnemyState.Move || controller.state == EnemyState.Move && CheckCondition())
         {
             controller.state = enemyState;
             state = State.Ready;
@@ -34,6 +34,7 @@ public class LongDistanceAttack : EnemyBehaviour
             state = State.Rest;
         }
     }
+
     public override void OnBehaviour()
     {
         remainTime = coolTime;
@@ -51,6 +52,12 @@ public class LongDistanceAttack : EnemyBehaviour
                 rangedAttackData
                 );
     }
+
+    private bool CheckCondition()
+    {
+        return controller.Distance < range;
+    }
+
     [SerializeField] private RangedAttackData statsSO;
     [SerializeField] private Transform projectileSpawnPosition;
     [SerializeField][Range(1f, 100f)] private float remainTime;

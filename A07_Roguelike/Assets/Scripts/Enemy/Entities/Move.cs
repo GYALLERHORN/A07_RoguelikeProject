@@ -12,27 +12,24 @@ public class Move : EnemyBehaviour
     {
         base.Start();
         Rest += OnRest;
-        Using += OnUsing;
     }
-    private void OnRest()
+
+    private bool CheckCondition()
     {
         float distance = controller.Distance;
-        if (controller.state == EnemyState.Move && attackRange < distance && distance < followRange)
+        return attackRange < distance && distance < followRange ? true : false;
+    }
+
+    // Update에서 사용되는 메서드
+    private void OnRest()
+    {
+        if (controller.state == EnemyState.Move && CheckCondition())
         {
             state = State.Ready;
         }
     }
 
-    private void OnUsing()
-    {
-        float distance = controller.Distance;
-        if (!(attackRange < distance && distance < followRange))
-        {
-            controller.StopEnemy();
-            state = State.Rest;
-        }
-    }
-
+    // FixedUpdate에서 사용되는 메서드
     public override void OnBehaviour()
     {
         state = State.Using;
@@ -40,7 +37,15 @@ public class Move : EnemyBehaviour
         controller.Rb2D.velocity = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * direction * speed;
         animationController.Move(direction);
         controller.ReInsert(enemyState);
+
+        float distance = controller.Distance;
+        if (!CheckCondition())
+        {
+            controller.StopEnemy();
+            state = State.Rest;
+        }
     }
+    
 
     [SerializeField] float followRange;
     [SerializeField] float attackRange;

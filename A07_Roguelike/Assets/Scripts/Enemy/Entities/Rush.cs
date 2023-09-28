@@ -22,9 +22,29 @@ public class Rush : EnemyBehaviour
     {
         base.Start();
         Rest += OnRest;
-        Using += OnUsing;
         CoolTime += OnCoolTime;
     }
+
+    // Update에서 사용되는 메서드
+    private void OnRest()
+    {
+        if ((controller.state == EnemyState.Move) && controller.Distance < range)
+        {
+            controller.state = enemyState;
+            state = State.Ready;
+        }
+
+    }
+    private void OnCoolTime()
+    {
+        remainTime -= Time.deltaTime;
+        if (remainTime < 0f)
+        {
+            state = State.Rest;
+        }
+    }
+
+    // FixedUpdate에서 사용되는 메서드
     public override void OnBehaviour()
     {
         state = State.Using;
@@ -47,47 +67,21 @@ public class Rush : EnemyBehaviour
         }
 
     }
-    private void OnRest()
-    {
-        if ((controller.state == EnemyState.Move) && controller.Distance < range)
-        {
-            controller.state = enemyState;
-            state = State.Ready;
-        }
-
-    }
-    private void OnUsing()
-    {
-        if (rushState == RushState.Charge)
-        {
-            remainchargingTime -= Time.deltaTime;
-            if (remainchargingTime < 0)
-            {
-                rushState = RushState.Complete;
-            }
-        }
-    }
-    private void OnCoolTime()
-    {
-        remainTime -= Time.deltaTime;
-        if (remainTime < 0f)
-        {
-            state = State.Rest;
-        }
-    }
     private void Init()
     {
+        controller.StopEnemy();
         rushState = RushState.Charge;
         remainchargingTime = chargingTime;
         startPos = transform.position;
-        controller.StopEnemy();
         animationController.Move(Vector2.zero);
         
     }
     private void OnCharging()
     {
-        if(remainchargingTime < waitTime)
+        remainchargingTime -= Time.deltaTime;
+        if (remainchargingTime < waitTime)
         {
+            rushState = RushState.Complete;
             return;
         }
 
@@ -102,8 +96,12 @@ public class Rush : EnemyBehaviour
     }
     private void ReadyRush()
     {
-        rushRange.SetActive(false);
-        rushState = RushState.Rush;
+        remainchargingTime -= Time.deltaTime;
+        if(remainchargingTime < 0)
+        {
+            rushRange.SetActive(false);
+            rushState = RushState.Rush;
+        }
     }
     private void OnRush()
     {
@@ -115,10 +113,10 @@ public class Rush : EnemyBehaviour
         {
             controller.Rb2D.velocity = Vector2.zero;
             remainTime = coolTime;
-            state = State.CoolTime;
-            rushState = RushState.Rest;
             controller.Collider.isTrigger = false;
+            state = State.CoolTime;
             controller.state = EnemyState.Move;
+            rushState = RushState.Rest;
             controller.ReInsert(enemyState);
         }
 
