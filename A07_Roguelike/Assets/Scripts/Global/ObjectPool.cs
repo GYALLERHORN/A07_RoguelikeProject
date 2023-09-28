@@ -5,13 +5,10 @@ using UnityEngine;
 public enum ePoolType
 {
     SoundSource,
-    Status,
-    Inventory,
-    Store,
-    TextImage,
     Projectile = 20,
     RedSlimeAttack,
 }
+
 
 public enum eAttackType
 {
@@ -31,6 +28,7 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] private int _resizeSize;
     [SerializeField] private int _maxSize;
+    [SerializeField] private Transform _root;
     public List<Pool> pools;
     public Dictionary<ePoolType, Queue<GameObject>> poolDictionary;
 
@@ -43,7 +41,10 @@ public class ObjectPool : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj;
-                obj = Instantiate(pool.prefab);
+                if (_root == null)
+                    obj = Instantiate(pool.prefab);
+                else
+                    obj = Instantiate(pool.prefab, _root);
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }
@@ -59,17 +60,19 @@ public class ObjectPool : MonoBehaviour
         GameObject obj = poolDictionary[tag].Dequeue();
         poolDictionary[tag].Enqueue(obj);
 
-        int count = pools.Find(x => x.type == tag).size;
+        int size = pools.Find(x => x.type == tag).size;
+        int count = size;
+
         while (obj.activeInHierarchy)
         {
             if (count < 0)
             {
-                count = UpsizePool(tag, _resizeSize);
-                if (count == pools.Find(x => x.type == tag).size)
+                if (size == _maxSize)
                 {
                     obj = null;
                     break;
                 }
+                count = UpsizePool(tag, _resizeSize);
             }
             else
             {
@@ -99,7 +102,11 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < limit; ++i)
             {
-                GameObject obj = Instantiate(targetPool.prefab);
+                GameObject obj;
+                if (_root == null)
+                    obj = Instantiate(targetPool.prefab);
+                else
+                    obj = Instantiate(targetPool.prefab, _root);
                 obj.SetActive(false);
                 poolQueue.Enqueue(obj);
             }

@@ -6,12 +6,13 @@ using UnityEngine;
 [Serializable]
 public class DataManager
 {
-    private static DataManager instance;
-    public static DataManager Get()
+    private static DataManager _instance;
+    public static DataManager Instance { get => Get(); }
+    private static DataManager Get()
     {
-        if (instance == null)
-            instance = new DataManager();
-        return instance;
+        if (_instance == null)
+            _instance = new DataManager();
+        return _instance;
     }
     [Header("Sound Setting")]
     public float MasterVolume;
