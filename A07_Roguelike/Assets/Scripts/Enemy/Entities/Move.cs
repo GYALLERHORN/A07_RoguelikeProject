@@ -1,74 +1,50 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class Move : EnemyBehaviour
 {
-    enum MoveState
+    protected override void Awake()
     {
-        Default,
-        KnockBack,
+        base.Awake();
+        enemyState = EnemyState.Move;
     }
-    protected void Start()
+    protected override void Start()
     {
-        controller.enemyBehaviours.Enqueue(this);
-        state = State.Rest;
-        Ready += OnReady;
+        base.Start();
         Rest += OnRest;
-    }
-    protected void FixedUpdate()
-    {
-        if (moveState == MoveState.KnockBack)
-        {
-            knockbackDuration -= Time.fixedDeltaTime;
-
-            if (knockbackDuration <= 0.0f)
-            {
-                moveState = MoveState.Default;
-            }
-        }
-    }
-    private void OnReady()
-    {
-        float distance = controller.Distance;
-        state =attackRange < distance && distance < followRange  ? State.Ready : State.Rest;
-        
+        Using += OnUsing;
     }
     private void OnRest()
     {
-        OnReady();
-    }   
+        float distance = controller.Distance;
+        if (controller.state == EnemyState.Move && attackRange < distance && distance < followRange)
+        {
+            state = State.Ready;
+        }
+    }
+
+    private void OnUsing()
+    {
+        float distance = controller.Distance;
+        if (!(attackRange < distance && distance < followRange))
+        {
+            controller.StopEnemy();
+            state = State.Rest;
+        }
+    }
 
     public override void OnBehaviour()
     {
+        state = State.Using;
         Vector2 direction = controller.Direction;
-
-        switch (moveState)
-        {
-            case MoveState.Default:
-                animationController.InvincibilityEnd();
-                animationController.Move(direction);
-                break;
-            case MoveState.KnockBack:
-                direction += _knockback;
-                animationController.Hurt();
-                break;
-        }
         controller.Rb2D.velocity = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * direction * speed;
-        controller.ReInsert();
-    }
-    public void ApplyKnockback(Transform other, float power, float duration)
-    {
-        knockbackDuration = duration;
-        moveState = MoveState.KnockBack;
-        _knockback = -(other.position - transform.position).normalized * power;
+        animationController.Move(direction);
+        controller.ReInsert(enemyState);
     }
 
     [SerializeField] float followRange;
     [SerializeField] float attackRange;
     [SerializeField] float speed;
-    private Vector2 _knockback = Vector2.zero;
-    private float knockbackDuration = 0.0f;
-    MoveState moveState = MoveState.Default;
 }
 
 

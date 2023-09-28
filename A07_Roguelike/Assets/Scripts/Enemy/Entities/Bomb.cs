@@ -1,19 +1,25 @@
 using UnityEngine;
 public class Bomb : EnemyBehaviour
 {
-    protected void Start()
+    protected override void Awake()
     {
-        controller.enemyBehaviours.Enqueue(this);
-        Ready += OnReady;
+        base.Awake();
+        enemyState = EnemyState.Skill;
+
+    }
+    protected override void Start()
+    {
+        base.Start();
         Rest += OnRest;
     }
-    private void OnReady()
-    {
-        state = controller.Distance <= range ? State.Ready : State.Rest;
-    }
+    
     private void OnRest()
     {
-        OnReady();
+        if ((controller.state == EnemyState.Move) && controller.Distance <= range)
+        {
+            controller.state = enemyState;
+            state = State.Ready;
+        }
     }
     public override void OnBehaviour()
     { 
@@ -21,7 +27,6 @@ public class Bomb : EnemyBehaviour
         animationController.Death();
         transform.localScale = Vector3.one * 2f;
         Destroy(gameObject, .35f);
-        controller.ReInsert();
     }
 
     [SerializeField][Range(0f, 20f)] private float range;

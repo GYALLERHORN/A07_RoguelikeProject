@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class KeepDistance : EnemyBehaviour
 {
-    protected void Start()
+    protected override void Awake()
     {
-        controller.enemyBehaviours.Enqueue(this);
-        Ready += OnReady;
+        base.Awake();
+        enemyState = EnemyState.Skill;
+
+    }
+    protected override void Start()
+    {
+        base.Start();
         Rest += OnRest;
         Using += OnUsing;
         CoolTime += OnCoolTime;
@@ -18,22 +23,23 @@ public class KeepDistance : EnemyBehaviour
         state = State.Using;
                   
     }
-    private void OnReady()
-    {
-        state = controller.Distance < range ? State.Ready : State.Rest;
-    }
     private void OnRest()
     {
-        OnReady();
+        if ((controller.state == EnemyState.Move) && controller.Distance < range)
+        {
+            controller.state = enemyState;
+            state = State.Ready;
+        }
     }
-
     private void OnUsing()
     {
         if (controller.Distance > targetDistance)
         {
             remainTime = coolTime;
+            controller.state = EnemyState.Move;
             state = State.CoolTime;
-            controller.ReInsert();
+            controller.ReInsert(enemyState);
+            
         }
     }
     private void OnCoolTime()

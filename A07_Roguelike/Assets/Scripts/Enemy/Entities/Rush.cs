@@ -10,13 +10,17 @@ public class Rush : EnemyBehaviour
         Complete,
         Rush,
     }
-    protected void Start()
+    protected override void Awake()
     {
-        controller.enemyBehaviours.Enqueue(this);
+        base.Awake();
         remainTime = Random.Range(1f, coolTime);
         state = State.CoolTime;
+        enemyState = EnemyState.Skill;
 
-        Ready += OnReady;
+    }
+    protected override void Start()
+    {
+        base.Start();
         Rest += OnRest;
         Using += OnUsing;
         CoolTime += OnCoolTime;
@@ -43,13 +47,14 @@ public class Rush : EnemyBehaviour
         }
 
     }
-    private void OnReady()
-    {
-        state = controller.Distance < range ? State.Ready : State.Rest;
-    }
     private void OnRest()
     {
-        OnReady();
+        if ((controller.state == EnemyState.Move) && controller.Distance < range)
+        {
+            controller.state = enemyState;
+            state = State.Ready;
+        }
+
     }
     private void OnUsing()
     {
@@ -112,8 +117,9 @@ public class Rush : EnemyBehaviour
             remainTime = coolTime;
             state = State.CoolTime;
             rushState = RushState.Rest;
-            controller.ReInsert();
             controller.Collider.isTrigger = false;
+            controller.state = EnemyState.Move;
+            controller.ReInsert(enemyState);
         }
 
     }

@@ -33,7 +33,7 @@ public class HealthController : MonoBehaviour
         {
             _timeSinceLastChange += Time.deltaTime;
 
-            if (_timeSinceLastChange > healthChangeDelay ) 
+            if (_timeSinceLastChange >= healthChangeDelay ) 
             {
                 OnInvincibilityEnd?.Invoke();
             }
@@ -63,15 +63,12 @@ public class HealthController : MonoBehaviour
 
         if (CurrentHealth <= 0f)
         {
-            CallDeath();
+            OnDeath?.Invoke();
         }
 
         return true;
     }
 
-    private void CallDeath()
-    {
-
-    }
+   
 
 }

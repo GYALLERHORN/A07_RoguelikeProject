@@ -239,6 +239,8 @@ GameObject:
   - component: {fileID: 6656416643902735890}
   - component: {fileID: -1081857616329386601}
   - component: {fileID: 8265331186231738582}
+  - component: {fileID: 8416851423986505873}
+  - component: {fileID: 7524340531825734221}
   m_Layer: 9
   m_Name: BlueSlime
   m_TagString: Untagged
@@ -308,6 +310,7 @@ MonoBehaviour:
     maxHealth: 0
     speed: 0
     attackSO: {fileID: 0}
+  state: 0
 --- !u!114 &9106693186017302080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 0
-    maxHealth: 0
+    maxHealth: 3
     speed: 0.5
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
@@ -350,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4c5ad48180c254a991f25a79a7eab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   state: 0
   rushRange: {fileID: 6194873141352607902}
   range: 10
@@ -371,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   state: 0
   followRange: 20
   attackRange: 1
@@ -423,3 +428,33 @@ CapsuleCollider2D:
   m_Offset: {x: -0.01977285, y: -0.16312744}
   m_Size: {x: 1.1129578, y: 0.687846}
   m_Direction: 1
+--- !u!114 &8416851423986505873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728473096023743534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0c0e4c156945046a363992a88af691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0
+  knockbackDuration: 0
+  speed: 2
+--- !u!114 &7524340531825734221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6728473096023743534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1a85e343144bb4998b0638ff860e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0

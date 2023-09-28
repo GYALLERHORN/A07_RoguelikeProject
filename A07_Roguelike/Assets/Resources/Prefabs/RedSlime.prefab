@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 4075817060259759356}
   - component: {fileID: 979974100427624985}
   - component: {fileID: 2632279022447555224}
+  - component: {fileID: 3345001655228981882}
+  - component: {fileID: 187930918708930068}
   m_Layer: 9
   m_Name: RedSlime
   m_TagString: Untagged
@@ -165,6 +167,7 @@ MonoBehaviour:
     maxHealth: 0
     speed: 0
     attackSO: {fileID: 0}
+  state: 0
 --- !u!50 &3033245395072318699
 Rigidbody2D:
   serializedVersion: 4
@@ -204,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4755f168805883b4f8b040f56211a896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   state: 0
   statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   projectileSpawnPosition: {fileID: 8081677677227876809}
@@ -224,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 2
-    maxHealth: 21
+    maxHealth: 3
     speed: 2
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
@@ -252,8 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283221d9ade8149478b8b7b887d2d184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   state: 0
-  targetDistance: 9
+  targetDistance: 12
   runAwaySpeed: 5
   remainTime: 0
   coolTime: 10
@@ -270,9 +275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   state: 0
   followRange: 20
-  attackRange: 7
+  attackRange: 10
   speed: 3
 --- !u!114 &979974100427624985
 MonoBehaviour:
@@ -322,3 +328,33 @@ CapsuleCollider2D:
   m_Offset: {x: -0.01977285, y: -0.16312744}
   m_Size: {x: 1.1129578, y: 0.687846}
   m_Direction: 1
+--- !u!114 &3345001655228981882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754051216437932435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0c0e4c156945046a363992a88af691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0
+  knockbackDuration: 0
+  speed: 2
+--- !u!114 &187930918708930068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754051216437932435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1a85e343144bb4998b0638ff860e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0

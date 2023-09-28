@@ -14,6 +14,8 @@ public class EnemyAnimationController : EnemyAnimation
         _healthSystem = GetComponent<HealthController>();
     }
 
+
+
     protected virtual void Start()
     {
         if (_healthSystem != null) 

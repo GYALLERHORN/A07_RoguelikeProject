@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 1749462541171999907}
   - component: {fileID: -3798616037282897405}
   - component: {fileID: 2389418756486474779}
+  - component: {fileID: 6665360843524308750}
+  - component: {fileID: 3178463098452124767}
   m_Layer: 9
   m_Name: GreenSlime
   m_TagString: Untagged
@@ -53,10 +55,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  isDead: 0
-  isHurt: 0
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  Stats:
+    statsChangeType: 0
+    maxHealth: 0
+    speed: 0
+    attackSO: {fileID: 0}
+  state: 0
 --- !u!50 &5364448332409220421
 Rigidbody2D:
   serializedVersion: 4
@@ -98,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 0
-    maxHealth: 28
+    maxHealth: 3
     speed: 2
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
@@ -126,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e4c72e07bac854c926e73f9a91d6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  enemyState: 0
+  state: 0
   range: 1
 --- !u!114 &1749462541171999907
 MonoBehaviour:
@@ -141,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0fb11af8c0ae640bcee3ceddc8908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  enemyState: 0
+  state: 0
   followRange: 20
   attackRange: 1
   speed: 4
@@ -194,6 +198,36 @@ CapsuleCollider2D:
   m_Offset: {x: -0.01977285, y: -0.16312744}
   m_Size: {x: 1.1129578, y: 0.687846}
   m_Direction: 1
+--- !u!114 &6665360843524308750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481833729959234490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0c0e4c156945046a363992a88af691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0
+  knockbackDuration: 0
+  speed: 2
+--- !u!114 &3178463098452124767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481833729959234490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1a85e343144bb4998b0638ff860e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  state: 0
 --- !u!1 &3280934663429815585
 GameObject:
   m_ObjectHideFlags: 0

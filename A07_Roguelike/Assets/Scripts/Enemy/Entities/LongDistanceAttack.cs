@@ -2,22 +2,28 @@ using UnityEngine;
 
 public class LongDistanceAttack : EnemyBehaviour
 {
-    protected void Start()
+    protected override void Awake()
     {
+        base.Awake();
+        enemyState = EnemyState.Attack;
+        state = State.CoolTime;
+        
+    }
+    protected override void Start()
+    {
+        base.Start();
         _projectileManager = ProjectileManager.instance;
-        controller.enemyBehaviours.Enqueue(this);
-        Ready += OnReady;
         Rest += OnRest;
         CoolTime += OnCoolTime;
-        state = State.CoolTime;
-    }
-    private void OnReady()
-    {
-        state = controller.Distance < range ? State.Ready : State.Rest;
     }
     private void OnRest()
     {
-        OnReady();
+        if(controller.state == EnemyState.Move || controller.state == EnemyState.Move && controller.Distance < range)
+        {
+            controller.state = enemyState;
+            state = State.Ready;
+
+        }
     }
 
     private void OnCoolTime()
@@ -33,7 +39,8 @@ public class LongDistanceAttack : EnemyBehaviour
         remainTime = coolTime;
         state = State.CoolTime;
         CreateProjectile(statsSO);
-        controller.ReInsert();         
+        controller.state = EnemyState.Move;
+        controller.ReInsert(enemyState);         
     }     
     private void CreateProjectile(RangedAttackData rangedAttackData)
     {
