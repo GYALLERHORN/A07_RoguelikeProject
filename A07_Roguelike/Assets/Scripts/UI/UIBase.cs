@@ -44,21 +44,6 @@ public class UIBase : MonoBehaviour
         ActAtHide?.Invoke();
         gameObject.SetActive(false);
     }
-    /// <summary>
-    /// 이 메소드를 사용하지 말 것.
-    /// </summary>
-    public virtual void ShowUI()
-    {
-        gameObject.SetActive(true);
-    }
-    /// <summary>
-    /// 이 메소드를 사용하지 말 것.
-    /// </summary>
-    public virtual void ShowUI(Transform parent)
-    {
-        transform.SetParent(transform);
-        gameObject.SetActive(true);
-    }
 
     protected virtual void SelfCloseUI()
     {
