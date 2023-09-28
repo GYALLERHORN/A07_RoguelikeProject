@@ -5,36 +5,68 @@ using UnityEngine;
 
 public class UIBase : MonoBehaviour
 {
-    [SerializeField] protected RectTransform _rectTransform;
+    [Header("최상위 RectTransform을 지정할 것.")]
+    [SerializeField] protected RectTransform _self;
     protected Action ActAtHide;
     protected Action ActAtClose;
-    protected Action ActAtShow;
 
-    public void SetActAtHide(Action action) { ActAtHide = action; }
-    public void SetActAtClose(Action action) { ActAtClose = action; }
-    public void SetActAtShow(Action action) { ActAtShow = action; }
-    
+    public virtual void AddActAtHide(Action action) { ActAtHide += action; }
+    public virtual void AddActAtClose(Action action) { ActAtClose += action; }
+
+    protected virtual void OnDisable()
+    {
+        Invoke("SelfCloseUI", 10f);
+    }
+
+    protected virtual void OnEnable()
+    {
+        CancelInvoke();
+    }
+
     public virtual void Refresh()
     {
 
     }
 
+    /// <summary>
+    /// 이 메소드를 사용하지 말 것. SelfCloseUI()를 사용할 것.
+    /// </summary>
     public virtual void CloseUI()
     {
         ActAtClose?.Invoke();
         Destroy(gameObject);
     }
-
+    /// <summary>
+    /// 이 메소드를 사용하지 말 것. SelfHideUI()를 사용할 것.
+    /// </summary>
     public virtual void HideUI()
     {
         ActAtHide?.Invoke();
         gameObject.SetActive(false);
     }
-
+    /// <summary>
+    /// 이 메소드를 사용하지 말 것.
+    /// </summary>
     public virtual void ShowUI()
     {
-        ActAtShow?.Invoke();
         gameObject.SetActive(true);
-        Refresh();
+    }
+    /// <summary>
+    /// 이 메소드를 사용하지 말 것.
+    /// </summary>
+    public virtual void ShowUI(Transform parent)
+    {
+        transform.SetParent(transform);
+        gameObject.SetActive(true);
+    }
+
+    protected virtual void SelfCloseUI()
+    {
+        UIManager.CloseUI(this);
+    }
+
+    protected virtual void SelfHideUI()
+    {
+        UIManager.HideUI(this);
     }
 }

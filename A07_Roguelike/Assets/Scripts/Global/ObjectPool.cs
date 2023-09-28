@@ -5,28 +5,9 @@ using UnityEngine;
 public enum ePoolType
 {
     SoundSource,
-
-    Inventory = 5,
-    InventoryItem,
-    Status,
-    Store,
-    Popup,
-    OX,
-    Gold,
-
     Projectile = 20,
 }
 
-public enum eUIType
-{
-    Inventory = 5,
-    Status,
-    Store,
-    Popup,
-    InventoryItem,
-    OX,
-    Gold,
-}
 
 public enum eAttackType
 {

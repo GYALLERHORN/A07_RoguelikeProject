@@ -11,13 +11,16 @@ public class StatusTest : MonoBehaviour
     [SerializeField] private GameObject player;
     private CharacterStatsHandler characterController;
     private Sprite icon;
+
     [Header("내부 표현용 오브젝트")]
     [SerializeField] private Toggle isTemp;
     [SerializeField] private TMP_InputField duration;
     [SerializeField] private Button button;
+
     private bool _isTemp = false;
     private float _duration = .0f;
-    private UIStatus _ui;
+
+    private UIInfo _ui;
 
     private void Awake()
     {
@@ -76,7 +79,7 @@ public class StatusTest : MonoBehaviour
             return;
 
         //button.interactable = false;
-        _ui = UIManager.ShowUI(eUIType.Status) as UIStatus;
+        _ui = UIManager.ShowUI(eUIType.Status) as UIInfo;
         if (_ui == null)
             return;
 

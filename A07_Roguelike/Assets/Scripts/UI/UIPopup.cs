@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class UIPopup : UIBase
 {
+    [Header("내용이 표시되는 오브젝트")]
     [SerializeField] private TMP_Text _title;
     [SerializeField] private TMP_Text _data;
-    private Action _callback;
     private bool IsTemp;
     private float _time;
     private float _duration;
@@ -21,15 +21,13 @@ public class UIPopup : UIBase
         {
             if (_duration < _time)
                 SelfHideUI();
-            else if (_duration * 3 < _time)
-                SelfCloseUI();
         }
 
     }
 
-    public void Initialize(string data, string title = null, Action callback = null, bool temp = false, float duration = 0.0f)
+    public void Initialize(string data, string title = null, Action actAtHide = null, bool temp = false, float duration = 0.0f)
     {
-        _callback = callback;
+        ActAtHide = actAtHide;
         if (title == null)
         {
             _title.transform.parent.gameObject.SetActive(false);
@@ -43,27 +41,31 @@ public class UIPopup : UIBase
         IsTemp = temp;
         _time = 0.0f;
         _duration = duration;
+        transform.localPosition = Vector3.zero;
+    }
+
+    public void Move(Vector3 screen)
+    {
+        transform.localPosition = screen;
     }
 
     public override void CloseUI()
     {
-        _callback?.Invoke();
         base.CloseUI();
     }
 
     public override void HideUI()
     {
-        _callback?.Invoke();
         base.HideUI();
     }
 
-    private void SelfCloseUI()
+    protected override void SelfCloseUI()
     {
-        UIManager.CloseUI(eUIType.Popup);
+        UIManager.CloseUI(this);
     }
 
-    private void SelfHideUI()
+    protected override void SelfHideUI()
     {
-        UIManager.HideUI(eUIType.Popup);
+        UIManager.HideUI(this);
     }
 }
