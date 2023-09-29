@@ -25,7 +25,7 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>(); // 생성된 모든 좌표의 집합
         HashSet<Vector2Int> potentialRoomrPositions = new HashSet<Vector2Int>(); // 좌표 중 방이 생성될 가능성이 있는 좌표의 집합
 
-        CreateCorridors(floorPositions, potentialRoomrPositions);
+        List<List<Vector2Int>> corridors = CreateCorridors(floorPositions, potentialRoomrPositions); // corridorLength만금 생성된 복도 좌표집합의 집합
 
         HashSet<Vector2Int> roomPositions = createRooms(potentialRoomrPositions);
 
@@ -35,8 +35,55 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
 
         floorPositions.UnionWith(roomPositions); // 위 메서드로 생성된 방 좌표도 복도 좌표와 함께 바닥 타일을 생성할 좌표다.
 
+        for (int i = 0; i < corridors.Count; i++)
+        {
+            corridors[i] = IncreaseCorridorSizeSyzeByOne(corridors[i]);
+            floorPositions.UnionWith(corridors[i]);
+        }
+
         tilemapVisualizer.PaintFloorTile(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+    }
+
+    private List<Vector2Int> IncreaseCorridorSizeSyzeByOne(List<Vector2Int> corridor)
+    {
+        List<Vector2Int> newCorridor = new List<Vector2Int>(); // 복도 한 칸당 3x3칸 씩 확장해서 다시 복도 좌표 집합으로 할당한 변수
+        //var previousDirection = Vector2Int.zero;
+        for (int i = 1; i < corridor.Count; i++)
+        {
+            //Vector2Int directionFromCell = corridor[i] - corridor[i - 1];
+            //if (previousDirection != Vector2Int.zero && directionFromCell != previousDirection)
+            //{
+                for (int x = -1; x < 2; x++)
+                {
+                    for (int y = -1; y < 2; y++)
+                    {
+                        newCorridor.Add(corridor[i-1] + new Vector2Int(x, y));
+                    }
+                }
+                //previousDirection = directionFromCell;
+            //}
+            //else
+            //{
+            //    Vector2Int newCorridorTileOffset = GetDirection90From(directionFromCell);
+            //    newCorridor.Add(corridor[i - 1]);
+            //    newCorridor.Add(corridor[i - 1] + newCorridorTileOffset);
+            //}
+        }
+        return newCorridor;
+    }
+
+    private Vector2Int GetDirection90From(Vector2Int direction)
+    {
+        if (direction == Vector2Int.up)
+            return Vector2Int.right;
+        if (direction == Vector2Int.right)
+            return Vector2Int.down;
+        if (direction == Vector2Int.down)
+            return Vector2Int.left;
+        if (direction == Vector2Int.left)
+            return Vector2Int.up;
+        return Vector2Int.zero;
     }
 
     private void CreateRoomsAtDeadEnds(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomFloors)
@@ -73,19 +120,21 @@ public class CorridorFirstDungeonGenerator : SimpleWalkDungeonGenerator
         return deadEnds;
     }
 
-    private void CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomrPositions)
+    private List<List<Vector2Int>> CreateCorridors(HashSet<Vector2Int> floorPositions, HashSet<Vector2Int> potentialRoomrPositions)
     {
         var currentPosition = startPosition; // 0,0부터 시작
         potentialRoomrPositions.Add(currentPosition); // 물론, 시작좌표에도 방이 만들어질 수 있다.
+        var corridors = new List<List<Vector2Int>>();
 
         for (int i = 0; i < corridorCount; i++)
         {
             var corridor = ProceduralGenerationAlgorithms.RandomWalkCorridor(currentPosition, corriderLength); // corridor 좌표 집합 생성 명령
-            floorPositions.UnionWith(corridor); // 좌표집합 합치기
-
+            corridors.Add(corridor);
             currentPosition = corridor[corridor.Count - 1]; // 다음 corridor 좌표 생성의 시작점은 현재까지 만들어진 corrider의 마지막 좌표
             potentialRoomrPositions.Add(currentPosition);
+            floorPositions.UnionWith(corridor); // 좌표집합 합치기
         }
+        return corridors;
     }
 
     private HashSet<Vector2Int> createRooms(HashSet<Vector2Int> potentialRoomPositions)
