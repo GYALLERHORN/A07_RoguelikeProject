@@ -1,9 +1,12 @@
 using System.Resources;
 using UnityEditor.VersionControl;
 using UnityEngine;
-public class Rush : EnemyBehaviour
+public class Rush : EnemyBehaviour, IBehaviour
 {
-    enum RushState
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rb2D;
+    private Collider2D _collider2D;
+    enum RushStep
     {
         Rest,
         Charge,
@@ -13,114 +16,111 @@ public class Rush : EnemyBehaviour
     protected override void Awake()
     {
         base.Awake();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _rb2D = GetComponent<Rigidbody2D>();
+        _collider2D = GetComponent<Collider2D>();
         remainTime = Random.Range(1f, coolTime);
-        state = State.CoolTime;
-        enemyState = EnemyState.Skill;
-
-    }
-    protected override void Start()
-    {
-        base.Start();
-        Rest += OnRest;
-        CoolTime += OnCoolTime;
     }
 
-    // Update에서 사용되는 메서드
-    private void OnRest()
+    private StrategyState _state = StrategyState.CoolTime;
+    private StratgeyType _type = StratgeyType.Skill;
+    public StrategyState State { get => _state; set => _state = value; }
+    public StratgeyType Type { get => _type;}
+
+    public void OnRest()
     {
-        if ((controller.state == EnemyState.Move) && controller.Distance < range)
+        if (!(Distance < range)) return;
+        
+        switch (CurrentBehaviourType())
         {
-            controller.state = enemyState;
-            state = State.Ready;
-        }
+            case null:
+            case StratgeyType.Move:
+            case StratgeyType.Attack:
+                StartAction(this);
+                break;
+            default:
+                break;
 
+        }
     }
-    private void OnCoolTime()
+    public void OnAction()
+    {
+        switch (rushState)
+        {
+            case RushStep.Rest:
+                Init();
+                break;
+            case RushStep.Charge:
+                OnCharging();
+                break;
+            case RushStep.Complete:
+                ReadyRush();
+                break;
+            case RushStep.Rush:
+                OnRush();
+                break;
+        }
+    }
+    public void OnCoolTime()
     {
         remainTime -= Time.deltaTime;
         if (remainTime < 0f)
         {
-            state = State.Rest;
+            State = StrategyState.Rest;
         }
     }
 
-    // FixedUpdate에서 사용되는 메서드
-    public override void OnBehaviour()
-    {
-        state = State.Using;
-
-        switch (rushState)
-        {
-            case RushState.Rest:
-                Init();
-                break;
-            case RushState.Charge:
-                OnCharging();
-                break;
-            case RushState.Complete:
-                ReadyRush();
-                break;
-            case RushState.Rush:
-                OnRush();
-                break;
-
-        }
-
-    }
+    #region OnAction()
     private void Init()
     {
-        controller.StopEnemy();
-        rushState = RushState.Charge;
+        _rb2D.velocity = Vector2.zero;
+        animationController.Move(Vector2.zero);
+
+        rushState = RushStep.Charge;
         remainchargingTime = chargingTime;
         startPos = transform.position;
-        animationController.Move(Vector2.zero);
-        
     }
     private void OnCharging()
     {
         remainchargingTime -= Time.deltaTime;
         if (remainchargingTime < waitTime)
         {
-            rushState = RushState.Complete;
+            rushState = RushStep.Complete;
             return;
         }
 
         // 타겟이 확정된 타이밍의 방향을 알기위해서
-        direction = controller.Direction;
+        direction = Direction;
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        controller.SpriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
+
+        _spriteRenderer.flipX = Mathf.Abs(rotZ) > 90f;
         rushRange.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         rushRange.SetActive(true);
-
     }
     private void ReadyRush()
     {
         remainchargingTime -= Time.deltaTime;
-        if(remainchargingTime < 0)
+        if (remainchargingTime < 0)
         {
             rushRange.SetActive(false);
-            rushState = RushState.Rush;
+            rushState = RushStep.Rush;
         }
     }
     private void OnRush()
     {
-        controller.Rb2D.velocity = direction * speed;
+        _rb2D.velocity = direction * speed;
         animationController.Move(direction);
-        controller.Collider.isTrigger = true;
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)
         {
-            controller.Rb2D.velocity = Vector2.zero;
+            _rb2D.velocity = Vector2.zero;
             remainTime = coolTime;
-            controller.Collider.isTrigger = false;
-            state = State.CoolTime;
-            controller.state = EnemyState.Move;
-            rushState = RushState.Rest;
-            controller.ReInsert(enemyState);
+            rushState = RushStep.Rest;
+            EndAction(this);
         }
-
     }
+    #endregion
 
     [SerializeField] private GameObject rushRange;
     [SerializeField][Range(0f, 100f)] float range;
@@ -133,5 +133,7 @@ public class Rush : EnemyBehaviour
     Vector2 direction = Vector2.zero;
     Vector2 startPos = Vector2.zero;
     private float remainTime;
-    RushState rushState = RushState.Rest;
+    RushStep rushState = RushStep.Rest;
+
+    
 }
