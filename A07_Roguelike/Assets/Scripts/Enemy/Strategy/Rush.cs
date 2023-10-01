@@ -122,6 +122,24 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     #endregion
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (State == StrategyState.Action && rushState == RushStep.Rush)
+        {
+            GameObject go = collision.gameObject;
+            if (go == null) return;
+
+            if (go.CompareTag("Player"))
+            {
+                HealthController hc = go.GetComponent<HealthController>();
+
+                if (hc == null) return;
+                hc.ChangeHealth(-damage);
+
+            }
+        }
+    }
+
     [SerializeField] private GameObject rushRange;
     [SerializeField][Range(0f, 100f)] float range;
     [SerializeField][Range(0f, 100f)] float coolTime;
@@ -130,6 +148,7 @@ public class Rush : EnemyBehaviour, IBehaviour
     [SerializeField][Range(0f, 100f)] float rushDistance;
     [SerializeField][Range(0f, 100f)] float remainchargingTime;
     [SerializeField][Range(0f, 100f)] float speed;
+    [SerializeField][Range(0, 20)] int damage;
     Vector2 direction = Vector2.zero;
     Vector2 startPos = Vector2.zero;
     private float remainTime;

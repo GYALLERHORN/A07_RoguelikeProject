@@ -35,6 +35,26 @@ public class Bomb : EnemyBehaviour, IBehaviour
 
     [SerializeField][Range(0f, 20f)] private float range;
     [SerializeField][Range(0f, 20f)] private float size;
+    [SerializeField][Range(0, 20)] private int damage;
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (State == StrategyState.Action)
+        {
+            GameObject go = collision.gameObject;
+            if (go == null) return;
+
+            if (go.CompareTag("Player"))
+            {
+                HealthController hc = go.GetComponent<HealthController>();
+
+                if (hc == null) return;
+
+                hc.ChangeHealth(-damage);
+
+            }
+        }
+    }
 }
+
+        

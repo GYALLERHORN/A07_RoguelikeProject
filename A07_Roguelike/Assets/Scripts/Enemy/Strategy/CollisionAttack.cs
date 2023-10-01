@@ -13,4 +13,25 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
     public void OnReady() { }
     public void OnAction() { }
     public void OnCoolTime() { }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (State == StrategyState.Action)
+        {
+            GameObject go = collision.gameObject;
+            if (go == null) return;
+
+            if (go.CompareTag("Player"))
+            {
+                HealthController hc = go.GetComponent<HealthController>();
+
+                if (hc == null) return;
+
+                hc.ChangeHealth(-damage);
+            }
+        }
+    }
+
+    [SerializeField][Range(0, 20)] private int damage;
+
 }

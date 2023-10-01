@@ -47,6 +47,7 @@ public class HealthController : MonoBehaviour
             return false;
         }
 
+        Debug.Log($"{gameObject.name} 가 {change} 만큼의 데미지를 입었습니다");
         _timeSinceLastChange = 0f;
         CurrentHealth += change;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth > 0 ? CurrentHealth : 0;

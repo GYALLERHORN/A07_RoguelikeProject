@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 1
   size: 1.8
+  damage: 3
 --- !u!114 &6674885615250775901
 MonoBehaviour:
   m_ObjectHideFlags: 0
