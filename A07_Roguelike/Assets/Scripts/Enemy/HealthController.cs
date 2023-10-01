@@ -40,7 +40,7 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public bool ChangeHealth(float change)
+    public bool ChangeHealth(int change)
     {
         if(change == 0 || _timeSinceLastChange < healthChangeDelay)
         {

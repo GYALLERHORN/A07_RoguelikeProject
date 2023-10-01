@@ -34,6 +34,11 @@ public class KnockBack : EnemyBehaviour, IBehaviour
             EndAction(this);
         }
     }
+
+    public void OffAction()
+    {
+        
+    }
     public void OnCoolTime() { }
 
     private Vector2 knockbackDirection = Vector2.zero;

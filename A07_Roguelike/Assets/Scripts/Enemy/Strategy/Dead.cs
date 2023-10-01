@@ -32,7 +32,14 @@ public class Dead : EnemyBehaviour, IBehaviour
         animationController.Move(Vector2.zero);
         animationController.Death();
         Destroy(gameObject, 0.35f);
+        EndAction(this);
     }
+
+    public void OffAction()
+    {
+
+    }
+
     public void OnCoolTime() { }
 
 }

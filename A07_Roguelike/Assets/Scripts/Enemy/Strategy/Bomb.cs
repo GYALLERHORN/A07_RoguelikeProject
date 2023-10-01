@@ -32,6 +32,7 @@ public class Bomb : EnemyBehaviour, IBehaviour
         EndAction(this);
     }
     public void OnCoolTime() { }
+    public void OffAction() { }
 
     [SerializeField][Range(0f, 20f)] private float range;
     [SerializeField][Range(0f, 20f)] private float size;

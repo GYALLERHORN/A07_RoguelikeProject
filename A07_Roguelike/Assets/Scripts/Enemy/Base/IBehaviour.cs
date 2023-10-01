@@ -1,6 +1,3 @@
-
-using System;
-
 public enum StrategyState
 {
     Rest, // 대기 상태 ( 행동에 대한 조건을 체크) 
@@ -24,5 +21,6 @@ public interface IBehaviour
     StratgeyType Type { get;}
     void OnRest();
     void OnAction();
+    void OffAction();
     void OnCoolTime();
 }

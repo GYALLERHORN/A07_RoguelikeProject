@@ -20,6 +20,8 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
 
         switch (CurrentBehaviourType())
         {
+            case StratgeyType.Dead:
+                break;
             default:
                 StartAction(this);
                 break;
@@ -31,12 +33,16 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
         _rb2D.velocity = direction;
         animationController.Move(direction);
 
-
         if (Distance > targetDistance)
         {
-            remainTime = coolTime;
             EndAction(this);
         }
+    }
+
+    public void OffAction()
+    {
+        _rb2D.velocity = Vector2.zero;
+        animationController.Move(Vector2.zero);
     }
     public void OnCoolTime()
     {
@@ -44,6 +50,7 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
         if (remainTime < 0f)
         {
             State = StrategyState.Rest;
+            remainTime = coolTime;
         }
     }
 

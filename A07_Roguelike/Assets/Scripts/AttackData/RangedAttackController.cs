@@ -54,7 +54,7 @@ public class RangedAttackController : MonoBehaviour
             HealthController healthSystem = collision.GetComponent<HealthController>();
             if(healthSystem != null) 
             {
-                healthSystem.ChangeHealth(-_attackData.power);
+                healthSystem.ChangeHealth(-(int)_attackData.power);
                 if (_attackData.isOnKnockback)
                 {
                     TopDownMovement movement = collision.GetComponent<TopDownMovement>();

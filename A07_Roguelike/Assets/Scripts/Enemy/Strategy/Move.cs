@@ -44,14 +44,18 @@ public class Move : EnemyBehaviour, IBehaviour
 
         if (!CheckCondition())
         {
-            _rb2D.velocity = Vector2.zero;
-            animationController.Move(Vector2.zero);
             EndAction(this);
         }
     }
     public void OnCoolTime()
     {
         State = StrategyState.Rest;
+    }
+
+    public void OffAction()
+    {
+        _rb2D.velocity = Vector2.zero;
+        animationController.Move(Vector2.zero);
     }
 
     private bool CheckCondition()

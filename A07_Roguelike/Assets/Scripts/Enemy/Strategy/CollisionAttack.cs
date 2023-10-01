@@ -9,29 +9,37 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
     public StrategyState State { get => _state; set => _state = value; }
     public StratgeyType Type { get => _type; }
     public void OnBehaviour() { }
-    public void OnRest() { return; }
+    public void OnRest() { }
     public void OnReady() { }
     public void OnAction() { }
     public void OnCoolTime() { }
+    public void OffAction() { }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (State == StrategyState.Action)
+        if (remainTime > 0)
         {
-            GameObject go = collision.gameObject;
-            if (go == null) return;
+            remainTime -= Time.deltaTime;
+            return;
+        }
+        
+        GameObject go = collision.gameObject;
+        if (go == null) return;
 
-            if (go.CompareTag("Player"))
-            {
-                HealthController hc = go.GetComponent<HealthController>();
+        if (go.CompareTag("Player"))
+        {
+            HealthController hc = go.GetComponent<HealthController>();
 
-                if (hc == null) return;
+            if (hc == null) return;
 
-                hc.ChangeHealth(-damage);
-            }
+            hc.ChangeHealth(-damage);
+            remainTime = delay;
         }
     }
 
+    [SerializeField][Range(0f, 20f)] private float delay;
+    [SerializeField][Range(0f, 20f)] private float remainTime;
     [SerializeField][Range(0, 20)] private int damage;
 
 }

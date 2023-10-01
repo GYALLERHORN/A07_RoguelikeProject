@@ -70,6 +70,13 @@ public class Rush : EnemyBehaviour, IBehaviour
         }
     }
 
+    public void OffAction()
+    {
+        _rb2D.velocity = Vector2.zero;
+        remainTime = coolTime;
+        rushState = RushStep.Rest;
+    }
+
     #region OnAction()
     private void Init()
     {
@@ -114,9 +121,6 @@ public class Rush : EnemyBehaviour, IBehaviour
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)
         {
-            _rb2D.velocity = Vector2.zero;
-            remainTime = coolTime;
-            rushState = RushStep.Rest;
             EndAction(this);
         }
     }

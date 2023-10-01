@@ -21,7 +21,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
     public void StartAction(IBehaviour behaviour)
     {
         IBehaviour prevBehaviour = behaviourController.CurrentBehaviour;
-        if (prevBehaviour != null)
+        if (prevBehaviour != null) 
         {
             EndAction(prevBehaviour);
         }
@@ -31,6 +31,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     public void EndAction(IBehaviour behaviour)
     {
+        behaviour.OffAction();
         behaviour.State = StrategyState.CoolTime;
         behaviourController.CurrentBehaviour = null;
     }

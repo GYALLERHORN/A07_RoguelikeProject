@@ -31,7 +31,6 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
         remainTime = coolTime;
         CreateProjectile(statsSO);
         EndAction(this);
-        
     }
     public void OnCoolTime()
     {
@@ -41,6 +40,11 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
             State = StrategyState.Rest;
         }
     }  
+
+    public void OffAction()
+    {
+        
+    }
 
     private void CreateProjectile(RangedAttackData rangedAttackData)
     { 

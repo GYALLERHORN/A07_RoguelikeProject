@@ -147,7 +147,7 @@ Transform:
   m_Children:
   - {fileID: 80847347381930645}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3033245395072318699
 Rigidbody2D:
@@ -322,11 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ab9fa0a1fefb64c950e15df7bf924e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDistance: 4
+  targetDistance: 7
   runAwaySpeed: 6
   remainTime: 0
   coolTime: 10
-  range: 7
+  range: 4
 --- !u!114 &3890524719295751416
 MonoBehaviour:
   m_ObjectHideFlags: 0

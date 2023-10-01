@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efb8050b88a7bd148a6f419cafe22aa9, type: 3}
-  m_Name: EnemyAttackData
+  m_Name: RedSlimeAttackData
   m_EditorClassIdentifier: 
   size: 1
   delay: 0.15
   power: 2
-  speed: 10
+  speed: 5
   target:
     serializedVersion: 2
     m_Bits: 256
