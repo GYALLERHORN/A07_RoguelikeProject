@@ -15,12 +15,20 @@ public class KnockBack : EnemyBehaviour, IBehaviour
     }
     public void ApplyKnockback(Transform other, float power, float duration)
     {
-        if (CurrentBehaviourType() == StratgeyType.Dead) return;
-        knockbackDuration = duration;
-        knockbackDirection = -(other.position - transform.position).normalized;
-        speed = (knockbackDirection * power).magnitude / duration;
-        animationController.Hurt();
-        StartAction(this);
+        switch (CurrentBehaviourType())
+        {
+            case StratgeyType.Skill:
+            case StratgeyType.Dead:
+            case StratgeyType.Hurt:
+                break;
+            default:
+                knockbackDuration = duration;
+                knockbackDirection = -(other.position - transform.position).normalized;
+                speed = (knockbackDirection * power).magnitude / duration;
+                animationController.Hurt();
+                StartAction(this);
+                break;
+        }
     }
 
     public void OnRest() {}
@@ -37,7 +45,7 @@ public class KnockBack : EnemyBehaviour, IBehaviour
 
     public void OffAction()
     {
-        
+        _rb2D.velocity = Vector2.zero;
     }
     public void OnCoolTime() { }
 
