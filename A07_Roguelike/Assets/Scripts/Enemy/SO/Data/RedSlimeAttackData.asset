@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efb8050b88a7bd148a6f419cafe22aa9, type: 3}
-  m_Name: Player_RangedAttackData
+  m_Name: RedSlimeAttackData
   m_EditorClassIdentifier: 
   size: 1
   delay: 0.15
   power: 2
-  speed: 10
+  speed: 5
   target:
     serializedVersion: 2
-    m_Bits: 512
-  isOnKnockback: 1
-  knockbackPower: 1
-  knockbackTime: 0.1
-  bulletNameTag: 20
+    m_Bits: 256
+  isOnKnockback: 0
+  knockbackPower: 0
+  knockbackTime: 0
+  bulletNameTag: 21
   duration: 5
   spread: 4
   numberofProjectilesPerShot: 1
   multipleProjectilesAngle: 7
-  projectileColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileColor: {r: 0.7058824, g: 0.13333334, b: 0.16470589, a: 1}
