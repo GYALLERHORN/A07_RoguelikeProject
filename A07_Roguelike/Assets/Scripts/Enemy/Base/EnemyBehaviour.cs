@@ -12,7 +12,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
     public float Distance { get { return Vector3.Distance(transform.position, Target.transform.position); } }
 
-    public AttackSO StatData { get { return characterStatsHandler.CurrentStates.attackSO; } } 
+    public AttackSO StatData { get { return characterStatsHandler.CurrentStats.attackSO; } } 
 
     protected virtual void Awake()
     {

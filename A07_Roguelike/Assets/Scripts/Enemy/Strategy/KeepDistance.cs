@@ -29,7 +29,7 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
     }
     public void OnAction() 
     {
-        Vector2 direction = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * -Direction * characterStatsHandler.CurrentStates.speed * speedCoefficient;
+        Vector2 direction = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * -Direction * characterStatsHandler.CurrentStats.speed * speedCoefficient;
         _rb2D.velocity = direction;
         animationController.Move(direction);
 

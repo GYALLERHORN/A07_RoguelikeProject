@@ -116,7 +116,7 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     private void OnRush()
     {
-        _rb2D.velocity = direction * characterStatsHandler.CurrentStates.speed * speedCoefficient;
+        _rb2D.velocity = direction * characterStatsHandler.CurrentStats.speed * speedCoefficient;
         animationController.Move(direction);
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)

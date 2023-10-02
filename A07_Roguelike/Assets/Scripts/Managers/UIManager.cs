@@ -40,7 +40,7 @@ public class UIManager
         _prefabs = new Dictionary<Type, GameObject>();
         OpenList = new LinkedList<UIBase>();
         HideList = new LinkedList<UIBase>();
-        LoadUIPrefabs();
+        //LoadUIPrefabs();
     }
     /// <summary>
     /// Open 리스트의 첫번째에 위치한 UI를 Hide하며, 이미 Hide된 경우에는 아무것도 하지 않음
@@ -90,6 +90,9 @@ public class UIManager
             open.gameObject.SetActive(true);
             return open;
         }
+
+        if (!Instance._prefabs.ContainsKey(typeof(T)))
+            Instance.LoadUIPrefab(typeof(T).Name);
 
         var prefab = Instance._prefabs[typeof(T)];
         if (prefab != null)
@@ -299,6 +302,17 @@ public class UIManager
     {
         var objs = Resources.LoadAll<GameObject>("Prefabs/UI/");
         foreach (var obj in objs)
+        {
+            var type = obj.GetComponent<UIBase>().GetType();
+            _prefabs.Add(type, obj);
+            Debug.Log($"{type}(Prefabs/UI/{obj.name}) is loaded.");
+        }
+    }
+
+    private void LoadUIPrefab(string name)
+    {
+        var obj = Resources.Load<GameObject>("Prefabs/UI/"+name);
+        if (obj != null)
         {
             var type = obj.GetComponent<UIBase>().GetType();
             _prefabs.Add(type, obj);

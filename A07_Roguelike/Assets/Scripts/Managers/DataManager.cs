@@ -19,6 +19,6 @@ public class DataManager
     public float BGMVolume;
     public float EffectVolume;
     public float UIVolume;
-
+    public float OtherVolume;
 
 }
