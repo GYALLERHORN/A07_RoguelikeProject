@@ -6,12 +6,14 @@ public enum ePoolType
 {
     SoundSource,
     Projectile = 20,
+    RedSlimeAttack,
 }
 
 
 public enum eAttackType
 {
     Projectile = 20,
+    RedSlimeAttack,
 }
 
 public class ObjectPool : MonoBehaviour
