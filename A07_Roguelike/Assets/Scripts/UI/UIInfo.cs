@@ -143,32 +143,8 @@ public class UIInfo : UIBase
 
     private string MakeStatInfo()
     {
-        StringBuilder sb = new StringBuilder();
-        sb.AppendLine($"체력 : {_character.CurrentStates.maxHealth}");
-        sb.AppendLine($"속도 : {_character.CurrentStates.speed}");
-        if (_character.CurrentStates.attackSO != null)
-        {
-            if (_character.CurrentStates.attackSO is RangedAttackData)
-            {
-                RangedAttackData data = _character.CurrentStates.attackSO as RangedAttackData;
-                sb.AppendLine($"투사체 : {data.bulletNameTag}");
-                sb.AppendLine($"지속시간 : {data.duration}초");
-                sb.AppendLine($"샷 당 발사체 개수 : {data.numberofProjectilesPerShot}개");
-                float angle = data.spread + 0.5f * data.numberofProjectilesPerShot * data.multipleProjectilesAngle;
-                sb.AppendLine($"각도 : -{angle}°  ~  +{angle}°");
-            }
-            sb.AppendLine($"공격크기 : x{_character.CurrentStates.attackSO.size.ToString("F2")}");
-            sb.AppendLine($"공격지연 : {_character.CurrentStates.attackSO.delay}초");
-            sb.AppendLine($"공격력 : {_character.CurrentStates.attackSO.power}");
-            sb.AppendLine($"공격속도 : {_character.CurrentStates.attackSO.speed}");
-
-            if (_character.CurrentStates.attackSO.isOnKnockback)
-            {
-                sb.AppendLine($"넉백세기 : {_character.CurrentStates.attackSO.knockbackPower}");
-                sb.AppendLine($"넉백시간 : {_character.CurrentStates.attackSO.knockbackTime}");
-            }
-        }
-        return sb.ToString();
+        string info = _character.GetInfoString();
+        return info;
     }
 
     private string MakeItemInfo()

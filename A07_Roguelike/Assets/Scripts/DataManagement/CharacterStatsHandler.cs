@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Text;
+using UnityEngine.TextCore.Text;
 
 public class CharacterStatsHandler : MonoBehaviour
 {
@@ -154,4 +156,33 @@ public class CharacterStatsHandler : MonoBehaviour
         CurrentStats.maxHealth = Mathf.Max(CurrentStats.maxHealth, MinMaxHealth);
     }
 
+    public string GetInfoString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"체력 : {CurrentStats.maxHealth}");
+        sb.AppendLine($"속도 : {CurrentStats.speed}");
+        if (CurrentStats.attackSO != null)
+        {
+            if (CurrentStats.attackSO is RangedAttackData)
+            {
+                RangedAttackData data = CurrentStats.attackSO as RangedAttackData;
+                sb.AppendLine($"투사체 : {data.bulletNameTag}");
+                sb.AppendLine($"지속시간 : {data.duration}초");
+                sb.AppendLine($"샷 당 발사체 개수 : {data.numberofProjectilesPerShot}개");
+                float angle = data.spread + 0.5f * data.numberofProjectilesPerShot * data.multipleProjectilesAngle;
+                sb.AppendLine($"각도 : -{angle}°  ~  +{angle}°");
+            }
+            sb.AppendLine($"공격크기 : x{CurrentStats.attackSO.size.ToString("F2")}");
+            sb.AppendLine($"공격지연 : {CurrentStats.attackSO.delay}초");
+            sb.AppendLine($"공격력 : {CurrentStats.attackSO.power}");
+            sb.AppendLine($"공격속도 : {CurrentStats.attackSO.speed}");
+
+            if (CurrentStats.attackSO.isOnKnockback)
+            {
+                sb.AppendLine($"넉백세기 : {CurrentStats.attackSO.knockbackPower}");
+                sb.AppendLine($"넉백시간 : {CurrentStats.attackSO.knockbackTime}");
+            }
+        }
+        return sb.ToString();
+    }
 }
