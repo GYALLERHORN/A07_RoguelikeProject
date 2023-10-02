@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class PickupItem : MonoBehaviour
 {
     [SerializeField] private bool destroyOnPickup = true;
+    [SerializeField] protected bool isEquipment; // true : 장비 , false : 소모품
     [SerializeField] private LayerMask canBePickupBy;
+    protected bool isEquipped = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
