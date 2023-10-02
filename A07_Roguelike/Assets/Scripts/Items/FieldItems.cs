@@ -45,6 +45,11 @@ public class FieldItems : MonoBehaviour
                 statsHandler.AddStatModifier(item);
             }
 
+            else if (item.itemType == ItemType.Portion)
+            {
+
+            }
+
             else if (item.itemType == ItemType.Equipment) // 장비이면 인벤토리에 추가
             {
                 GameObject inventory = other.gameObject.transform.Find("Inventory").gameObject;
