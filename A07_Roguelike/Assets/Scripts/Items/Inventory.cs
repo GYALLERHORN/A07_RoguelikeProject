@@ -17,13 +17,13 @@ public class Inventory : MonoBehaviour
     public void EquipItem(Item _item)
     {
         CharacterStatsHandler statsHandler = player.GetComponent<CharacterStatsHandler>();
-        statsHandler.AddStatModifier(_item);
+        _item.EquipItem(statsHandler);
     }
 
-    public void UnEquipItem(Item _item)
+    public void UnequipItem(Item _item)
     {
         CharacterStatsHandler statsHandler = player.GetComponent<CharacterStatsHandler>();
-        statsHandler.RemoveStatModifier(_item);
+        _item.UnequipItem(statsHandler);
     }
 
 }
