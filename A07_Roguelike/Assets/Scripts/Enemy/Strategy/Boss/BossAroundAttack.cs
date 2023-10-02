@@ -9,23 +9,27 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
 
     private Rigidbody2D _rb2D;
     [SerializeField] private GameObject _attackRange;
+    private Range _attackRangeScript;
     [SerializeField][Range(1f, 100f)] private float remainTime;
     [SerializeField][Range(1f, 100f)] private float coolTime;
     [SerializeField][Range(1f, 100f)] private float range;
     [SerializeField][Range(1f, 100f)] private float maxRange;
     [SerializeField][Range(1f, 100f)] private float chargeTime;
     [SerializeField][Range(1f, 100f)] private float delay;
+    [SerializeField][Range(1f, 100f)] private float damageCoefficeint;
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        _attackRangeScript = _attackRange.GetComponent<Range>();
     }
 
     // range의 크기가 1~20까지 늘어나다가 폭발!
     public void OffAction()
     {
-        _attackRange.transform.localScale = new Vector3(1, 1, 0);
         _attackRange.SetActive(false);
+        _attackRange.transform.localScale = new Vector3(1, 1, 0);
+        _attackRangeScript.OffRange();
         remainTime = coolTime;
     }
 
@@ -43,7 +47,10 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
 
             if(remainTime < 0)
             {
-                Debug.Log("Bomb");
+                animationController.Attack();
+
+                _attackRangeScript.Use(-(int)(StatData.power * damageCoefficeint));
+                
                 EndAction(this);
             }
         }

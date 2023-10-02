@@ -34,7 +34,7 @@ public class KnockBack : EnemyBehaviour, IBehaviour
     public void OnRest() {}
     public void OnAction()
     {
-        _rb2D.velocity = knockbackDirection * speed;
+        _rb2D.velocity = Direction * StatData.speed - knockbackDirection * characterStatsHandler.CurrentStates.speed;
 
         knockbackDuration -= Time.deltaTime;
         if (knockbackDuration <= 0.0f)
@@ -51,7 +51,7 @@ public class KnockBack : EnemyBehaviour, IBehaviour
 
     private Vector2 knockbackDirection = Vector2.zero;
     private float knockbackDuration = 0.0f;
-    private float speed = 0.0f;
+    private float speed;
     
     
 }

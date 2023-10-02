@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4435653002578355617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.16, y: -5.68, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -281,7 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followRange: 20
   attackRange: 1
-  speed: 3
 --- !u!114 &9196532425437051546
 MonoBehaviour:
   m_ObjectHideFlags: 0

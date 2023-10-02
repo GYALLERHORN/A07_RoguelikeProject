@@ -402,8 +402,8 @@ MonoBehaviour:
   waitTime: 1
   rushDistance: 10
   remainchargingTime: 0
-  speed: 20
-  damage: 3
+  speedCoefficient: 5
+  damageCoefficient: 2
 --- !u!114 &7522944588956207947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followRange: 20
   attackRange: 1
-  speed: 3
 --- !u!114 &8943293911495063946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,4 +456,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.5
   remainTime: 0
-  damage: 1

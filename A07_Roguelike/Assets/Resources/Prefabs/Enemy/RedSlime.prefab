@@ -278,7 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff160c45625197d47ab63ad395c42de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   projectileSpawnPosition: {fileID: 8081677677227876809}
   remainTime: 0
   coolTime: 3
@@ -297,7 +296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followRange: 20
   attackRange: 7
-  speed: 2
 --- !u!114 &7807700296859696599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetDistance: 7
-  runAwaySpeed: 6
+  speedCoefficient: 5
   remainTime: 0
   coolTime: 10
   range: 4
