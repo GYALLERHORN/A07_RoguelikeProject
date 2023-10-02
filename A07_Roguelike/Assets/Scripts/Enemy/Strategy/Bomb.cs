@@ -36,7 +36,6 @@ public class Bomb : EnemyBehaviour, IBehaviour
 
     [SerializeField][Range(0f, 20f)] private float range;
     [SerializeField][Range(0f, 20f)] private float size;
-    [SerializeField][Range(0, 20)] private int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,7 +50,7 @@ public class Bomb : EnemyBehaviour, IBehaviour
 
                 if (hc == null) return;
 
-                hc.ChangeHealth(-damage);
+                hc.ChangeHealth(-(int)StatData.power);
 
             }
         }
