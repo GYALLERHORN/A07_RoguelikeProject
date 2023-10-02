@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 1
   delay: 0.15
-  power: 2
+  power: 1
   speed: 5
   target:
     serializedVersion: 2
     m_Bits: 256
-  isOnKnockback: 0
+  isOnKnockback: 1
   knockbackPower: 0
   knockbackTime: 0
   bulletNameTag: 21

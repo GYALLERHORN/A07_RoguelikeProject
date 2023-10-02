@@ -29,7 +29,7 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
     public void OnAction() 
     {
         remainTime = coolTime;
-        CreateProjectile(statsSO);
+        CreateProjectile((RangedAttackData)StatData);
         EndAction(this);
     }
     public void OnCoolTime()
@@ -59,7 +59,6 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
         return Distance < range;
     }
 
-    [SerializeField] private RangedAttackData statsSO;
     [SerializeField] private Transform projectileSpawnPosition;
     [SerializeField][Range(1f, 100f)] private float remainTime;
     [SerializeField][Range(1f, 100f)] private float coolTime;

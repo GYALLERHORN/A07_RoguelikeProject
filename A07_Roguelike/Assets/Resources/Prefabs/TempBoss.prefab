@@ -319,7 +319,7 @@ MonoBehaviour:
   remainTime: 3.3
   coolTime: 11.7
   projectileSpawnPosition: {fileID: 1686624292787993965}
-  statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
+  statsSO: {fileID: 11400000, guid: 9d69c5b58e68e064a9f171ab36af3b5a, type: 2}
   range: 20
   speed: 10
   firstAttackDelay: 1

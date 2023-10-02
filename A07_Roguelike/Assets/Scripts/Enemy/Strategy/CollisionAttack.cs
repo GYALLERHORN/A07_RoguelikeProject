@@ -31,13 +31,12 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
 
             if (hc == null) return;
 
-            hc.ChangeHealth(-damage);
+            hc.ChangeHealth(-(int)StatData.power);
             remainTime = delay;
         }
     }
 
     [SerializeField][Range(0f, 20f)] private float delay;
     [SerializeField][Range(0f, 20f)] private float remainTime;
-    [SerializeField][Range(0, 20)] private int damage;
 
 }
