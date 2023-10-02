@@ -3,7 +3,7 @@ guid: 0c1e734fa85636743af3bc22c6d99ba8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -122,6 +129,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -5367,259 +5375,258 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      characters_23: 1044071011
-      characters_34: 1330751207
-      characters_167: 40532584
-      characters_191: 1623154988
-      characters_87: 879343316
-      characters_2: 1968902660
-      characters_68: -1786844175
-      characters_36: -130223781
-      characters_199: -727441616
+      characters_0: -1902491857
+      characters_1: -1694112944
+      characters_10: -190086642
+      characters_100: 903521348
+      characters_101: 295746033
+      characters_102: 408285054
+      characters_103: -1866408988
+      characters_104: 440913587
+      characters_105: -1528452292
+      characters_106: -4411055
+      characters_107: -1681870273
+      characters_108: -221605849
+      characters_109: 1574498233
+      characters_11: 714821173
+      characters_110: -2100716148
+      characters_111: 1716390983
+      characters_112: 988959124
+      characters_113: -36016439
+      characters_114: 1669956045
+      characters_115: 88007744
+      characters_116: 2067027362
+      characters_117: 1156989225
+      characters_118: 2102424713
+      characters_119: 1336591208
+      characters_12: 252865889
+      characters_120: 409849790
+      characters_121: -1244607743
+      characters_122: -473965982
+      characters_123: -802846095
+      characters_124: 609291368
+      characters_125: 675632673
+      characters_126: 1985754092
+      characters_127: 593812312
+      characters_128: -1520268916
+      characters_129: 1586471666
+      characters_13: 680127950
+      characters_130: 21762396
+      characters_131: 1058057839
+      characters_132: -1916714831
       characters_133: -106653615
-      characters_169: -272899885
-      characters_216: 991376451
-      characters_84: 1223396833
-      characters_78: -599786052
-      characters_215: 492083682
-      characters_98: -978010995
-      characters_223: -567409076
       characters_134: -574961412
-      characters_231: -871633554
-      characters_27: -467993365
+      characters_135: -17678582
+      characters_136: -449483376
+      characters_137: 338078039
+      characters_138: 1948176292
       characters_139: -578339038
-      characters_77: 1993016522
+      characters_14: 1322119876
+      characters_140: 2018190674
+      characters_141: -1670148608
+      characters_142: 1977075802
+      characters_143: 1105930927
+      characters_144: -74949323
+      characters_145: -1994796441
+      characters_146: 808311471
+      characters_147: 1948809914
+      characters_148: 622571995
+      characters_149: 2008570840
+      characters_15: -1199421710
+      characters_150: -1139676056
+      characters_151: -1664772248
+      characters_152: 1212357944
+      characters_153: -636063604
+      characters_154: -947091526
+      characters_155: -331834149
+      characters_156: 1976412311
+      characters_157: 1498544412
+      characters_158: 1342394839
+      characters_159: 1066257754
+      characters_16: 1086120167
+      characters_160: 731357988
+      characters_161: -121318418
+      characters_162: 1813969021
+      characters_163: 224941661
+      characters_164: 511124573
+      characters_165: -790328767
+      characters_166: -1125175988
+      characters_167: 40532584
+      characters_168: -105626146
+      characters_169: -272899885
+      characters_17: 1390767339
       characters_170: 497161824
+      characters_171: -244709909
+      characters_172: -196824863
+      characters_173: 661952782
+      characters_174: 1685126276
+      characters_175: 1910194343
+      characters_176: -703868068
+      characters_177: 1315759097
+      characters_178: -1823665384
+      characters_179: -1077129033
+      characters_18: -230757224
+      characters_180: 2118466007
+      characters_181: 1289123448
+      characters_182: 469498668
+      characters_183: -942843440
+      characters_184: 1291733253
+      characters_185: -386860025
+      characters_186: 1018430763
+      characters_187: 1359355531
+      characters_188: 1357091964
+      characters_189: -1155923363
+      characters_19: -589670836
+      characters_190: -1585958693
+      characters_191: 1623154988
+      characters_192: -277245560
+      characters_193: -909097166
+      characters_194: -1694457468
+      characters_195: -2014172362
+      characters_196: -1449288975
+      characters_197: -217130804
+      characters_198: 429627815
+      characters_199: -727441616
+      characters_2: 1968902660
+      characters_20: -456990225
+      characters_200: 1198341070
+      characters_201: 552860538
+      characters_202: -1819976869
+      characters_203: 37475956
+      characters_204: -1017837003
+      characters_205: -2097566591
+      characters_206: 2006587638
+      characters_207: 562901279
+      characters_208: -2044171535
+      characters_209: 1725712650
+      characters_21: -1796945640
+      characters_210: -861766031
+      characters_211: 1566140987
+      characters_212: 2059531849
+      characters_213: 40795807
+      characters_214: -779421632
+      characters_215: 492083682
+      characters_216: 991376451
+      characters_217: -1408840639
+      characters_218: 973247133
+      characters_219: 613521430
+      characters_22: -974324777
+      characters_220: 1328545027
+      characters_221: -381440851
+      characters_222: 499644463
+      characters_223: -567409076
+      characters_224: -2125825979
+      characters_225: 1644253175
+      characters_226: -195842923
+      characters_227: -468051193
+      characters_228: -1513361947
+      characters_229: -451526183
+      characters_23: 1044071011
+      characters_230: 418973716
+      characters_231: -871633554
+      characters_232: -1395379432
+      characters_233: -433281651
+      characters_234: -1538590251
+      characters_235: 1680717612
+      characters_236: -1499655
+      characters_237: -1519597722
+      characters_238: 826641335
+      characters_239: 449924023
+      characters_24: -800341990
+      characters_240: -1014042275
+      characters_241: 268533851
+      characters_242: 2076316583
+      characters_243: 667429749
+      characters_244: 561983059
+      characters_245: -541289556
+      characters_246: 1817773078
+      characters_247: -949062712
+      characters_248: 100327776
+      characters_249: 1717179723
+      characters_25: 363146823
+      characters_26: -148335243
+      characters_27: -467993365
+      characters_28: -1248152528
+      characters_29: -73879350
+      characters_3: -1578093663
+      characters_30: -306702418
+      characters_31: -1823022529
+      characters_32: 766412905
+      characters_33: -1886012076
+      characters_34: 1330751207
+      characters_35: -1227359091
+      characters_36: -130223781
+      characters_37: -290086433
+      characters_38: 207687981
+      characters_39: 1898821887
+      characters_4: -1398161220
+      characters_40: -756862302
+      characters_41: 545742387
+      characters_42: -1632620339
+      characters_43: -2127414233
+      characters_44: -1108357025
+      characters_45: -1694859019
+      characters_46: 361533540
+      characters_47: -679847244
+      characters_48: 2081703504
+      characters_49: 1641501159
+      characters_5: -1767275666
+      characters_50: -1126062325
+      characters_51: 1312919772
+      characters_52: 619223149
+      characters_53: -1805369124
+      characters_54: -1344394789
+      characters_55: -1268176333
+      characters_56: -2088421445
+      characters_57: 1484133603
+      characters_58: -1155940449
+      characters_59: -1744873828
+      characters_6: 19531139
+      characters_60: 146259624
+      characters_61: -615758618
+      characters_62: -1495839720
+      characters_63: -2062958965
+      characters_64: 1799667447
+      characters_65: -1742015725
+      characters_66: 1751039737
+      characters_67: 255302756
+      characters_68: -1786844175
+      characters_69: -600867422
+      characters_7: 1215816901
+      characters_70: -1848733633
+      characters_71: -201350330
       characters_72: 149490857
       characters_73: -436139336
-      characters_145: -1994796441
-      characters_83: 1150840200
-      characters_9: 1872910692
-      characters_22: -974324777
-      characters_29: -73879350
-      characters_132: -1916714831
-      characters_186: 1018430763
-      characters_210: -861766031
-      characters_63: -2062958965
-      characters_19: -589670836
-      characters_178: -1823665384
-      characters_193: -909097166
-      characters_48: 2081703504
-      characters_207: 562901279
-      characters_124: 609291368
-      characters_108: -221605849
-      characters_43: -2127414233
-      characters_66: 1751039737
-      characters_61: -615758618
-      characters_233: -433281651
-      characters_225: 1644253175
-      characters_209: 1725712650
-      characters_70: -1848733633
-      characters_149: 2008570840
-      characters_221: -381440851
-      characters_129: 1586471666
-      characters_75: -1299122390
-      characters_190: -1585958693
-      characters_144: -74949323
-      characters_46: 361533540
-      characters_203: 37475956
-      characters_64: 1799667447
-      characters_230: 418973716
-      characters_89: -779097716
-      characters_147: 1948809914
-      characters_115: 88007744
-      characters_182: 469498668
-      characters_200: 1198341070
-      characters_67: 255302756
       characters_74: 1240324364
-      characters_229: -451526183
-      characters_57: 1484133603
-      characters_138: 1948176292
-      characters_204: -1017837003
-      characters_101: 295746033
-      characters_18: -230757224
-      characters_188: 1357091964
-      characters_79: 546334584
-      characters_197: -217130804
-      characters_62: -1495839720
-      characters_11: 714821173
-      characters_51: 1312919772
-      characters_187: 1359355531
-      characters_7: 1215816901
-      characters_163: 224941661
-      characters_44: -1108357025
-      characters_3: -1578093663
-      characters_4: -1398161220
-      characters_85: -570997769
-      characters_99: -1446668215
-      characters_130: 21762396
-      characters_165: -790328767
-      characters_201: 552860538
-      characters_249: 1717179723
-      characters_213: 40795807
-      characters_100: 903521348
-      characters_189: -1155923363
-      characters_116: 2067027362
-      characters_16: 1086120167
-      characters_91: 734015289
-      characters_198: 429627815
-      characters_60: 146259624
-      characters_112: 988959124
-      characters_114: 1669956045
-      characters_119: 1336591208
-      characters_137: 338078039
-      characters_247: -949062712
-      characters_88: 1236401603
-      characters_93: -296202108
-      characters_59: -1744873828
-      characters_126: 1985754092
-      characters_71: -201350330
-      characters_80: -1220102675
-      characters_205: -2097566591
-      characters_120: 409849790
-      characters_241: 268533851
-      characters_158: 1342394839
-      characters_42: -1632620339
-      characters_181: 1289123448
-      characters_173: 661952782
-      characters_179: -1077129033
-      characters_183: -942843440
-      characters_171: -244709909
-      characters_37: -290086433
-      characters_220: 1328545027
-      characters_155: -331834149
-      characters_248: 100327776
-      characters_54: -1344394789
-      characters_227: -468051193
-      characters_14: 1322119876
-      characters_15: -1199421710
-      characters_35: -1227359091
-      characters_212: 2059531849
-      characters_109: 1574498233
-      characters_211: 1566140987
-      characters_161: -121318418
-      characters_33: -1886012076
-      characters_142: 1977075802
-      characters_111: 1716390983
-      characters_92: -949440103
-      characters_143: 1105930927
-      characters_246: 1817773078
-      characters_228: -1513361947
-      characters_236: -1499655
-      characters_1: -1694112944
-      characters_157: 1498544412
-      characters_5: -1767275666
-      characters_6: 19531139
-      characters_176: -703868068
-      characters_242: 2076316583
-      characters_125: 675632673
-      characters_24: -800341990
-      characters_0: -1902491857
-      characters_50: -1126062325
-      characters_232: -1395379432
-      characters_26: -148335243
-      characters_123: -802846095
-      characters_206: 2006587638
-      characters_38: 207687981
-      characters_102: 408285054
-      characters_153: -636063604
-      characters_245: -541289556
-      characters_175: 1910194343
-      characters_110: -2100716148
-      characters_40: -756862302
-      characters_160: 731357988
-      characters_237: -1519597722
-      characters_146: 808311471
-      characters_10: -190086642
-      characters_13: 680127950
-      characters_168: -105626146
-      characters_31: -1823022529
-      characters_166: -1125175988
-      characters_128: -1520268916
-      characters_172: -196824863
-      characters_53: -1805369124
-      characters_28: -1248152528
-      characters_140: 2018190674
-      characters_195: -2014172362
-      characters_218: 973247133
-      characters_222: 499644463
-      characters_224: -2125825979
-      characters_240: -1014042275
-      characters_82: 491342956
-      characters_180: 2118466007
-      characters_97: -1013629663
-      characters_184: 1291733253
-      characters_30: -306702418
-      characters_8: 867935163
-      characters_17: 1390767339
-      characters_55: -1268176333
-      characters_185: -386860025
-      characters_152: 1212357944
-      characters_238: 826641335
-      characters_32: 766412905
-      characters_127: 593812312
-      characters_20: -456990225
-      characters_150: -1139676056
-      characters_234: -1538590251
-      characters_243: 667429749
-      characters_47: -679847244
-      characters_86: 95412752
-      characters_217: -1408840639
-      characters_131: 1058057839
-      characters_105: -1528452292
-      characters_94: -452296293
-      characters_196: -1449288975
-      characters_69: -600867422
-      characters_235: 1680717612
-      characters_192: -277245560
-      characters_65: -1742015725
-      characters_96: -2248109
-      characters_21: -1796945640
-      characters_202: -1819976869
-      characters_159: 1066257754
-      characters_12: 252865889
-      characters_41: 545742387
-      characters_106: -4411055
-      characters_95: -1813417660
-      characters_39: 1898821887
-      characters_135: -17678582
-      characters_113: -36016439
-      characters_226: -195842923
-      characters_148: 622571995
-      characters_81: 729262543
-      characters_121: -1244607743
-      characters_45: -1694859019
-      characters_25: 363146823
-      characters_208: -2044171535
-      characters_194: -1694457468
-      characters_56: -2088421445
-      characters_122: -473965982
-      characters_117: 1156989225
-      characters_49: 1641501159
-      characters_118: 2102424713
-      characters_107: -1681870273
-      characters_214: -779421632
-      characters_156: 1976412311
-      characters_141: -1670148608
-      characters_90: 445757787
-      characters_104: 440913587
-      characters_136: -449483376
-      characters_174: 1685126276
-      characters_162: 1813969021
+      characters_75: -1299122390
       characters_76: -2115082058
-      characters_103: -1866408988
-      characters_58: -1155940449
-      characters_219: 613521430
-      characters_177: 1315759097
-      characters_151: -1664772248
-      characters_239: 449924023
-      characters_164: 511124573
-      characters_154: -947091526
-      characters_244: 561983059
-      characters_52: 619223149
-  spritePackingTag: 
+      characters_77: 1993016522
+      characters_78: -599786052
+      characters_79: 546334584
+      characters_8: 867935163
+      characters_80: -1220102675
+      characters_81: 729262543
+      characters_82: 491342956
+      characters_83: 1150840200
+      characters_84: 1223396833
+      characters_85: -570997769
+      characters_86: 95412752
+      characters_87: 879343316
+      characters_88: 1236401603
+      characters_89: -779097716
+      characters_9: 1872910692
+      characters_90: 445757787
+      characters_91: 734015289
+      characters_92: -949440103
+      characters_93: -296202108
+      characters_94: -452296293
+      characters_95: -1813417660
+      characters_96: -2248109
+      characters_97: -1013629663
+      characters_98: -978010995
+      characters_99: -1446668215
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

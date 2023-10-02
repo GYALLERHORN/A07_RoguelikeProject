@@ -584,7 +584,6 @@ GameObject:
   - component: {fileID: 599944045}
   - component: {fileID: 599944044}
   - component: {fileID: 599944046}
-  - component: {fileID: 599944047}
   m_Layer: 0
   m_Name: ProjectileManager
   m_TagString: Untagged
@@ -613,7 +612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599944043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0391438, y: -11.001604, z: -0.15008375}
+  m_LocalPosition: {x: -3.0391438, y: -12.15, z: -0.15008375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -642,18 +641,6 @@ MonoBehaviour:
   - type: 21
     prefab: {fileID: 3284551483515079120, guid: 3d123b77d3f182f448ebe5cb6a76aed6, type: 3}
     size: 50
---- !u!114 &599944047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599944043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0643196f8d823f24ba6af9c9e1bcfe88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &605460129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,6 +1414,10 @@ PrefabInstance:
     - target: {fileID: 6728473096023743534, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_Name
       value: BlueSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106693186017302080, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: baseStats.speed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

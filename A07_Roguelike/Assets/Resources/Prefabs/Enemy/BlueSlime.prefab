@@ -343,7 +343,7 @@ MonoBehaviour:
   baseStats:
     statsChangeType: 0
     maxHealth: 3
-    speed: 0.5
+    speed: 2
     attackSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   statsModifiers: []
 --- !u!114 &2292937077335240530
@@ -399,10 +399,10 @@ MonoBehaviour:
   range: 10
   coolTime: 10
   chargingTime: 2
-  waitTime: 1
+  waitTime: 1.1
   rushDistance: 10
   remainchargingTime: 0
-  speedCoefficient: 5
+  speedCoefficient: 10
   damageCoefficient: 2
 --- !u!114 &7522944588956207947
 MonoBehaviour:
