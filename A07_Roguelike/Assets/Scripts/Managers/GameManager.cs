@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+
+    }
+
     public void StartDunegeon()
     {
 
