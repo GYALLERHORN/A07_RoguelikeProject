@@ -20,14 +20,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void StartSpawnMonster(eDungeonType  type)
+    public void StartSpawnMonster()
     {
 
     }
-}
-
-public enum eDungeonType
-{
-    First,
-    Second,
 }

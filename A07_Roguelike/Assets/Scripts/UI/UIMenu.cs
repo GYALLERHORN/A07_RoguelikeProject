@@ -14,7 +14,7 @@ public class UIMenu : UIBase
 
     private void Start()
     {
-        Initialize();
+        Invoke("Initialize", 1f);
     }
 
     public void Initialize()
