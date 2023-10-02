@@ -5,19 +5,23 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager Instance;
-    public Canvas UICanvas;
+    [HideInInspector] public Canvas UICanvas;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    public void StartGame()
+    private void LateUpdate()
     {
-
+        if (UICanvas == null)
+        {
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+        }
     }
 
     public void StartDunegeon()
