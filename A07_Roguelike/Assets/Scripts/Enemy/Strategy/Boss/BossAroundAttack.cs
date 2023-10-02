@@ -14,6 +14,7 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
     [SerializeField][Range(1f, 100f)] private float range;
     [SerializeField][Range(1f, 100f)] private float maxRange;
     [SerializeField][Range(1f, 100f)] private float chargeTime;
+    [SerializeField][Range(1f, 100f)] private float delay;
 
     private void Start()
     {
@@ -30,15 +31,23 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
 
     public void OnAction()
     {
-        _attackRange.SetActive(true);
-        _rb2D.velocity = Vector2.zero;
-        _attackRange.transform.localScale += new Vector3(1,1,0) * (maxRange-1) / chargeTime * Time.deltaTime;
-
-        if (_attackRange.transform.localScale.x > maxRange)
+        if (_attackRange.transform.localScale.x < maxRange)
         {
-            Debug.Log("Bomb");
-            EndAction(this);
+            _attackRange.SetActive(true);
+            _rb2D.velocity = Vector2.zero;
+            _attackRange.transform.localScale += new Vector3(1, 1, 0) * (maxRange - 1) / chargeTime * Time.deltaTime;
         }
+        else
+        {
+            remainTime -= Time.deltaTime;
+
+            if(remainTime < 0)
+            {
+                Debug.Log("Bomb");
+                EndAction(this);
+            }
+        }
+        
     }
 
     public void OnCoolTime()
@@ -46,6 +55,7 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
         remainTime -= Time.deltaTime;
         if (remainTime < 0f)
         {
+            remainTime = delay;
             State = StrategyState.Rest;
         }
     }
