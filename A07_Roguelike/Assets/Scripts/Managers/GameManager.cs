@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    [HideInInspector] public DataManager Data;
+    [HideInInspector] public static GameManager Instance;
+    public Canvas UICanvas;
 
     private void Awake()
     {
@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        Data = DataManager.Get();
     }
 
     public void StartDunegeon(int level)
