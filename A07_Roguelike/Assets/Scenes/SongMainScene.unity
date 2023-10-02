@@ -422,14 +422,18 @@ MonoBehaviour:
     attackSO: {fileID: 0}
     itemType: 1
     itemName: Meat
-    itemImage: {fileID: 21300000, guid: 56788b0d52dd41943a8da97a273ed71c, type: 3}
+    itemImage: {fileID: 21300000, guid: b7a6898fd6972354d8f8f403b8d4f73b, type: 3}
     canBePickedUpBy:
       serializedVersion: 2
       m_Bits: 256
   itemPrefab: {fileID: 38095839659331080, guid: cce4f7f48d4e50c4c9a465ab62552375, type: 3}
   pos:
+  - {x: 4, y: -4, z: 0}
   - {x: 0, y: -4, z: 0}
-  - {x: 0, y: -2, z: 0}
+  - {x: -4, y: -4, z: 0}
+  - {x: 4, y: 4, z: 0}
+  - {x: 0, y: 4, z: 0}
+  - {x: -4, y: 4, z: 0}
 --- !u!4 &802265338
 Transform:
   m_ObjectHideFlags: 0
