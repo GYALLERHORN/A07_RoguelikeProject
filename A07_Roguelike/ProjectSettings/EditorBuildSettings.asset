@@ -6,6 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
+    path: Assets/Scenes/Main/StartScene.unity
+    guid: fe2652be4c078e745a83274319d7e94c
+  - enabled: 1
+    path: Assets/Scenes/Main/TownScene.unity
+    guid: 6739cbfbeab488e48b16a88921f5c8d1
+  - enabled: 1
+    path: Assets/Scenes/Main/DungeonScene.unity
+    guid: d2521012776a5ae47b960e780eea7688
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 015d3f708ccc19c4a99b247add2676d4, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e0c2aa0659f4f154a8f7ae8c7001f089, type: 2}

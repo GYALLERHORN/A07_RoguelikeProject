@@ -112,6 +112,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Setting",
+            "id": "5d064364-e99c-4b15-a7ef-6997ca0a7ae8",
+            "actions": [
+                {
+                    "name": "Setting",
+                    "type": "Button",
+                    "id": "d85f424b-c7d6-4e5a-9da1-54512f033faf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Status",
+                    "type": "Button",
+                    "id": "a75ddcb4-181e-4b6f-bb37-e38dce853f8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0fecdc5d-e3c0-4010-99c4-f6aa0ee7e18e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Setting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6ed9075-6ae3-4230-83d6-7146454c4e91",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Status",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
