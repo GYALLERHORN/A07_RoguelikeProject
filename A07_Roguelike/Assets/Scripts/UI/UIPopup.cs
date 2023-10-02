@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 public class UIPopup : UIBase
 {
@@ -23,6 +25,14 @@ public class UIPopup : UIBase
                 SelfHideUI();
         }
 
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        var rect = GetComponent<RectTransform>();
+        rect.localScale = Vector3.zero;
+        rect.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
     }
 
     public void Initialize(string data, string title = null, Action actAtHide = null, bool temp = false, float duration = 0.0f)
@@ -55,6 +65,13 @@ public class UIPopup : UIBase
     }
 
     public override void HideUI()
+    {
+        var rect = GetComponent<RectTransform>();
+        rect.DOScale(.0f, 0.3f).SetEase(Ease.InBack);
+        Invoke("CallHide", 0.4f);
+    }
+
+    private void CallHide()
     {
         base.HideUI();
     }
