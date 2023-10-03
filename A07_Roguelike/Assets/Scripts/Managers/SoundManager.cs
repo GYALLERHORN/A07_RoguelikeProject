@@ -32,6 +32,7 @@ public class SoundManager : MonoBehaviour
         {
             Instance = this;
             _BGMAudioSource = GetComponent<AudioSource>();
+            _BGMAudioSource.outputAudioMixerGroup = _audioMixer[1];
             _pools = GetComponent<ObjectPool>();
         }
     }
@@ -54,8 +55,10 @@ public class SoundManager : MonoBehaviour
             _BGMAudioSource.volume = Mathf.Max(_BGMAudioSource.volume - baseVolume / _changeDuration, 0.0f);
             yield return null;
         }
+        _BGMAudioSource.Stop();
         time = 0.0f;
         _BGMAudioSource.clip = _BGM[index];
+        _BGMAudioSource.Play();
         while (time <= _changeDuration / 2f)
         {
             time += Time.deltaTime;

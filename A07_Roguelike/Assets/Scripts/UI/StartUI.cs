@@ -13,9 +13,9 @@ public class StartUI : MonoBehaviour
     [SerializeField] private TMP_Text _pressKey;
     private Sequence _pressKeyAnim;
     [SerializeField] private TMP_Text _title;
-    [SerializeField] private AudioClip _printClip;
     [Header("메뉴 선택")]
     [SerializeField] private GameObject _menu;
+    [SerializeField] private AudioClip _clickClip;
     private eMenuType _selection = eMenuType.Start;
 
     GraphicRaycaster m_Raycaster;
@@ -37,7 +37,7 @@ public class StartUI : MonoBehaviour
         SoundManager.ChangeBGM(0);
 
         FadeLoopTxt(_pressKey);
-        CharAnim(_title, _title.text.Length / 2, _printClip);
+        CharAnim(_title, _title.text.Length / 2);
     }
 
     private void Update()
@@ -47,11 +47,13 @@ public class StartUI : MonoBehaviour
             _menu.SetActive(true);
             _pressKey.gameObject.SetActive(false);
             _pressKeyAnim.Pause();
+            SoundManager.PlayClip(eSoundType.UI, _clickClip);
         }
         else
         {
             if (/*Input.GetKeyDown(KeyCode.Space) ||*/ Input.GetKeyDown(KeyCode.Return))
             {
+                SoundManager.PlayClip(eSoundType.UI, _clickClip);
                 switch (_selection)
                 {
                     case eMenuType.Start:
@@ -67,6 +69,7 @@ public class StartUI : MonoBehaviour
             }
             else if (Input.anyKeyDown)
             {
+                SoundManager.PlayClip(eSoundType.UI, _clickClip);
                 if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
                 {
                     OffImgae(_menu.transform.GetChild((int)_selection).GetChild(0).GetComponent<Image>());
@@ -136,8 +139,6 @@ public class StartUI : MonoBehaviour
         DOTween.To(x =>
         {
             text.maxVisibleCharacters = (int)x;
-            if (clip != null)
-                SoundManager.PlayClip(eSoundType.UI, clip);
         }
         , 0f, text.text.Length, duration).SetEase(Ease.Linear);
     }

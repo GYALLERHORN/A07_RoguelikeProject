@@ -421,7 +421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBD88\uB7EC\uC624\uAE30"
+  m_text: "\uC124\uC815"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 952d38d2065fb404a8b06666d4f91d96, type: 2}
   m_sharedMaterial: {fileID: 2377740842423164647, guid: 952d38d2065fb404a8b06666d4f91d96, type: 2}
@@ -854,7 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738346830}
   m_Layer: 5
-  m_Name: Load
+  m_Name: Option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1025,33 +1025,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1251136270}
     m_Modifications:
-    - target: {fileID: 1596874302582505306, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
-      propertyPath: pools.Array.data[0].size
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1675061169228386214, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2886257471333160924, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
-      propertyPath: _BGM.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2886257471333160924, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
-      propertyPath: _BGM.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1063,15 +1051,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5912716394161880270, guid: 6b38f49edf624504292d9b08aee61920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1199,7 +1187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251136268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 250, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1327,8 +1315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pressKey: {fileID: 532469949}
   _title: {fileID: 193996785}
-  _printClip: {fileID: 0}
   _menu: {fileID: 1160367863}
+  _clickClip: {fileID: 8300000, guid: f6b3678c9eb1f1145b1cafb25668bdc4, type: 3}
 --- !u!1 &1548370963
 GameObject:
   m_ObjectHideFlags: 0

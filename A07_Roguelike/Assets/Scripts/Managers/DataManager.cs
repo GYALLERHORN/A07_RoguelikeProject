@@ -15,10 +15,10 @@ public class DataManager
         return _instance;
     }
     [Header("Sound Setting")]
-    public float MasterVolume;
-    public float BGMVolume;
-    public float EffectVolume;
-    public float UIVolume;
-    public float OtherVolume;
+    public float MasterVolume = 0.5f;
+    public float BGMVolume = 0.5f;
+    public float EffectVolume = 0.5f;
+    public float UIVolume = 0.5f;
+    public float OtherVolume = 0.5f;
 
 }
