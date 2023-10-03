@@ -86,7 +86,29 @@ public class SoundManager : MonoBehaviour
         GameObject obj = Instance._pools.SpawnFromPool(ePoolType.SoundSource);
         obj.SetActive(true);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
-        soundSource.Play(Instance._audioMixer[(int)type], clip, minPitch, maxPitch);
+        float volume;
+        switch (type)
+        {
+            case eSoundType.Master:
+                volume = DataManager.Instance.MasterVolume;
+                break;
+            case eSoundType.BGM:
+                volume = DataManager.Instance.BGMVolume;
+                break;
+            case eSoundType.Effect:
+                volume = DataManager.Instance.EffectVolume;
+                break;
+            case eSoundType.UI:
+                volume = DataManager.Instance.UIVolume;
+                break;
+            case eSoundType.Other:
+                volume = DataManager.Instance.OtherVolume;
+                break;
+            default:
+                volume = 0;
+                break;
+        }
+        soundSource.Play(Instance._audioMixer[(int)type], clip, volume, minPitch, maxPitch);
     }
 
     /// <summary>

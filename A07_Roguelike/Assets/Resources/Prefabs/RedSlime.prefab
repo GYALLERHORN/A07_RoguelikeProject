@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff160c45625197d47ab63ad395c42de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
+  statsSO: {fileID: 11400000, guid: 9d69c5b58e68e064a9f171ab36af3b5a, type: 2}
   projectileSpawnPosition: {fileID: 8081677677227876809}
   remainTime: 0
   coolTime: 3

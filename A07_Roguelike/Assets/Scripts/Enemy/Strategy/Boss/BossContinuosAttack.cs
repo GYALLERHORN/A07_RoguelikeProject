@@ -91,7 +91,7 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
         {
             _rb2D.velocity = Vector2.zero;
             animationController.Move(Vector2.zero);
-
+            animationController.Attack();
             for (int i = 0; i < shotNum; i++)
             {
                 _projectileManager.ShootBullet(

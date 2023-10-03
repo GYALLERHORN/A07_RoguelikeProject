@@ -7,11 +7,6 @@ public class EnemyBehaviourController : MonoBehaviour
     [SerializeField] public IBehaviour CurrentBehaviour { get; set; }
     public Queue<IBehaviour> BehaviourQueue { get; private set; }
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         BehaviourQueue = new Queue<IBehaviour>();
@@ -25,11 +20,6 @@ public class EnemyBehaviourController : MonoBehaviour
     {
         BehaviourUpdate();
         CurrentBehaviour?.OnAction();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     // Action

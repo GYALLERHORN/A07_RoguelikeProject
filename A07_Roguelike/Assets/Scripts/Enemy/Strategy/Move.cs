@@ -7,7 +7,6 @@ public class Move : EnemyBehaviour, IBehaviour
 
     [SerializeField] float followRange;
     [SerializeField] float attackRange;
-    [SerializeField] float speed;
 
     private StrategyState _state = StrategyState.Rest;
     private StratgeyType _type = StratgeyType.Move;
@@ -39,7 +38,7 @@ public class Move : EnemyBehaviour, IBehaviour
     public void OnAction() 
     {
         Vector2 direction = Direction;
-        _rb2D.velocity = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * direction * speed;
+        _rb2D.velocity = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * direction * characterStatsHandler.CurrentStats.speed;
         animationController.Move(direction);
 
         if (!CheckCondition())

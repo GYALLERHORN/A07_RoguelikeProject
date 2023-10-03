@@ -116,7 +116,7 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     private void OnRush()
     {
-        _rb2D.velocity = direction * speed;
+        _rb2D.velocity = direction * characterStatsHandler.CurrentStats.speed * speedCoefficient;
         animationController.Move(direction);
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)
@@ -138,7 +138,7 @@ public class Rush : EnemyBehaviour, IBehaviour
                 HealthController hc = go.GetComponent<HealthController>();
 
                 if (hc == null) return;
-                hc.ChangeHealth(-damage);
+                hc.ChangeHealth(-(int)StatData.power * damageCoefficient);
 
             }
         }
@@ -151,8 +151,8 @@ public class Rush : EnemyBehaviour, IBehaviour
     [SerializeField][Range(0f, 100f)] float waitTime;
     [SerializeField][Range(0f, 100f)] float rushDistance;
     [SerializeField][Range(0f, 100f)] float remainchargingTime;
-    [SerializeField][Range(0f, 100f)] float speed;
-    [SerializeField][Range(0, 20)] int damage;
+    [SerializeField][Range(0f, 100f)] float speedCoefficient;
+    [SerializeField][Range(0, 20)] int damageCoefficient;
     Vector2 direction = Vector2.zero;
     Vector2 startPos = Vector2.zero;
     private float remainTime;

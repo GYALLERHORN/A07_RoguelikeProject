@@ -29,7 +29,7 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
     }
     public void OnAction() 
     {
-        Vector2 direction = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * -Direction * runAwaySpeed;
+        Vector2 direction = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * -Direction * characterStatsHandler.CurrentStats.speed * speedCoefficient;
         _rb2D.velocity = direction;
         animationController.Move(direction);
 
@@ -43,6 +43,7 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
     {
         _rb2D.velocity = Vector2.zero;
         animationController.Move(Vector2.zero);
+        remainTime = coolTime;
     }
     public void OnCoolTime()
     {
@@ -60,7 +61,7 @@ public class KeepDistance : EnemyBehaviour, IBehaviour
     }
 
     [SerializeField][Range(0f, 100f)] protected float targetDistance;
-    [SerializeField][Range(0f, 100f)] float runAwaySpeed;
+    [SerializeField][Range(0f, 100f)] float speedCoefficient;
     [SerializeField][Range(0f, 100f)] float remainTime;
     [SerializeField][Range(0f, 100f)] float coolTime;
     [SerializeField][Range(0f, 100f)] float range;
