@@ -417,22 +417,22 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   - statsChangeType: 0
-    maxHealth: 10
-    speed: 0
-    attackSO: {fileID: 0}
-    itemType: 2
-    itemName: Meat
-    itemImage: {fileID: 21300000, guid: b7a6898fd6972354d8f8f403b8d4f73b, type: 3}
-    canBePickedUpBy:
-      serializedVersion: 2
-      m_Bits: 256
-  - statsChangeType: 0
     maxHealth: 0
     speed: 2
     attackSO: {fileID: 0}
     itemType: 1
     itemName: Boots
     itemImage: {fileID: 21300000, guid: 0142079e23f1f574e9dcfff0137018df, type: 3}
+    canBePickedUpBy:
+      serializedVersion: 2
+      m_Bits: 256
+  - statsChangeType: 0
+    maxHealth: 10
+    speed: 0
+    attackSO: {fileID: 0}
+    itemType: 2
+    itemName: Meat
+    itemImage: {fileID: 21300000, guid: b7a6898fd6972354d8f8f403b8d4f73b, type: 3}
     canBePickedUpBy:
       serializedVersion: 2
       m_Bits: 256
