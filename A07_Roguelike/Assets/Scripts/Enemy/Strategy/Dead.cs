@@ -20,8 +20,9 @@ public class Dead : EnemyBehaviour, IBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
 
     }
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         _healthSystem.OnDeath += OnAction;
     }
 

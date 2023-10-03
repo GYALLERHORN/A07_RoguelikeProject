@@ -1,6 +1,9 @@
+using System;
 using System.Resources;
 using UnityEditor.VersionControl;
 using UnityEngine;
+
+[Serializable]
 public class Rush : EnemyBehaviour, IBehaviour
 {
     private SpriteRenderer _spriteRenderer;
@@ -19,7 +22,7 @@ public class Rush : EnemyBehaviour, IBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rb2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
-        remainTime = Random.Range(1f, coolTime);
+        remainTime = UnityEngine.Random.Range(1f, coolTime);
     }
 
     private StrategyState _state = StrategyState.CoolTime;
@@ -69,7 +72,6 @@ public class Rush : EnemyBehaviour, IBehaviour
             State = StrategyState.Rest;
         }
     }
-
     public void OffAction()
     {
         _rb2D.velocity = Vector2.zero;
@@ -116,7 +118,7 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     private void OnRush()
     {
-        _rb2D.velocity = direction * characterStatsHandler.CurrentStates.speed * speedCoefficient;
+        _rb2D.velocity = direction * stats.speed * speedCoefficient;
         animationController.Move(direction);
         // 이동한 거리와 시작지점에서 목표지점까지의 거리를 비교
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)
@@ -138,7 +140,7 @@ public class Rush : EnemyBehaviour, IBehaviour
                 HealthController hc = go.GetComponent<HealthController>();
 
                 if (hc == null) return;
-                hc.ChangeHealth(-(int)StatData.power * damageCoefficient);
+                hc.ChangeHealth(-(int)stats.attackSO.power * damageCoefficient);
 
             }
         }

@@ -1,3 +1,5 @@
+using System;
+
 public enum StrategyState
 {
     Rest, // 대기 상태 ( 행동에 대한 조건을 체크) 

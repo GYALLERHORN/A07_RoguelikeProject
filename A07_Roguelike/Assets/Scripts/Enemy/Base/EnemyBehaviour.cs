@@ -7,20 +7,21 @@ public abstract class EnemyBehaviour : MonoBehaviour
     protected GameObject Target; // 임시
     protected EnemyAnimationController animationController;
     protected EnemyBehaviourController behaviourController;
-    protected CharacterStatsHandler characterStatsHandler;
+    protected CharacterStats stats;
 
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
     public float Distance { get { return Vector3.Distance(transform.position, Target.transform.position); } }
-
-    public AttackSO StatData { get { return characterStatsHandler.CurrentStates.attackSO; } } 
 
     protected virtual void Awake()
     {
         Target = GameObject.Find("Player"); // 임시
         animationController = GetComponent<EnemyAnimationController>();
         behaviourController = GetComponent<EnemyBehaviourController>();
-        characterStatsHandler = GetComponent<CharacterStatsHandler>();
+    }
 
+    protected virtual void Start()
+    {
+        stats = GetComponent<CharacterStatsHandler>().CurrentStates;
     }
 
     public void StartAction(IBehaviour behaviour)
