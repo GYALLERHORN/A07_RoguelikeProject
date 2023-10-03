@@ -420,9 +420,19 @@ MonoBehaviour:
     maxHealth: 10
     speed: 0
     attackSO: {fileID: 0}
-    itemType: 1
+    itemType: 2
     itemName: Meat
     itemImage: {fileID: 21300000, guid: b7a6898fd6972354d8f8f403b8d4f73b, type: 3}
+    canBePickedUpBy:
+      serializedVersion: 2
+      m_Bits: 256
+  - statsChangeType: 0
+    maxHealth: 0
+    speed: 2
+    attackSO: {fileID: 0}
+    itemType: 1
+    itemName: Boots
+    itemImage: {fileID: 21300000, guid: 0142079e23f1f574e9dcfff0137018df, type: 3}
     canBePickedUpBy:
       serializedVersion: 2
       m_Bits: 256
@@ -697,13 +707,14 @@ GameObject:
   - component: {fileID: 1317940872}
   - component: {fileID: 1317940871}
   - component: {fileID: 1317940870}
+  - component: {fileID: 1317940877}
   - component: {fileID: 1317940869}
   - component: {fileID: 1317940868}
   - component: {fileID: 1317940873}
   - component: {fileID: 1317940874}
   - component: {fileID: 1317940875}
   - component: {fileID: 1317940876}
-  - component: {fileID: 1317940877}
+  - component: {fileID: 1317940878}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -912,6 +923,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2.4}
   m_EdgeRadius: 0
+--- !u!114 &1317940878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317940867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bb1af69e7dd5b48bc0706e68bba1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.1
 --- !u!1 &1798038198
 GameObject:
   m_ObjectHideFlags: 0

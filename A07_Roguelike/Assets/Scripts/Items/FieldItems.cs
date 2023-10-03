@@ -47,7 +47,8 @@ public class FieldItems : MonoBehaviour
 
             else if (item.itemType == ItemType.Portion)
             {
-
+                HealthController healthController = other.gameObject.GetComponent<HealthController>();
+                healthController.ChangeHealth(item.maxHealth);
             }
 
             else if (item.itemType == ItemType.Equipment) // 장비이면 인벤토리에 추가
