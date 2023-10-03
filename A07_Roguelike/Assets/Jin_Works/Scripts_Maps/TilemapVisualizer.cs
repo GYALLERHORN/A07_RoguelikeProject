@@ -20,7 +20,6 @@ public class TilemapVisualizer : MonoBehaviour
 
     public void PaintSingleBasicWall(Vector2Int position, string binaryType) // 벽 타일 생성 메서드
     {
-        Debug.Log(position + " type : " + binaryType);
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
         if (WallTypesHelper.wallTop.Contains(typeAsInt))
