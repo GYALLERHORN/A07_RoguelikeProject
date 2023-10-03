@@ -7,8 +7,10 @@ public class Inventory : MonoBehaviour
 {
     public List<Item> itemList;
     public GameObject player;
+    public Item startItem;
+    public int itemCount = 0;
     private GameObject currentSlot;
-    private int itemCount = 0;
+
     // Start is called before the first frame update
     public void AddItem(Item _item)
     {
@@ -19,5 +21,11 @@ public class Inventory : MonoBehaviour
         currentSlot.GetComponent<Slot>().player = player;
         currentSlot.GetComponent<Slot>().UpdateSlotUI();
         itemCount++;
+    }
+
+    public void Start()
+    {
+        AddItem(startItem); // 시작 아이템 쥐어주기
+        transform.GetChild(2).gameObject.GetComponent<Slot>().EquipItem(); // 초기 아이템 장착
     }
 }
