@@ -7,30 +7,33 @@ public class UIInventory : UIBase
 {
     public List<Item> itemList;
     public GameObject player;
-    public Item startItem;
-    public int itemCount = 0;
-    private GameObject currentSlot;
+    public int currentItemIdx;
+    private Slot currentSlot;
 
     public void Initialize(GameObject player)
     {
         this.player = player;
+        InventoryHandler inventoryHandler = player.GetComponent<InventoryHandler>();
+        itemList = inventoryHandler.itemList;
+        currentItemIdx = inventoryHandler.currentItemIdx;
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            AddItem(itemList[i], i);
+            if(i == currentItemIdx)
+            {
+                transform.GetChild(i + 2).gameObject.GetComponent<Slot>().MakeStatusEquipped();
+            }
+        }
     }
 
     // Start is called before the first frame update
-    public void AddItem(Item _item)
+    public void AddItem(Item _item, int slotIndex)
     {
-        itemList.Add(_item);
-        // TO DO (인벤토리 UI)
-        currentSlot = transform.GetChild(itemCount + 2).gameObject;
-        currentSlot.GetComponent<Slot>().item = _item;
-        currentSlot.GetComponent<Slot>().player = player;
-        currentSlot.GetComponent<Slot>().UpdateSlotUI();
-        itemCount++;
+        currentSlot = transform.GetChild(slotIndex + 2).gameObject.GetComponent<Slot>();
+        currentSlot.item = _item;
+        currentSlot.player = player;
+        currentSlot.UpdateSlotUI();
     }
 
-    public void Start()
-    {
-        AddItem(startItem); // 시작 아이템 쥐어주기
-        transform.GetChild(2).gameObject.GetComponent<Slot>().EquipItem(); // 초기 아이템 장착
-    }
 }

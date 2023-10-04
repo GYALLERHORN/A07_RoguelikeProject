@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : TopDownCharacterController
 {
     private Camera _camera;
+    private bool _isOpen = false;
+    private UIInventory _inventory;
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,7 +40,18 @@ public class PlayerInputController : TopDownCharacterController
 
     public void OnInventory()
     {
-        var ui = UIManager.ShowUI<UIInventory>();
-        ui.Initialize(gameObject);
+        if (!_isOpen)
+        {
+            _inventory = UIManager.ShowUI<UIInventory>();
+            _inventory.Initialize(gameObject);
+            _isOpen = true;
+        }
+
+        else if (_isOpen)
+        {
+            UIManager.CloseUI<UIInventory>(_inventory);
+            _isOpen = false;
+        }
+
     }
 }

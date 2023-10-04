@@ -53,8 +53,7 @@ public class FieldItems : MonoBehaviour
 
             else if (item.itemType == ItemType.Equipment) // 장비이면 인벤토리에 추가
             {
-                GameObject inventory = other.gameObject.transform.Find("UIInventory").gameObject;
-                inventory.GetComponent<UIInventory>().AddItem(item);
+                other.gameObject.GetComponent<InventoryHandler>().AddItem(item);
             }
 
             DestroyItem(); // 아이템 소멸
