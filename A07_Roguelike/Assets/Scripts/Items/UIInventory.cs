@@ -33,6 +33,7 @@ public class UIInventory : UIBase
         currentSlot = transform.GetChild(slotIndex + 2).gameObject.GetComponent<Slot>();
         currentSlot.item = _item;
         currentSlot.player = player;
+        currentSlot.slotIndex = slotIndex;
         currentSlot.UpdateSlotUI();
     }
 
