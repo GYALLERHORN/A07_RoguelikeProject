@@ -128,11 +128,14 @@ public class GameManager : MonoBehaviour
 
     public void StartSpawnMonster(Dungeon dungeon)
     {
+        if (dungeon.SpwanPosList.Count <= 0)
+            return;
+
         eMonsterName[] types = new eMonsterName[Random.Range(1,3)];
         for(int i = 0; i < types.Length; ++i)
         {
             types[i] = (eMonsterName)Random.Range((int)eMonsterName.GreenSlime, (int)eMonsterName.RedSlime);
         }
-        EnemyManager.Instance.SpawnMonster(types, dungeon.SpwanPosList.ToArray());
+        EnemyManager.Instance.SpawnMonster(types, dungeon.SpwanPosList.ToArray(), dungeon.SpwanPosList.Count);
     }
 }
