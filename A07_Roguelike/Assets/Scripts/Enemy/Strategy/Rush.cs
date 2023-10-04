@@ -1,6 +1,4 @@
 using System;
-using System.Resources;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 [Serializable]
