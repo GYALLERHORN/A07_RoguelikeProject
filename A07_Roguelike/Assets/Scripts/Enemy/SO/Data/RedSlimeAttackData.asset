@@ -19,7 +19,7 @@ MonoBehaviour:
   target:
     serializedVersion: 2
     m_Bits: 256
-  isOnKnockback: 1
+  isOnKnockback: 0
   knockbackPower: 0
   knockbackTime: 0
   bulletNameTag: 21
