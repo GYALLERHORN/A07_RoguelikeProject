@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject Map1;
     [SerializeField] private GameObject Map2;
     [SerializeField] private GameObject MapBoss;
+    [SerializeField] private GameObject Entrance;
 
     private int _dungeonFloor = 0;
     private void Awake()
@@ -71,12 +72,13 @@ public class GameManager : MonoBehaviour
                     obj = Instantiate(Map1, dungeon.transform);
                     break;
                 case 1:
-                    obj = Instantiate(Map1, dungeon.transform);
+                    obj = Instantiate(Map2, dungeon.transform);
                     break;
                 case 2:
-                    obj = Instantiate(Map1, dungeon.transform);
+                    obj = Instantiate(MapBoss, dungeon.transform);
                     break;
                 default:
+                    EscapeDungeon();
                     return;
             }
             var posInfo = obj.GetComponent<Dungeon>();
@@ -88,6 +90,12 @@ public class GameManager : MonoBehaviour
             {
                 TransferData();
             }
+            var exit = Instantiate(Entrance, posInfo.EndPos, Quaternion.identity);
+            exit.GetComponent<DungeonEntranceHandler>().Initialize(() =>
+            {
+                EnterDungeon(_dungeonFloor+1);
+            });
+            
         }
     }
 
