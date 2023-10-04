@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 4754051216437932435, guid: 7f0b517c0c909b745bf8b6ecc220b70b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8081677677227876809, guid: 7f0b517c0c909b745bf8b6ecc220b70b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -466,6 +470,10 @@ PrefabInstance:
     - target: {fileID: 481833729959234490, guid: 7c1f3f6a207404a49b8e095757b5a2bb, type: 3}
       propertyPath: m_Name
       value: GreenSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 481833729959234490, guid: 7c1f3f6a207404a49b8e095757b5a2bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3618294035746229901, guid: 7c1f3f6a207404a49b8e095757b5a2bb, type: 3}
       propertyPath: m_RootOrder
@@ -921,6 +929,10 @@ PrefabInstance:
     - target: {fileID: 6728473096023743534, guid: 465519bd489af79468273102cfb3acb6, type: 3}
       propertyPath: m_Name
       value: BlueSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728473096023743534, guid: 465519bd489af79468273102cfb3acb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
