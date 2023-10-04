@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropPercent: 100
+  delay: 0.35
 --- !u!114 &3620910790227141548
 MonoBehaviour:
   m_ObjectHideFlags: 0

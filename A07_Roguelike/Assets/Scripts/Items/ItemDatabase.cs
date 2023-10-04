@@ -15,7 +15,6 @@ public class ItemDatabase : MonoBehaviour
     public GameObject itemPrefab;
     public Vector3[] pos;
 
-
     // Test
     private void Start()
     {
