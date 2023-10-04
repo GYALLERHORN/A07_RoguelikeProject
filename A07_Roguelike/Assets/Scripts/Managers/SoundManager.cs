@@ -22,9 +22,10 @@ public class SoundManager : MonoBehaviour
     /// 0 Master, 1 BGM, 2 Effect, 3 UI, 4 Other
     /// </summary>
     [SerializeField] private List<AudioMixerGroup> _audioMixer;
-    [SerializeField] private float _changeDuration;
+    [SerializeField] private float _changeDuration = 1f;
     private AudioSource _BGMAudioSource;
     private ObjectPool _pools;
+    public int BGMIndex { get; set; }
 
     private void Awake()
     {
@@ -43,6 +44,12 @@ public class SoundManager : MonoBehaviour
             return;
 
         Instance.StartCoroutine(Instance.SlowlyChangeSound(index));
+        Instance.BGMIndex = index;
+    }
+
+    public static void ChangeBGMVol()
+    {
+        Instance._BGMAudioSource.volume = DataManager.Instance.BGMVolume;
     }
 
     private IEnumerator SlowlyChangeSound(int index)
@@ -65,6 +72,7 @@ public class SoundManager : MonoBehaviour
             _BGMAudioSource.volume = Mathf.Min(_BGMAudioSource.volume + baseVolume / _changeDuration, baseVolume);
             yield return null;
         }
+        _BGMAudioSource.volume = DataManager.Instance.BGMVolume;
         yield break;
     }
 

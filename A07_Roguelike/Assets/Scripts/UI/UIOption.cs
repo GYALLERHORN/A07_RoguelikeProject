@@ -32,10 +32,10 @@ public class UIOption : UIBase
     private Resolution _Resolution;
     private int _preResolutionIndex;
 
-    private List<DisplayInfo> _OutputDisplayList;
+    private List<Display> _OutputDisplayList;
     private int _OutputDisplayIndex;
-    private DisplayInfo _OutputDisplay;
-    private DisplayInfo _preOutputDisplay;
+    private Display _OutputDisplay;
+    private Display _preOutputDisplay;
 
     private bool _FullScreenMode;
     private bool _preFullScreenMode;
@@ -44,17 +44,28 @@ public class UIOption : UIBase
 
     [Header("각 옵션별 component")]
     [SerializeField] private Slider _MasterVolSlider;
+    [SerializeField] private TMP_Text _MasterVolTxt;
+
     [SerializeField] private Slider _BGMVolSlider;
+    [SerializeField] private TMP_Text _BGMVolTxt;
+
     [SerializeField] private Slider _EffectVolSlider;
+    [SerializeField] private TMP_Text _EffectVolTxt;
+
     [SerializeField] private Slider _UIVolSlider;
+    [SerializeField] private TMP_Text _UIVolTxt;
+
     [SerializeField] private Slider _OtherVolSlider;
+    [SerializeField] private TMP_Text _OtherVolTxt;
 
     [SerializeField] private TMP_Dropdown _ResolutionDropdown;
     [SerializeField] private TMP_Dropdown _outputDisplayDropdown;
     [SerializeField] private TMP_Dropdown _DisplayMode;
 
-    public void Initialize()
+    public void Initialize(Action actAtClose)
     {
+        ActAtClose = actAtClose;
+
         _Volume.Master = DataManager.Instance.MasterVolume;
         _Volume.BGM = DataManager.Instance.BGMVolume;
         _Volume.Effect = DataManager.Instance.EffectVolume;
@@ -78,9 +89,10 @@ public class UIOption : UIBase
         });
         _preResolutionIndex = _ResolutionIndex;
 
-        _OutputDisplay = Screen.mainWindowDisplayInfo;
+        _OutputDisplay = Display.main;
         _preOutputDisplay = _OutputDisplay;
-        Screen.GetDisplayLayout(_OutputDisplayList);
+        _OutputDisplayList = new List<Display>();
+        _OutputDisplayList.AddRange(Display.displays);
         _OutputDisplayIndex = _OutputDisplayList.FindIndex(x =>
         {
             if (x.Equals(_OutputDisplay))
@@ -103,7 +115,7 @@ public class UIOption : UIBase
         foreach (var opt in _OutputDisplayList)
         {
             TMP_Dropdown.OptionData item = new TMP_Dropdown.OptionData();
-            item.text = $"{opt.name}";
+            item.text = $"{opt}";
             _outputDisplayDropdown.options.Add(item);
         }
 
@@ -114,10 +126,19 @@ public class UIOption : UIBase
     {
         base.Refresh();
         _MasterVolSlider.value = _Volume.Master;
+        _MasterVolTxt.text = _Volume.Master.ToString("F2");
+
         _BGMVolSlider.value = _Volume.BGM;
+        _BGMVolTxt.text = _Volume.BGM.ToString("F2");
+
         _EffectVolSlider.value = _Volume.Effect;
+        _EffectVolTxt.text = _Volume.Effect.ToString("F2");
+
         _UIVolSlider.value = _Volume.UI;
+        _UIVolTxt.text = _Volume.UI.ToString("F2");
+
         _OtherVolSlider.value = _Volume.Other;
+        _OtherVolTxt.text = _Volume.Other.ToString("F2");
 
         _ResolutionDropdown.value = _ResolutionIndex;
         _outputDisplayDropdown.value = _OutputDisplayIndex;
@@ -178,30 +199,35 @@ public class UIOption : UIBase
     {
         _Volume.Master = vol;
         _isChanged = true;
+        _MasterVolTxt.text = _Volume.Master.ToString("F2");
     }
 
     public void SetBGMVol(float vol)
     {
         _Volume.BGM = vol;
         _isChanged = true;
+        _BGMVolTxt.text = _Volume.BGM.ToString("F2");
     }
 
     public void SetEffectVol(float vol)
     {
         _Volume.Effect = vol;
         _isChanged = true;
+        _EffectVolTxt.text = _Volume.Effect.ToString("F2");
     }
 
     public void SetUIVol(float vol)
     {
         _Volume.UI = vol;
         _isChanged = true;
+        _UIVolTxt.text = _Volume.UI.ToString("F2");
     }
 
     public void SetOtherVol(float vol)
     {
         _Volume.Other = vol;
         _isChanged = true;
+        _OtherVolTxt.text = _Volume.Other.ToString("F2");
     }
 
     public void SetTargetDisplay(int index)

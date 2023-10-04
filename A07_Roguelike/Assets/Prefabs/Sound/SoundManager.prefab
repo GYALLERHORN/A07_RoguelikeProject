@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 5741920490614383055, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: -6339431328312819035, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: 4337256306017947474, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
-  _changeDuration: 0
+  _changeDuration: 1
 --- !u!114 &1596874302582505306
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4388,6 +4388,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3158687507574676231}
   - component: {fileID: 555088536154973894}
+  - component: {fileID: 5863534866976814487}
+  - component: {fileID: 4262861285568689382}
   m_Layer: 0
   m_Name: UIOption
   m_TagString: Untagged
@@ -4433,13 +4435,58 @@ MonoBehaviour:
   - width: 1920
     height: 1080
   _MasterVolSlider: {fileID: 40126214233659172}
+  _MasterVolTxt: {fileID: 602001528375642472}
   _BGMVolSlider: {fileID: 5289153025050386524}
+  _BGMVolTxt: {fileID: 6217950528709975604}
   _EffectVolSlider: {fileID: 2596573460404656548}
+  _EffectVolTxt: {fileID: 411388171705826160}
   _UIVolSlider: {fileID: 7183006044391164083}
+  _UIVolTxt: {fileID: 8551208029882608324}
   _OtherVolSlider: {fileID: 6086563204457817720}
+  _OtherVolTxt: {fileID: 9215757545011069123}
   _ResolutionDropdown: {fileID: 6088728824930387353}
   _outputDisplayDropdown: {fileID: 4643912801224910414}
   _DisplayMode: {fileID: 2189606252860166612}
+--- !u!223 &5863534866976814487
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576842737443495844}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 5
+  m_TargetDisplay: 0
+--- !u!114 &4262861285568689382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576842737443495844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4605015519860066248
 GameObject:
   m_ObjectHideFlags: 0
