@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 80847347381930645}
   - component: {fileID: 3919283118561014458}
   - component: {fileID: 3703219446539351153}
+  - component: {fileID: 1100020075773177925}
   m_Layer: 9
   m_Name: MainSprite
   m_TagString: Untagged
@@ -106,6 +107,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &1100020075773177925
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688011304540866468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.034905814, y: -0.14768882}
+  m_Size: {x: 0.48124868, y: 0.29646602}
+  m_Direction: 1
 --- !u!1 &4754051216437932435
 GameObject:
   m_ObjectHideFlags: 0

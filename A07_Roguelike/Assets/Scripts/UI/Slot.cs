@@ -7,7 +7,8 @@ public class Slot : MonoBehaviour
 {
     public Item item;
     public GameObject player;
-    private bool isEquipped = false;
+    public bool isEquipped = false;
+    public int slotIndex;
 
     public void UpdateSlotUI()
     {
@@ -28,12 +29,18 @@ public class Slot : MonoBehaviour
         }
     }
 
+    public void MakeStatusEquipped()
+    {
+        isEquipped = true;
+        transform.GetChild(1).gameObject.SetActive(true); // equip되었다는 표시
+    }
+
 
     public void EquipItem()
     {
         if(!isEquipped)
         {
-            int itemCount = transform.parent.gameObject.GetComponent<Inventory>().itemCount;
+            int itemCount = transform.parent.gameObject.GetComponent<UIInventory>().itemList.Count;
             for(int i = 2; i<itemCount + 2; i++)
             {
                 transform.parent.gameObject.transform.GetChild(i).GetComponent<Slot>().UnEquipItem(); // 현재 착용한 모든 아이템 해제
@@ -44,6 +51,7 @@ public class Slot : MonoBehaviour
             player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = item.itemImage; // 무기 sprite 변경
             player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1); // 무기 소멸
             isEquipped = true;
+            player.GetComponent<InventoryHandler>().currentItemIdx = slotIndex;
         }
     }
 
@@ -56,6 +64,7 @@ public class Slot : MonoBehaviour
             transform.GetChild(1).gameObject.SetActive(false); // equip 표시 해제
             player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0); // 무기 소멸
             isEquipped = false;
+            player.GetComponent<InventoryHandler>().currentItemIdx = 0;
         }
     }
 }

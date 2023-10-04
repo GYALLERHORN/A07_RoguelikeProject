@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resizeSize: 10
   _maxSize: 40
-  _root: {fileID: 0}
+  _root: {fileID: 5661418444180779437}
   pools:
   - type: 20
     prefab: {fileID: 222661338659918288, guid: decbc774d93279b44aaa2bddddc7ca06, type: 3}
