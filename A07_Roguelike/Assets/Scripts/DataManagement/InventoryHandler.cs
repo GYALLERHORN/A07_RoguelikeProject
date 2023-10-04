@@ -9,7 +9,7 @@ public class InventoryHandler : MonoBehaviour
     public Item startItem;
     public GameObject player;
     public int itemCount = 0;
-    public int currentItemIdx = 0;
+    public int currentItemIdx;
 
 
     public void Initialize(InventoryHandler inventoryHandler)
@@ -18,6 +18,7 @@ public class InventoryHandler : MonoBehaviour
         startItem = inventoryHandler.startItem;
         itemCount = inventoryHandler.itemCount;
         currentItemIdx = inventoryHandler.currentItemIdx;
+        player.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = itemList[currentItemIdx].itemImage;
     }
 
     public void AddItem(Item _item)
@@ -30,6 +31,7 @@ public class InventoryHandler : MonoBehaviour
     public void InitItem(CharacterStatsHandler statsHandler)
     {
         AddItem(startItem); // 시작 아이템 쥐어주기
+        currentItemIdx = 0;
         statsHandler.AddStatModifier(startItem);
     }
 
