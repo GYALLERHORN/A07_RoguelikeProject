@@ -1083,6 +1083,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!4 &1384361089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5268787080866808205, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+  m_PrefabInstance: {fileID: 6605536799411975063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458717135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 1384361089}
     - target: {fileID: 2932417906853955869, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
       propertyPath: m_Name
       value: GameManager

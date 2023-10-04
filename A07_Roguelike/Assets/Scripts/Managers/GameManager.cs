@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour
 
     [Header("플래이어")]
     public GameObject PlayerPrefab;
-    public GameObject PlayerInActive;
+    [HideInInspector] public GameObject PlayerInActive;
+    private HealthController _healthController;
+    private CharacterStatsHandler _characterStatsHandler;
+    private Inventory _Inventory;
+    private bool isInit = false;
 
     [Header("던전 맵")]
     [SerializeField] private GameObject Map1;
@@ -40,27 +44,44 @@ public class GameManager : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        if (next.name == "TownScene" || next.name == "DungeonScene")
+        if (next.name == "TownScene")
         {
             UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
             PlayerInActive = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity);
+            if (isInit)
+            {
+                TransferData();
+            }
+            else
+                isInit = true;
         }
-        if (next.name == "DungeonScene")
+        else if (next.name == "DungeonScene")
         {
             var dungeon = GameObject.Find("Dungeon");
+            GameObject obj;
             switch (_dungeonFloor)
             {
                 case 0:
-                    Instantiate(Map1, dungeon.transform);
+                    obj = Instantiate(Map1, dungeon.transform);
                     break;
                 case 1:
-                    Instantiate(Map2, dungeon.transform);
+                    obj = Instantiate(Map1, dungeon.transform);
                     break;
                 case 2:
-                    Instantiate(MapBoss, dungeon.transform);
+                    obj = Instantiate(Map1, dungeon.transform);
+
                     break;
                 default:
-                    break;
+                    return;
+            }
+            var posInfo = obj.GetComponent<Dungeon>();
+            StartSpawnMonster(posInfo);
+
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+            PlayerInActive = Instantiate(PlayerPrefab, posInfo.StartPos, Quaternion.identity);
+            if (isInit)
+            {
+                TransferData();
             }
         }
     }
@@ -79,18 +100,30 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    private void TransferData()
+    {
+        //PlayerInActive.GetComponent<CharacterStatsHandler>().;
+        PlayerInActive.GetComponent<HealthController>().LoadHealthController(_healthController);
+        //PlayerInActive.GetComponent<Inventory>().;
+    }
+
     public void LeaveDungeon()
     {
-
+        SceneManager.LoadScene(1);
     }
 
     public void EscapeDungeon()
     {
-
+        SceneManager.LoadScene(1);
     }
 
-    public void StartSpawnMonster()
+    public void StartSpawnMonster(Dungeon dungeon)
     {
-
+        eMonsterName[] types = new eMonsterName[Random.Range(1,3)];
+        for(int i = 0; i < types.Length; ++i)
+        {
+            types[i] = (eMonsterName)Random.Range((int)eMonsterName.GreenSlime, (int)eMonsterName.RedSlime);
+        }
+        EnemyManager.Instance.SpawnMonster(types, dungeon.SpwanPosList.ToArray());
     }
 }
