@@ -38,7 +38,7 @@ public class CharacterStatsHandler : MonoBehaviour
         UpdateCharacterStats();
     }
 
-    private void UpdateCharacterStats()
+    public void UpdateCharacterStats()
     {
         AttackSO attackSO = null;
         if (baseStats.attackSO != null)

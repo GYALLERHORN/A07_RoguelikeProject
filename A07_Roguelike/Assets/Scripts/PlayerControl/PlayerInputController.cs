@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputController : TopDownCharacterController
 {
     private Camera _camera;
-    private bool _isOpen = false;
+    private bool _isItemOpen = false;
     private UIInventory _inventory;
+
+    private bool _isEscOpen = false;
+    private UIMenu _menu;
 
     protected override void Awake()
     {
@@ -40,18 +44,38 @@ public class PlayerInputController : TopDownCharacterController
 
     public void OnInventory()
     {
-        if (!_isOpen)
+        if (!_isItemOpen)
         {
             _inventory = UIManager.ShowUI<UIInventory>();
             _inventory.Initialize(gameObject);
-            _isOpen = true;
+            _isItemOpen = true;
         }
 
-        else if (_isOpen)
+        else if (_isItemOpen)
         {
             UIManager.CloseUI<UIInventory>(_inventory);
-            _isOpen = false;
+            _isItemOpen = false;
         }
 
+    }
+
+    public void OnEsc()
+    {
+        if (_isEscOpen && _menu.gameObject.activeInHierarchy)
+        {
+            UIManager.CloseUI<UIMenu>(_menu);
+            _menu = null;
+            _isEscOpen = false;
+        }
+        else if (!_isEscOpen && _menu == null)
+        {
+            _menu = UIManager.ShowUI<UIMenu>();
+            _menu.Initialize();
+            _isEscOpen = true;
+        }
+        else
+        {
+            UIManager.HideTopUI();
+        }
     }
 }
