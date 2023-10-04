@@ -40,7 +40,7 @@ Transform:
   m_Children:
   - {fileID: 3087526563317076856}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5364448332409220421
 Rigidbody2D:
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37567d10245e7f4dabe938a6752c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropPercent: 100
+  dropPercent: 30
   delay: 0.35
 --- !u!114 &3620910790227141548
 MonoBehaviour:

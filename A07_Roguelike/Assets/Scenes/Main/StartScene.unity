@@ -1519,6 +1519,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[1].size
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[1].type
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[2].size
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[2].type
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 3284551483515079120, guid: 3d123b77d3f182f448ebe5cb6a76aed6, type: 3}
+    - target: {fileID: 914651542080152260, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
+      propertyPath: pools.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 3284551483515079120, guid: 317870f212fab3347909aefb88389780, type: 3}
     - target: {fileID: 2932417906853955869, guid: 2e7c5856a2e52c34085f74d56092eff0, type: 3}
       propertyPath: m_Name
       value: GameManager
