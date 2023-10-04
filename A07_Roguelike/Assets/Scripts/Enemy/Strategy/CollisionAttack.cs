@@ -29,7 +29,6 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
             {
                 return;
             }
-            Debug.Log("보스 충돌");
             HealthController hc = go.GetComponent<HealthController>();
 
             if (hc == null) return;
