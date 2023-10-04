@@ -50,7 +50,7 @@ public class Bomb : EnemyBehaviour, IBehaviour
 
                 if (hc == null) return;
 
-                hc.ChangeHealth(-(int)StatData.power);
+                hc.ChangeHealth(-(int)stats.attackSO.power);
 
             }
         }

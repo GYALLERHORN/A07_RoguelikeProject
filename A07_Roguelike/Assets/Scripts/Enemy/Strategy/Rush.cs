@@ -1,6 +1,9 @@
+using System;
 using System.Resources;
 using UnityEditor.VersionControl;
 using UnityEngine;
+
+[Serializable]
 public class Rush : EnemyBehaviour, IBehaviour
 {
     private SpriteRenderer _spriteRenderer;
@@ -19,7 +22,7 @@ public class Rush : EnemyBehaviour, IBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rb2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
-        remainTime = Random.Range(1f, coolTime);
+        remainTime = UnityEngine.Random.Range(1f, coolTime);
     }
 
     private StrategyState _state = StrategyState.CoolTime;
@@ -69,7 +72,6 @@ public class Rush : EnemyBehaviour, IBehaviour
             State = StrategyState.Rest;
         }
     }
-
     public void OffAction()
     {
         _rb2D.velocity = Vector2.zero;
@@ -96,7 +98,7 @@ public class Rush : EnemyBehaviour, IBehaviour
             return;
         }
 
-        // Å¸°ÙÀÌ È®Á¤µÈ Å¸ÀÌ¹ÖÀÇ ¹æÇâÀ» ¾Ë±âÀ§ÇØ¼­
+        // íƒ€ê²Ÿì´ í™•ì •ëœ íƒ€ì´ë°ì˜ ë°©í–¥ì„ ì•Œê¸°ìœ„í•´ì„œ
         direction = Direction;
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -116,9 +118,9 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     private void OnRush()
     {
-        _rb2D.velocity = direction * characterStatsHandler.CurrentStats.speed * speedCoefficient;
+        _rb2D.velocity = direction * stats.speed * speedCoefficient;
         animationController.Move(direction);
-        // ÀÌµ¿ÇÑ °Å¸®¿Í ½ÃÀÛÁöÁ¡¿¡¼­ ¸ñÇ¥ÁöÁ¡±îÁöÀÇ °Å¸®¸¦ ºñ±³
+        // ì´ë™í•œ ê±°ë¦¬ì™€ ì‹œìž‘ì§€ì ì—ì„œ ëª©í‘œì§€ì ê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ë¹„êµ
         if (Vector2.Distance(startPos, (Vector2)transform.position) > rushDistance)
         {
             EndAction(this);
@@ -138,7 +140,7 @@ public class Rush : EnemyBehaviour, IBehaviour
                 HealthController hc = go.GetComponent<HealthController>();
 
                 if (hc == null) return;
-                hc.ChangeHealth(-(int)StatData.power * damageCoefficient);
+                hc.ChangeHealth(-(int)stats.attackSO.power * damageCoefficient);
 
             }
         }

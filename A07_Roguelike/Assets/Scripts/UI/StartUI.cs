@@ -13,15 +13,16 @@ public class StartUI : MonoBehaviour
     [SerializeField] private TMP_Text _pressKey;
     private Sequence _pressKeyAnim;
     [SerializeField] private TMP_Text _title;
-    [SerializeField] private AudioClip _printClip;
     [Header("메뉴 선택")]
     [SerializeField] private GameObject _menu;
+    [SerializeField] private AudioClip _clickClip;
     private eMenuType _selection = eMenuType.Start;
 
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
 
+    private bool _optionUI = false;
     private enum eMenuType
     {
         Start,
@@ -37,28 +38,33 @@ public class StartUI : MonoBehaviour
         SoundManager.ChangeBGM(0);
 
         FadeLoopTxt(_pressKey);
-        CharAnim(_title, _title.text.Length / 2, _printClip);
+        CharAnim(_title, _title.text.Length / 2);
     }
 
     private void Update()
     {
+        if (_optionUI)
+            return;
+
         if (!_menu.activeInHierarchy && Input.anyKeyDown)
         {
             _menu.SetActive(true);
             _pressKey.gameObject.SetActive(false);
             _pressKeyAnim.Pause();
+            SoundManager.PlayClip(eSoundType.UI, _clickClip);
         }
         else
         {
-            if (/*Input.GetKeyDown(KeyCode.Space) ||*/ Input.GetKeyDown(KeyCode.Return))
+            if (/*Input.GetKeyDown(KeyCode.Space) ||*/ Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
             {
+                SoundManager.PlayClip(eSoundType.UI, _clickClip);
                 switch (_selection)
                 {
                     case eMenuType.Start:
                         StartBtn();
                         break;
                     case eMenuType.Load:
-                        LoadBtn();
+                        OptionBtn();
                         break;
                     case eMenuType.Exit:
                         ExitBtn();
@@ -67,6 +73,7 @@ public class StartUI : MonoBehaviour
             }
             else if (Input.anyKeyDown)
             {
+                SoundManager.PlayClip(eSoundType.UI, _clickClip);
                 if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
                 {
                     OffImgae(_menu.transform.GetChild((int)_selection).GetChild(0).GetComponent<Image>());
@@ -85,6 +92,9 @@ public class StartUI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_optionUI)
+            return;
+
         if (_menu.activeInHierarchy)
         {
             m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -136,8 +146,6 @@ public class StartUI : MonoBehaviour
         DOTween.To(x =>
         {
             text.maxVisibleCharacters = (int)x;
-            if (clip != null)
-                SoundManager.PlayClip(eSoundType.UI, clip);
         }
         , 0f, text.text.Length, duration).SetEase(Ease.Linear);
     }
@@ -147,9 +155,12 @@ public class StartUI : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void LoadBtn()
+    public void OptionBtn()
     {
-
+        _menu.SetActive(false);
+        _optionUI = true;
+        var ui = UIManager.ShowUI<UIOption>();
+        ui.Initialize(() => { _menu.SetActive(true); _optionUI = false; });
     }
 
     public void ExitBtn()

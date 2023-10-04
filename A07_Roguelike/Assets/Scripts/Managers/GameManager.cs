@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager Instance;
     [HideInInspector] public Canvas UICanvas;
+
+    [Header("플래이어")]
+    public GameObject PlayerPrefab;
+    public GameObject _playerInActive;
+
+    [Header("던전 맵")]
+    [SerializeField] private GameObject Map1;
+    [SerializeField] private GameObject Map2;
+    [SerializeField] private GameObject MapBoss;
 
     private void Awake()
     {
@@ -16,6 +26,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void LateUpdate()
     {
         if (UICanvas == null)
@@ -24,7 +39,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartDunegeon()
+    public void StartDungeon()
+    {
+        EnterDungeon(0);
+    }
+
+    public void EnterDungeon(int floor)
+    {
+        switch (floor)
+        {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                ExitDungeon();
+                break;
+        }
+    }
+
+    public void ExitDungeon()
     {
 
     }

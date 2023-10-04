@@ -5,37 +5,78 @@ using UnityEngine;
 
 public class Range : MonoBehaviour
 {
+    enum eRangeState
+    {
+        OFF,
+        ON,
+
+    }
     // 범위를 지정해서 데미지를 주는 범위 오브젝트에서 사용할 클래스
 
-    private bool isUse = false;
-    private int _damage;
+    private eRangeState state = eRangeState.OFF;
+    public GameObject collidePlayer;
 
-    public void Use(int damage)
+    public void OnRange()
     {
-        _damage = damage;
-        isUse = true;
+        state = eRangeState.ON;
     }
 
     public void OffRange()
     {
-        _damage = 0;
-        isUse = false;
+        state = eRangeState.OFF;
+        collidePlayer = null;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+ 
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isUse)
+
+        switch (state)
         {
-            GameObject go = collision.gameObject;
-            if (go == null) return;
-
-            if (go.CompareTag("Player"))
-            {
-                HealthController hc = go.GetComponent<HealthController>();
-                if (hc == null) return;
-
-                hc.ChangeHealth(-(int)_damage);
-            }
+            case eRangeState.OFF:
+                break;
+            case eRangeState.ON:
+                EnterPlayer(collision);
+                break;
+            default:
+                break;
         }
     }
-    
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        switch (state)
+        {
+            case eRangeState.OFF:
+                break;
+            case eRangeState.ON:
+                ExitPlayer(collision);
+                break;
+            default:
+                break;
+        }
+    }
+    private void EnterPlayer(Collider2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go == null) return;
+
+        if (go.CompareTag("Player"))
+        {
+            if (collidePlayer == null) { collidePlayer = go; }
+        }
+    }
+
+    private void ExitPlayer(Collider2D collision)
+    {
+        GameObject go = collision.gameObject;
+        if (go == null) return;
+
+        if (go.CompareTag("Player"))
+        {   
+            collidePlayer = null;
+        }
+    }
+
 }

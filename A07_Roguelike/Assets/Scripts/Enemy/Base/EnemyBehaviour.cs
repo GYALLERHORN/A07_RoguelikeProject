@@ -4,23 +4,24 @@ using UnityEngine;
 [Serializable]
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    protected GameObject Target; // �ӽ�
+    protected GameObject Target; // ÀÓ½Ã
     protected EnemyAnimationController animationController;
     protected EnemyBehaviourController behaviourController;
-    protected CharacterStatsHandler characterStatsHandler;
+    protected CharacterStats stats;
 
     public Vector2 Direction { get { return (Target.transform.position - transform.position).normalized; } }
     public float Distance { get { return Vector3.Distance(transform.position, Target.transform.position); } }
 
-    public AttackSO StatData { get { return characterStatsHandler.CurrentStats.attackSO; } } 
-
     protected virtual void Awake()
     {
-        Target = GameObject.Find("Player"); // �ӽ�
+        Target = GameObject.Find("Player"); // ÀÓ½Ã
         animationController = GetComponent<EnemyAnimationController>();
         behaviourController = GetComponent<EnemyBehaviourController>();
-        characterStatsHandler = GetComponent<CharacterStatsHandler>();
+    }
 
+    protected virtual void Start()
+    {
+        stats = GetComponent<CharacterStatsHandler>().CurrentStats;
     }
 
     public void StartAction(IBehaviour behaviour)

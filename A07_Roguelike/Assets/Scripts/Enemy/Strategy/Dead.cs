@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Dead : EnemyBehaviour, IBehaviour
 {
@@ -12,6 +13,7 @@ public class Dead : EnemyBehaviour, IBehaviour
     public StratgeyType Type { get => _type; }
 
     private HealthController _healthSystem;
+    [SerializeField] [Range(0,100)] private int dropPercent;
 
     protected override void Awake()
     {
@@ -20,8 +22,9 @@ public class Dead : EnemyBehaviour, IBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
 
     }
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         _healthSystem.OnDeath += OnAction;
     }
 
@@ -31,8 +34,25 @@ public class Dead : EnemyBehaviour, IBehaviour
         _rb2D.velocity = Vector2.zero;
         animationController.Move(Vector2.zero);
         animationController.Death();
+        Invoke("DropItem", 0.35f);
         Destroy(gameObject, 0.35f);
+
+        // 아이템을 확률적으로 생성
+        // dropitem 
+        
         EndAction(this);
+    }
+
+    public void DropItem()
+    {
+        int percent = Random.Range(0, 100);
+
+        if (percent <= dropPercent)
+        {
+            int randomItem = Random.Range(0, ItemDatabase.Instance.itemDB.Count);
+            GameObject go = Instantiate(ItemDatabase.Instance.itemPrefab, transform.position, Quaternion.identity);
+            go.GetComponent<FieldItems>().SetItem(ItemDatabase.Instance.itemDB[randomItem]);
+        }
     }
 
     public void OffAction()
