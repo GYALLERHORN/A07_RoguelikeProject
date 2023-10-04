@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class DungeonEntranceHandler : InteractObjectHandler
 {
-    private Action OnInteract = () => { GameManager.Instance.StartDungeon(); };
+    private Action OnInteract;
+    public DungeonEntranceHandler()
+    {
+        OnInteract = () => { GameManager.Instance.StartDungeon(); };
+    }
     public void Initialize(Action onInteract)
     {
         OnInteract = onInteract;

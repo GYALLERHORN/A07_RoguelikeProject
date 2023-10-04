@@ -38,11 +38,6 @@ public class GameManager : MonoBehaviour
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
-    private void LateUpdate()
-    {
-
-    }
-
     private void ChangedActiveScene(Scene current, Scene next)
     {
         if (next.name == "TownScene")
