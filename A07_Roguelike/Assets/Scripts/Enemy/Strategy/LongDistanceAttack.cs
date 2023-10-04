@@ -7,8 +7,9 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
     public StrategyState State { get => _state; set => _state = value; }
     public StratgeyType Type { get => _type; set => _type = value; }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _projectileManager = ProjectileManager.instance;
     }
     public void OnRest()
@@ -29,7 +30,7 @@ public class LongDistanceAttack : EnemyBehaviour, IBehaviour
     public void OnAction() 
     {
         remainTime = coolTime;
-        CreateProjectile((RangedAttackData)StatData);
+        CreateProjectile((RangedAttackData)stats.attackSO);
         EndAction(this);
     }
     public void OnCoolTime()

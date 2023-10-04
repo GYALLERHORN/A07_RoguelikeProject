@@ -8,8 +8,11 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
     public StratgeyType Type { get => _type; }
 
     private Rigidbody2D _rb2D;
+
     [SerializeField] private GameObject _attackRange;
     private Range _attackRangeScript;
+    private SpriteRenderer _attackRangeSpriteRenderer;
+    [SerializeField] private Color _attackRangeColor;
     [SerializeField][Range(1f, 100f)] private float remainTime;
     [SerializeField][Range(1f, 100f)] private float coolTime;
     [SerializeField][Range(1f, 100f)] private float range;
@@ -18,10 +21,12 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
     [SerializeField][Range(1f, 100f)] private float delay;
     [SerializeField][Range(1f, 100f)] private float damageCoefficeint;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _rb2D = GetComponent<Rigidbody2D>();
         _attackRangeScript = _attackRange.GetComponent<Range>();
+        _attackRangeSpriteRenderer = _attackRange.GetComponent <SpriteRenderer>();
     }
 
     // range의 크기가 1~20까지 늘어나다가 폭발!
@@ -37,9 +42,12 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
     {
         if (_attackRange.transform.localScale.x < maxRange)
         {
+            _attackRangeScript.OnRange();
             _attackRange.SetActive(true);
+            _attackRangeSpriteRenderer.color = _attackRangeColor;
             _rb2D.velocity = Vector2.zero;
             _attackRange.transform.localScale += new Vector3(1, 1, 0) * (maxRange - 1) / chargeTime * Time.deltaTime;
+            remainTime = delay;
         }
         else
         {
@@ -47,10 +55,15 @@ public class BossAroundAttack : EnemyBehaviour, IBehaviour
 
             if(remainTime < 0)
             {
-                animationController.Attack();
+                if (_attackRangeScript.collidePlayer != null)
+                {
+                    animationController.Attack();
+                    HealthController hc = _attackRangeScript.collidePlayer.GetComponent<HealthController>();
 
-                _attackRangeScript.Use(-(int)(StatData.power * damageCoefficeint));
-                
+                    hc.ChangeHealth(-(int)(stats.attackSO.power * damageCoefficeint));
+
+                }
+
                 EndAction(this);
             }
         }

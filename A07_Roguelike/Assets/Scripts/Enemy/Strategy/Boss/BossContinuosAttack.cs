@@ -9,6 +9,8 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
     // 분열? 패턴,
     // 범위 지정 ( 점프해서 범위를 표시하고 내려찍기)
     // 주변 범위 폭발 패턴
+
+    // 주변 범위 이외에는 전부 폭발하는 패턴
     enum AttackState
     {
         Rest,
@@ -23,8 +25,9 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
 
     private Rigidbody2D _rb2D;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _projectileManager = ProjectileManager.instance;
         _rb2D = GetComponent<Rigidbody2D>();
     }
@@ -97,7 +100,7 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
                 _projectileManager.ShootBullet(
                     projectileSpawnPosition.position,
                     Quaternion.Euler(0, 0, startAngle + 30f * i) * direction,
-                    statsSO
+                    (RangedAttackData)stats.attackSO
                     );
             }
             repeat--;
@@ -106,8 +109,9 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
         }
         else if (repeat > 0 && repeat % 2 == 1)
         {
-            _rb2D.velocity = Direction * speed;
-            animationController.Move(Direction * speed);
+            Vector2 dir = Direction * speedCoefficient * stats.speed;
+            _rb2D.velocity = dir;
+            animationController.Move(dir);
             remainTime = firstAttackDelay;
             repeat--;
         }
@@ -122,9 +126,8 @@ public class BossContinuosAttack : EnemyBehaviour, IBehaviour
     [SerializeField][Range(1f, 100f)] private float remainTime;
     [SerializeField][Range(1f, 100f)] private float coolTime;
     [SerializeField] private Transform projectileSpawnPosition;
-    [SerializeField] private RangedAttackData statsSO;
     [SerializeField][Range(1f, 100f)] private float range;
-    [SerializeField][Range(1f, 100f)] private float speed;
+    [SerializeField][Range(1f, 100f)] private float speedCoefficient;
     [SerializeField][Range(1f, 100f)] private float firstAttackDelay;
     private int repeat = 6;
     private float startAngle = 0;
