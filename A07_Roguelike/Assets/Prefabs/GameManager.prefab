@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemDataBase
       objectReference: {fileID: 0}
+    - target: {fileID: 1595586901944773544, guid: 00ee3203f4465d54fbf48cd1e7720205, type: 3}
+      propertyPath: itemDB.Array.data[1].speed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3797446694712050254, guid: 00ee3203f4465d54fbf48cd1e7720205, type: 3}
       propertyPath: m_RootOrder
       value: 4
