@@ -8,6 +8,7 @@ public enum eMonsterName
     GreenSlime,
     BlueSlime,
     RedSlime,
+    Golem,
 }
 
 public class EnemyManager 

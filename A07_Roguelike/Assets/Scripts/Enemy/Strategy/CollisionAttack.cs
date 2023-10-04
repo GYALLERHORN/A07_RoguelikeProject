@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionAttack : EnemyBehaviour, IBehaviour
 {
     private StrategyState _state = StrategyState.Rest;
-    private StratgeyType _type = StratgeyType.Skill;
+    private StratgeyType _type = StratgeyType.Attack;
     public StrategyState State { get => _state; set => _state = value; }
     public StratgeyType Type { get => _type; }
     public void OnRest() { }
@@ -13,17 +13,16 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
     public void OnCoolTime() { }
     public void OffAction() { }
 
-    
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (CurrentBehaviourType() == StratgeyType.Skill) return;
+        //if (CurrentBehaviourType() == StratgeyType.Skill) return;
 
+        remainTime -= Time.deltaTime;
         if (remainTime > 0)
         {
-            remainTime -= Time.deltaTime;
             return;
         }
-        
+
         GameObject go = collision.gameObject;
         if (go == null) return;
 
