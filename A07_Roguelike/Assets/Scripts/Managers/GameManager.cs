@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     {
         //PlayerInActive.GetComponent<CharacterStatsHandler>().;
         PlayerInActive.GetComponent<HealthController>().LoadHealthController(_healthController);
-        //PlayerInActive.GetComponent<Inventory>().;
+        PlayerInActive.GetComponent<InventoryHandler>().Initialize(_Inventory);
 
         _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
         _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
     public void EscapeDungeon()
     {
         SceneManager.LoadScene(1);
+        isInit = true;
     }
 
     public void StartSpawnMonster(Dungeon dungeon)

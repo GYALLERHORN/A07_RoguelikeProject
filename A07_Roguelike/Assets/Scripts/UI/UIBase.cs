@@ -42,7 +42,8 @@ public class UIBase : MonoBehaviour
     public virtual void HideUI()
     {
         ActAtHide?.Invoke();
-        gameObject.SetActive(false);
+        if (gameObject != null)
+            gameObject.SetActive(false);
     }
 
     protected virtual void SelfCloseUI()

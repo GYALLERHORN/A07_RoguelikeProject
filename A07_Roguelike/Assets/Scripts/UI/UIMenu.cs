@@ -14,24 +14,37 @@ public class UIMenu : UIBase
 
     private void Start()
     {
-        Invoke("Initialize", 1f);
+        //Invoke("Initialize", 1f);
     }
 
     public void Initialize()
     {
         AddMenu("상태창", () =>
         {
-            // var ui = UIManager.ShowUI(eUIType.Status) as UIInfo;
-            // _statusUI = ui;
-            // _statusUI.Initialize();
+            var ui = UIManager.ShowUI(eUIType.Status) as UIInfo;
+            _statusUI = ui;
+            _statusUI.Initialize(
+                GameManager.Instance.PlayerInActive.GetComponentInChildren<SpriteRenderer>().sprite,
+                GameManager.Instance.PlayerInActive.GetComponent<CharacterStatsHandler>(), 
+                Vector3.zero,
+                () =>
+                {
+                    UIManager.ShowUI<UIMenu>();
+                });
+            SelfHideUI();
         });
         AddMenu("다시 시작", () =>
         {
-            // LoadScene("MainScene");
+            GameManager.Instance.EscapeDungeon();
         });
         AddMenu("설정", () =>
         {
-
+            var ui = UIManager.ShowUI<UIOption>();
+            ui.Initialize(() =>
+            {
+                UIManager.ShowUI<UIMenu>();
+            });
+            SelfHideUI();
         });
 
         _menuFrame.DOSizeDelta(Vector2.zero, 0.4f).SetEase(Ease.OutBack);
