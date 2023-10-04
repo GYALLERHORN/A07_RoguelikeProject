@@ -27,7 +27,11 @@ public class HealthController : MonoBehaviour
         CurrentHealth = MaxHealth;
         OnDeath += () =>
         {
-            UIManager.ShowUI<UIGameOver>();
+            if (transform.CompareTag("Player"))
+            {
+                UIManager.ShowUI<UIGameOver>(); ;
+            }
+            
         };
     }
 
