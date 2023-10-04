@@ -6,7 +6,7 @@ using static UnityEditor.Recorder.OutputPath;
 
 public enum eUIType
 {
-    //Inventory,
+    //UIInventory,
     Status,
     //Store,
     Popup,
