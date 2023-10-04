@@ -25,6 +25,10 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         CurrentHealth = MaxHealth;
+        OnDeath += () =>
+        {
+            UIManager.ShowUI<UIGameOver>();
+        };
     }
 
 
