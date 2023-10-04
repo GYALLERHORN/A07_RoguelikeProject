@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
     public void EnterDungeon(int floor)
     {
         if (floor > 2)
+        {
+            EscapeDungeon();
             return;
+        }
 
         _dungeonFloor = floor;
         SceneManager.LoadScene(2);
