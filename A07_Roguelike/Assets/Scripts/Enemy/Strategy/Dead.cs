@@ -51,7 +51,11 @@ public class Dead : EnemyBehaviour, IBehaviour
 
         if (percent <= dropPercent)
         {
-            int randomItem = Random.Range(0, ItemDatabase.Instance.itemDB.Count);
+            int randomItem = Random.Range(1, ItemDatabase.Instance.itemDB.Count);
+            if (percent < 5)
+            {
+                randomItem = 0;
+            }
             GameObject go = Instantiate(ItemDatabase.Instance.itemPrefab, transform.position, Quaternion.identity);
             go.GetComponent<FieldItems>().SetItem(ItemDatabase.Instance.itemDB[randomItem]);
         }

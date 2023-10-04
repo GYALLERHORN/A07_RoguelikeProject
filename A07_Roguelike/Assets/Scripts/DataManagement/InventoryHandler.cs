@@ -33,10 +33,4 @@ public class InventoryHandler : MonoBehaviour
         statsHandler.AddStatModifier(startItem);
     }
 
-    // test
-    private void Start()
-    {
-        InitItem(player.GetComponent<CharacterStatsHandler>());
-    }
-
 }
