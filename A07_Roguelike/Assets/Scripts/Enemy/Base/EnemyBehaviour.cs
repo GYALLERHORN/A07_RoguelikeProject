@@ -21,7 +21,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        stats = GetComponent<CharacterStatsHandler>().CurrentStates;
+        stats = GetComponent<CharacterStatsHandler>().CurrentStats;
     }
 
     public void StartAction(IBehaviour behaviour)

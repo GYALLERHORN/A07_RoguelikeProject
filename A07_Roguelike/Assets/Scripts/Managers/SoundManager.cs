@@ -22,9 +22,10 @@ public class SoundManager : MonoBehaviour
     /// 0 Master, 1 BGM, 2 Effect, 3 UI, 4 Other
     /// </summary>
     [SerializeField] private List<AudioMixerGroup> _audioMixer;
-    [SerializeField] private float _changeDuration;
+    [SerializeField] private float _changeDuration = 1f;
     private AudioSource _BGMAudioSource;
     private ObjectPool _pools;
+    public int BGMIndex { get; set; }
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class SoundManager : MonoBehaviour
         {
             Instance = this;
             _BGMAudioSource = GetComponent<AudioSource>();
+            _BGMAudioSource.outputAudioMixerGroup = _audioMixer[1];
             _pools = GetComponent<ObjectPool>();
         }
     }
@@ -42,6 +44,12 @@ public class SoundManager : MonoBehaviour
             return;
 
         Instance.StartCoroutine(Instance.SlowlyChangeSound(index));
+        Instance.BGMIndex = index;
+    }
+
+    public static void ChangeBGMVol()
+    {
+        Instance._BGMAudioSource.volume = DataManager.Instance.BGMVolume;
     }
 
     private IEnumerator SlowlyChangeSound(int index)
@@ -54,14 +62,17 @@ public class SoundManager : MonoBehaviour
             _BGMAudioSource.volume = Mathf.Max(_BGMAudioSource.volume - baseVolume / _changeDuration, 0.0f);
             yield return null;
         }
+        _BGMAudioSource.Stop();
         time = 0.0f;
         _BGMAudioSource.clip = _BGM[index];
+        _BGMAudioSource.Play();
         while (time <= _changeDuration / 2f)
         {
             time += Time.deltaTime;
             _BGMAudioSource.volume = Mathf.Min(_BGMAudioSource.volume + baseVolume / _changeDuration, baseVolume);
             yield return null;
         }
+        _BGMAudioSource.volume = DataManager.Instance.BGMVolume;
         yield break;
     }
 
@@ -86,7 +97,29 @@ public class SoundManager : MonoBehaviour
         GameObject obj = Instance._pools.SpawnFromPool(ePoolType.SoundSource);
         obj.SetActive(true);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
-        soundSource.Play(Instance._audioMixer[(int)type], clip, minPitch, maxPitch);
+        float volume;
+        switch (type)
+        {
+            case eSoundType.Master:
+                volume = DataManager.Instance.MasterVolume;
+                break;
+            case eSoundType.BGM:
+                volume = DataManager.Instance.BGMVolume;
+                break;
+            case eSoundType.Effect:
+                volume = DataManager.Instance.EffectVolume;
+                break;
+            case eSoundType.UI:
+                volume = DataManager.Instance.UIVolume;
+                break;
+            case eSoundType.Other:
+                volume = DataManager.Instance.OtherVolume;
+                break;
+            default:
+                volume = 0;
+                break;
+        }
+        soundSource.Play(Instance._audioMixer[(int)type], clip, volume, minPitch, maxPitch);
     }
 
     /// <summary>

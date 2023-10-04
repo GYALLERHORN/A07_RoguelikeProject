@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2886257471333160924
 MonoBehaviour:
@@ -46,14 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4459d9a55b97f4ba3d7af33c4c03a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BGM: []
+  _BGM:
+  - {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
   _audioMixer:
   - {fileID: 24300002, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: -84833593793755487, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: 5741920490614383055, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: -6339431328312819035, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
   - {fileID: 4337256306017947474, guid: 5aa43d846b48aaa4580622945509f1e8, type: 2}
-  _changeDuration: 0
+  _changeDuration: 1
 --- !u!114 &1596874302582505306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resizeSize: 2
   _maxSize: 40
+  _root: {fileID: 5912716394161880270}
   pools:
   - type: 0
     prefab: {fileID: 3885154308941407468, guid: 5ae88720965facf4eac8dfde8176f7ad, type: 3}

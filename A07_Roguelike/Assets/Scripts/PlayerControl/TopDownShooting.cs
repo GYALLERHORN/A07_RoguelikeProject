@@ -51,7 +51,7 @@ public class TopDownShooting : MonoBehaviour
 
     private void CreateProjectile(RangedAttackData rangedAttackData, float angle)
     {
-        _projectileManager.ShootBullet(
+        _projectileManager?.ShootBullet(
                 projectileSpawnPosition.position,
                 RotateVector2(_aimDirection, angle),
                 rangedAttackData

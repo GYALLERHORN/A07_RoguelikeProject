@@ -5,29 +5,64 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager Instance;
-    public Canvas UICanvas;
+    [HideInInspector] public Canvas UICanvas;
+
+    [Header("´øÀü ¸Ê")]
+    [SerializeField] private GameObject Map1;
+    [SerializeField] private GameObject Map2;
+    [SerializeField] private GameObject MapBoss;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    public void StartDunegeon(int level)
+    private void Start()
     {
 
     }
 
-    public void StartSpawnMonster(eDungeonType  type)
+    private void LateUpdate()
+    {
+        if (UICanvas == null)
+        {
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+        }
+    }
+
+    public void StartDungeon()
+    {
+        EnterDungeon(0);
+    }
+
+    public void EnterDungeon(int floor)
+    {
+        switch (floor)
+        {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                ExitDungeon();
+                break;
+        }
+    }
+
+    public void ExitDungeon()
     {
 
     }
-}
 
-public enum eDungeonType
-{
-    First,
-    Second,
+    public void StartSpawnMonster()
+    {
+
+    }
 }
