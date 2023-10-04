@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    protected GameObject Target; // �ӽ�
+    protected GameObject Target; // ÀÓ½Ã
     protected EnemyAnimationController animationController;
     protected EnemyBehaviourController behaviourController;
     protected CharacterStats stats;
@@ -14,7 +14,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Target = GameObject.Find("Player"); // �ӽ�
+        Target = GameObject.Find("Player"); // ÀÓ½Ã
         animationController = GetComponent<EnemyAnimationController>();
         behaviourController = GetComponent<EnemyBehaviourController>();
     }

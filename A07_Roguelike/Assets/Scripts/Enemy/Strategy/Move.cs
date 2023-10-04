@@ -39,6 +39,7 @@ public class Move : EnemyBehaviour, IBehaviour
     {
         Vector2 direction = Direction;
         _rb2D.velocity = Quaternion.Euler(0, 0, Random.Range(-15f, 15f)) * direction * stats.speed;
+
         animationController.Move(direction);
 
         if (!CheckCondition())
