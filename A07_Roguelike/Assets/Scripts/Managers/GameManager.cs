@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
     public void EscapeDungeon()
     {
         SceneManager.LoadScene(1);
-        isInit = true;
+        isInit = false;
     }
 
     public void StartSpawnMonster(Dungeon dungeon)
