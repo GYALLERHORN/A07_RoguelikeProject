@@ -21,7 +21,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
-        Target = GameManager.Instance.PlayerInActive;
+
+        Target = GameObject.Find("Player");
+        //Target = GameManager.Instance.PlayerInActive;
         stats = GetComponent<CharacterStatsHandler>().CurrentStats;
     }
 
