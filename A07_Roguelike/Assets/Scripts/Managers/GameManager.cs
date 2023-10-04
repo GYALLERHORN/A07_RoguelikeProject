@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static GameManager Instance;
     [HideInInspector] public Canvas UICanvas;
 
+    [Header("´øÀü ¸Ê")]
+    [SerializeField] private GameObject Map1;
+    [SerializeField] private GameObject Map2;
+    [SerializeField] private GameObject MapBoss;
+
     private void Awake()
     {
         if (Instance == null)
@@ -14,6 +19,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    private void Start()
+    {
+
     }
 
     private void LateUpdate()
@@ -24,7 +34,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartDunegeon()
+    public void StartDungeon()
+    {
+        EnterDungeon(0);
+    }
+
+    public void EnterDungeon(int floor)
+    {
+        switch (floor)
+        {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                ExitDungeon();
+                break;
+        }
+    }
+
+    public void ExitDungeon()
     {
 
     }
