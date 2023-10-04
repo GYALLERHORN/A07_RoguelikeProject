@@ -10,32 +10,58 @@ public class GameManager : MonoBehaviour
 
     [Header("플래이어")]
     public GameObject PlayerPrefab;
-    public GameObject _playerInActive;
+    public GameObject PlayerInActive;
 
     [Header("던전 맵")]
     [SerializeField] private GameObject Map1;
     [SerializeField] private GameObject Map2;
     [SerializeField] private GameObject MapBoss;
 
+    private int _dungeonFloor = 0;
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
         }
     }
 
     private void Start()
     {
-        
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
     private void LateUpdate()
     {
-        if (UICanvas == null)
+
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (next.name == "TownScene" || next.name == "DungeonScene")
         {
             UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+            PlayerInActive = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity);
+        }
+        if (next.name == "DungeonScene")
+        {
+            var dungeon = GameObject.Find("Dungeon");
+            switch (_dungeonFloor)
+            {
+                case 0:
+                    Instantiate(Map1, dungeon.transform);
+                    break;
+                case 1:
+                    Instantiate(Map2, dungeon.transform);
+                    break;
+                case 2:
+                    Instantiate(MapBoss, dungeon.transform);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -46,22 +72,19 @@ public class GameManager : MonoBehaviour
 
     public void EnterDungeon(int floor)
     {
-        switch (floor)
-        {
-            case 0:
-                
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            default:
-                ExitDungeon();
-                break;
-        }
+        if (floor > 2)
+            return;
+
+        _dungeonFloor = floor;
+        SceneManager.LoadScene(2);
     }
 
-    public void ExitDungeon()
+    public void LeaveDungeon()
+    {
+
+    }
+
+    public void EscapeDungeon()
     {
 
     }

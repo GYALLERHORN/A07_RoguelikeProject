@@ -6,6 +6,6 @@ public class CameraController : MonoBehaviour
 {
     void Update()
     {
-        transform.position = GameManager.Instance._playerInActive.transform.position;
+        transform.position = GameManager.Instance.PlayerInActive.transform.position;
     }
 }
