@@ -16,13 +16,13 @@ public class ItemDatabase : MonoBehaviour
     public Vector3[] pos;
 
     // Test
-    private void Start()
-    {
-        for (int i = 0; i < itemDB.Count; i++)
-        {
-            GameObject go = Instantiate(itemPrefab, pos[i], Quaternion.identity);
-            go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, itemDB.Count)]);
-        }
-    }
+    //private void Start()
+    //{
+    //    for (int i = 0; i < itemDB.Count; i++)
+    //    {
+    //        GameObject go = Instantiate(itemPrefab, pos[i], Quaternion.identity);
+    //        go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, itemDB.Count)]);
+    //    }
+    //}
 
 }
