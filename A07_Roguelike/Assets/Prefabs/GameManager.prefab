@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvas: {fileID: 0}
-  Player: {fileID: 923458012245365151, guid: 2fb30af9611ef0d47a9a88dc7e8f40e9, type: 3}
+  PlayerPrefab: {fileID: 2137048898361892027, guid: 2fb30af9611ef0d47a9a88dc7e8f40e9, type: 3}
+  PlayerInActive: {fileID: 0}
   Map1: {fileID: 666417241682289944, guid: 9bee152a7c6f3e0498f462642c3b99c6, type: 3}
   Map2: {fileID: 4432800284743957952, guid: 6573097e63551c54684a1c43a668ebdb, type: 3}
   MapBoss: {fileID: 2380949766359848162, guid: c0d60eadf6b00f04e9539ef99ffb7a6b, type: 3}

@@ -10,32 +10,84 @@ public class GameManager : MonoBehaviour
 
     [Header("플래이어")]
     public GameObject PlayerPrefab;
-    public GameObject _playerInActive;
+    [HideInInspector] public GameObject PlayerInActive;
+    private HealthController _healthController;
+    private CharacterStatsHandler _characterStatsHandler;
+    private InventoryHandler _Inventory;
+    private bool isInit = false;
 
     [Header("던전 맵")]
     [SerializeField] private GameObject Map1;
     [SerializeField] private GameObject Map2;
     [SerializeField] private GameObject MapBoss;
 
+    private int _dungeonFloor = 0;
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
         }
     }
 
     private void Start()
     {
-        
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
     private void LateUpdate()
     {
-        if (UICanvas == null)
+
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (next.name == "TownScene")
         {
             UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+            PlayerInActive = Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity);
+            if (isInit)
+            {
+                TransferData();
+            }
+            else
+            {
+                isInit = true;
+                _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
+                _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
+                _healthController = PlayerInActive.GetComponent<HealthController>();
+                _Inventory.InitItem(_characterStatsHandler);
+            }
+        }
+        else if (next.name == "DungeonScene")
+        {
+            var dungeon = GameObject.Find("Dungeon");
+            GameObject obj;
+            switch (_dungeonFloor)
+            {
+                case 0:
+                    obj = Instantiate(Map1, dungeon.transform);
+                    break;
+                case 1:
+                    obj = Instantiate(Map1, dungeon.transform);
+                    break;
+                case 2:
+                    obj = Instantiate(Map1, dungeon.transform);
+                    break;
+                default:
+                    return;
+            }
+            var posInfo = obj.GetComponent<Dungeon>();
+            StartSpawnMonster(posInfo);
+
+            UICanvas = GameObject.Find("UI")?.GetComponent<Canvas>();
+            PlayerInActive = Instantiate(PlayerPrefab, posInfo.StartPos, Quaternion.identity);
+            if (isInit)
+            {
+                TransferData();
+            }
         }
     }
 
@@ -46,28 +98,41 @@ public class GameManager : MonoBehaviour
 
     public void EnterDungeon(int floor)
     {
-        switch (floor)
+        if (floor > 2)
+            return;
+
+        _dungeonFloor = floor;
+        SceneManager.LoadScene(2);
+    }
+
+    private void TransferData()
+    {
+        //PlayerInActive.GetComponent<CharacterStatsHandler>().;
+        PlayerInActive.GetComponent<HealthController>().LoadHealthController(_healthController);
+        //PlayerInActive.GetComponent<Inventory>().;
+
+        _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
+        _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
+        _healthController = PlayerInActive.GetComponent<HealthController>();
+    }
+
+    public void LeaveDungeon()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void EscapeDungeon()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void StartSpawnMonster(Dungeon dungeon)
+    {
+        eMonsterName[] types = new eMonsterName[Random.Range(1,3)];
+        for(int i = 0; i < types.Length; ++i)
         {
-            case 0:
-                
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            default:
-                ExitDungeon();
-                break;
+            types[i] = (eMonsterName)Random.Range((int)eMonsterName.GreenSlime, (int)eMonsterName.RedSlime);
         }
-    }
-
-    public void ExitDungeon()
-    {
-
-    }
-
-    public void StartSpawnMonster()
-    {
-
+        EnemyManager.Instance.SpawnMonster(types, dungeon.SpwanPosList.ToArray());
     }
 }
