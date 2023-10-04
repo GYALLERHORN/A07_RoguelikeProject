@@ -4,16 +4,16 @@ using static UnityEngine.InputSystem.OnScreen.OnScreenStick;
 
 public class EnemyBehaviourController : MonoBehaviour
 {
-    [SerializeField] public IBehaviour CurrentBehaviour { get; set; }
-    public Queue<IBehaviour> BehaviourQueue { get; private set; }
+    public IBehaviour CurrentBehaviour { get; set; }
+    
+    [SerializeField] public List<IBehaviour> BehavioursList = new List<IBehaviour>();
+    [SerializeField] public List<EnemyBehaviour> BehavioursList2 = new List<EnemyBehaviour>();
 
     private void Start()
     {
-        BehaviourQueue = new Queue<IBehaviour>();
-
-        foreach(IBehaviour behaviour in GetComponents<IBehaviour>())
+        foreach (IBehaviour behaviour in GetComponents<IBehaviour>())
         {
-            BehaviourQueue.Enqueue(behaviour);
+            BehavioursList.Add(behaviour);
         }
     }
     private void Update()
@@ -25,11 +25,12 @@ public class EnemyBehaviourController : MonoBehaviour
     // Action
     private void BehaviourUpdate()
     {
-        Queue<IBehaviour> tempQueue = new Queue<IBehaviour>();
+        List<IBehaviour> temp = new List<IBehaviour>();
 
-        while(BehaviourQueue.Count > 0) 
+        while(BehavioursList.Count > 0) 
         {
-            IBehaviour behaviour = BehaviourQueue.Dequeue();
+            IBehaviour behaviour = BehavioursList[0];
+            BehavioursList.RemoveAt(0);
 
             switch (behaviour.State)
             {
@@ -47,8 +48,8 @@ public class EnemyBehaviourController : MonoBehaviour
                     break;
             }
 
-            tempQueue.Enqueue(behaviour);
+            temp.Add(behaviour);
         }
-        BehaviourQueue = tempQueue;
+        BehavioursList = temp;
     }
 }

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager Instance;
     [HideInInspector] public Canvas UICanvas;
+
+    [Header("플래이어")]
+    public GameObject PlayerPrefab;
+    public GameObject _playerInActive;
 
     [Header("던전 맵")]
     [SerializeField] private GameObject Map1;
@@ -23,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private void LateUpdate()

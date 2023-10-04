@@ -16,6 +16,8 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
     
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (CurrentBehaviourType() == StratgeyType.Skill) return;
+
         if (remainTime > 0)
         {
             remainTime -= Time.deltaTime;
@@ -31,7 +33,7 @@ public class CollisionAttack : EnemyBehaviour, IBehaviour
 
             if (hc == null) return;
 
-            hc.ChangeHealth(-(int)StatData.power);
+            hc.ChangeHealth(-(int)stats.attackSO.power);
             remainTime = delay;
         }
     }
