@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour
+public class UIInventory : UIBase
 {
     public List<Item> itemList;
     public GameObject player;
     public Item startItem;
     public int itemCount = 0;
     private GameObject currentSlot;
+
+    public void Initialize(GameObject player)
+    {
+        this.player = player;
+    }
 
     // Start is called before the first frame update
     public void AddItem(Item _item)

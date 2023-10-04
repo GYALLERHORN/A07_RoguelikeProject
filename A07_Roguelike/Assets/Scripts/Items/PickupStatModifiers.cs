@@ -6,7 +6,7 @@ public class PickupStatModifiers : PickupItem // Stat 변경 관리
 {
     [SerializeField] private List<CharacterStats> statsModifier;
     [SerializeField] private GameObject Player;
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private UIInventory inventory;
     [SerializeField] private GameObject Item;
     protected override void OnPickedUp(GameObject receiver)
     {

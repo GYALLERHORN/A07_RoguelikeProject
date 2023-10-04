@@ -34,4 +34,10 @@ public class PlayerInputController : TopDownCharacterController
     {
         IsAttacking = value.isPressed;
     }
+
+    public void OnInventory()
+    {
+        var ui = UIManager.ShowUI<UIInventory>();
+        ui.Initialize(gameObject);
+    }
 }
