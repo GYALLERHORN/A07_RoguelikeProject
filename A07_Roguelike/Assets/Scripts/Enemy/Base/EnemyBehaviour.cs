@@ -14,13 +14,14 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Target = GameObject.Find("Player"); // ÀÓ½Ã
+        
         animationController = GetComponent<EnemyAnimationController>();
         behaviourController = GetComponent<EnemyBehaviourController>();
     }
 
     protected virtual void Start()
     {
+        Target = GameManager.Instance.PlayerInActive;
         stats = GetComponent<CharacterStatsHandler>().CurrentStats;
     }
 
