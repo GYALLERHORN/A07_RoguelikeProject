@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8ace733381a664eb4ab4bfb3c208d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BehavioursList2: []
 --- !u!114 &3128416883378081412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37567d10245e7f4dabe938a6752c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropPercent: 100
 --- !u!114 &8322435444812009698
 MonoBehaviour:
   m_ObjectHideFlags: 0
