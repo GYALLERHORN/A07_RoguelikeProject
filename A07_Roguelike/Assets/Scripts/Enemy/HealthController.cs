@@ -27,6 +27,7 @@ public class HealthController : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
+
     private void Update()
     {
         if (_timeSinceLastChange < healthChangeDelay) 
@@ -40,6 +41,10 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    public void LoadHealthController(HealthController hc)
+    {
+        CurrentHealth = hc.CurrentHealth;
+    }
     public bool ChangeHealth(int change)
     {
         if(change == 0 || _timeSinceLastChange < healthChangeDelay)
@@ -70,6 +75,6 @@ public class HealthController : MonoBehaviour
         return true;
     }
 
-   
+    
 
 }

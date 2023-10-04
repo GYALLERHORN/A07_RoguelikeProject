@@ -148,7 +148,7 @@ Transform:
   - {fileID: 1686624292787993965}
   - {fileID: 515769269237083404}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &544018364379749120
 Rigidbody2D:
@@ -267,6 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37567d10245e7f4dabe938a6752c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropPercent: 28
+  delay: 0.35
 --- !u!114 &7390574310337500065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8ace733381a664eb4ab4bfb3c208d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BehavioursList2: []
 --- !u!114 &9018504765190239144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,9 +323,8 @@ MonoBehaviour:
   remainTime: 3.3
   coolTime: 11.7
   projectileSpawnPosition: {fileID: 1686624292787993965}
-  statsSO: {fileID: 11400000, guid: de7ae1b0eb9052c4fac8e64addf7e0fc, type: 2}
   range: 20
-  speed: 10
+  speedCoefficient: 0
   firstAttackDelay: 1
 --- !u!114 &632209593956097326
 MonoBehaviour:
@@ -337,12 +339,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackRange: {fileID: 6851384887370114550}
+  _attackRangeColor: {r: 0, g: 0, b: 0, a: 0}
   remainTime: 0
   coolTime: 15.5
   range: 5
   maxRange: 20
   chargeTime: 3.3
   delay: 1
+  damageCoefficeint: 0
 --- !u!1 &6851384887370114550
 GameObject:
   m_ObjectHideFlags: 0
