@@ -14,6 +14,8 @@ public class Dead : EnemyBehaviour, IBehaviour
 
     private HealthController _healthSystem;
     [SerializeField] [Range(0,100)] private int dropPercent;
+    [SerializeField] [Range(0f, 5f)] private float delay;
+
 
     protected override void Awake()
     {
@@ -34,8 +36,8 @@ public class Dead : EnemyBehaviour, IBehaviour
         _rb2D.velocity = Vector2.zero;
         animationController.Move(Vector2.zero);
         animationController.Death();
-        Invoke("DropItem", 0.35f);
-        Destroy(gameObject, 0.35f);
+        Invoke("DropItem", delay);
+        Destroy(gameObject, delay);
 
         // 아이템을 확률적으로 생성
         // dropitem 
