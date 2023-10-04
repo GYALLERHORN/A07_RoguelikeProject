@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor; // UnityEditor 네임스페이스
+#endif
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(AbstractDungeonGenerator), true)]
 public class RandomDungeonGeneratorEditor : Editor
 {
@@ -26,3 +29,4 @@ public class RandomDungeonGeneratorEditor : Editor
     }
 
 }
+#endif
