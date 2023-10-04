@@ -107,11 +107,12 @@ public class GameManager : MonoBehaviour
 
     private void TransferData()
     {
-        //PlayerInActive.GetComponent<CharacterStatsHandler>().;
+        PlayerInActive.GetComponent<CharacterStatsHandler>().statsModifiers = _characterStatsHandler.statsModifiers;
         PlayerInActive.GetComponent<HealthController>().LoadHealthController(_healthController);
         PlayerInActive.GetComponent<InventoryHandler>().Initialize(_Inventory);
 
         _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
+        _characterStatsHandler.UpdateCharacterStats();
         _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
         _healthController = PlayerInActive.GetComponent<HealthController>();
     }
