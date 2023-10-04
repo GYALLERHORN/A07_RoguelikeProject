@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject PlayerInActive;
     private HealthController _healthController;
     private CharacterStatsHandler _characterStatsHandler;
-    private Inventory _Inventory;
+    private InventoryHandler _Inventory;
     private bool isInit = false;
 
     [Header("´øÀü ¸Ê")]
@@ -53,7 +53,13 @@ public class GameManager : MonoBehaviour
                 TransferData();
             }
             else
+            {
                 isInit = true;
+                _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
+                _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
+                _healthController = PlayerInActive.GetComponent<HealthController>();
+                _Inventory.InitItem(_characterStatsHandler);
+            }
         }
         else if (next.name == "DungeonScene")
         {
@@ -69,7 +75,6 @@ public class GameManager : MonoBehaviour
                     break;
                 case 2:
                     obj = Instantiate(Map1, dungeon.transform);
-
                     break;
                 default:
                     return;
@@ -105,6 +110,10 @@ public class GameManager : MonoBehaviour
         //PlayerInActive.GetComponent<CharacterStatsHandler>().;
         PlayerInActive.GetComponent<HealthController>().LoadHealthController(_healthController);
         //PlayerInActive.GetComponent<Inventory>().;
+
+        _characterStatsHandler = PlayerInActive.GetComponent<CharacterStatsHandler>();
+        _Inventory = PlayerInActive.GetComponent<InventoryHandler>();
+        _healthController = PlayerInActive.GetComponent<HealthController>();
     }
 
     public void LeaveDungeon()
