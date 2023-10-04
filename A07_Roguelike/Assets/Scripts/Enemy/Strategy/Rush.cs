@@ -128,7 +128,7 @@ public class Rush : EnemyBehaviour, IBehaviour
     }
     #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (State == StrategyState.Action && rushState == RushStep.Rush)
         {
